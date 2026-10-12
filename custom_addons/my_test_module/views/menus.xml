@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="menu_test_module_root"
+              name="My Test App"
+              web_icon="base,static/description/icon.png"
+              sequence="10"/>
+
+    <!-- Sub Menu & Action -->
+    <menuitem id="menu_test_item_action"
+              name="Danh Sách Kiểm Thử"
+              parent="menu_test_module_root"
+              action="action_test_item"
+              sequence="10"/>
+</odoo>

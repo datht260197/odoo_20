@@ -8,7 +8,7 @@
     'category': 'Customization',
     'author': 'Custom Developer',
     'license': 'LGPL-3',
-    'depends': ['base'],
+    'depends': ['base', 'web'],
     'data': [
         'security/ir.access.csv',
         'views/test_item_views.xml',
