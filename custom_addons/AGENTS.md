@@ -39,7 +39,7 @@ Never duplicate standard data into copied fields. Never add a dependency on an o
 ## 3. Approval gate for new fields/models (hard stop)
 Applies to every new business field or model on any model (incl. `_inherit`). Technical/inherited-only changes (class `_inherit` with views, constraints, methods, no new columns) don't need approval.
 Forbidden workarounds: equivalent fields, `fields.Json`/Properties, auxiliary models, raw SQL columns, `ir.config_parameter` or other storage used to dodge approval.
-For C, send ONE concise request for all pending schema and wait:
+For C, send ONE concise bilingual request (§3a) for all pending schema and wait:
 1. Requirement not satisfiable by existing fields
 2. Model, technical name, label, type, purpose, new model vs field on existing model
 3. Why standard fields/relations are insufficient
@@ -48,9 +48,15 @@ For C, send ONE concise request for all pending schema and wait:
 6. Impact on existing data, upgrade, reports, integrations
 Do not write the field or code that depends on it before explicit approval. Meanwhile continue independent work. After approval implement everything (Python, views, `ir.access.csv`, translations, tests, manifest) without further questions.
 
+## 3a. Communication language (mandatory)
+The user is not fluent in English. Every question, clarification, approval request (§3), assumption or blocker addressed to the user MUST be written in **both Vietnamese and English**, Vietnamese first, each followed by a short plain explanation (what it means, why it matters, what each option changes). Use this layout:
+- 🇻🇳 Câu hỏi / đề xuất + giải thích ngắn
+- 🇬🇧 Question / proposal + short explanation
+Offer concrete options with a recommended default. Keep both versions equivalent and concise. Code, identifiers, commands and file contents stay in English; the final report (§11) is also bilingual.
+
 ## 4. Autonomous workflow
 Inspect → reuse existing patterns → smallest complete design → implement → focused tests → fix → review diff → report.
-Don't ask about routine decisions; state an assumption and proceed. Ask one concise question only if a missing requirement changes security, data integrity or behavior. No speculative wizards/reports/dashboards/config options/abstractions.
+Don't ask about routine decisions; state an assumption and proceed. Ask one concise question (bilingual, §3a) only if a missing requirement changes security, data integrity or behavior. No speculative wizards/reports/dashboards/config options/abstractions.
 
 ## 5. Engineering rules
 - ORM and recordsets only; batch-safe (`@api.model_create_multi`, loops over `self`, `_read_group`/`search_fetch`/prefetch, no per-record search/read in loops).
@@ -87,6 +93,6 @@ Requirements met · standard models/fields reused · no unapproved fields/models
 ## 10. Token discipline
 Read targeted excerpts (`grep -n`, `sed -n`), no repeated full-file reads or repo-wide scans, no tutorials, no code before requirements/schema approval, short plans, concise reports, reuse known-good commands from this session.
 
-## 11. Final report format
+## 11. Final report format (bilingual, §3a)
 **Implemented** · **Reused standard models/fields** · **New fields/models** (none / approved by user: yes) · **Changed files** · **Tests** (exact commands + pass/fail) · **Localization** (EN/VI verified how) · **Remaining risks** (only material/unverified).
 If schema approval is pending, output the §3 proposal instead of claiming completion.
