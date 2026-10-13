@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Danh mục 1: Đề xuất thanh toán & Tạm ứng -->
+        <record id="approval_category_payment" model="approval.category">
+            <field name="name">Đề xuất thanh toán &amp; Tạm ứng</field>
+            <field name="code">PAYMENT</field>
+            <field name="sequence">10</field>
+            <field name="icon">fa-money</field>
+            <field name="color">1</field>
+            <field name="has_amount">required</field>
+            <field name="has_date">optional</field>
+            <field name="has_location">no</field>
+            <field name="description">Áp dụng cho tạm ứng công tác phí, thanh toán hóa đơn nhà cung cấp, hoàn ứng chi phí hoặc giải ngân dự án.</field>
+        </record>
+
+        <!-- Danh mục 2: Nghỉ phép & Công tác -->
+        <record id="approval_category_leave" model="approval.category">
+            <field name="name">Nghỉ phép &amp; Công tác</field>
+            <field name="code">LEAVE</field>
+            <field name="sequence">20</field>
+            <field name="icon">fa-calendar-check-o</field>
+            <field name="color">2</field>
+            <field name="has_amount">no</field>
+            <field name="has_date">required</field>
+            <field name="has_location">optional</field>
+            <field name="manager_approval" eval="True"/>
+            <field name="description">Đơn xin nghỉ phép năm, nghỉ bù, nghỉ việc riêng hoặc lịch trình đi công tác trong và ngoài nước.</field>
+        </record>
+
+        <!-- Danh mục 3: Mua sắm thiết bị & Văn phòng phẩm -->
+        <record id="approval_category_procurement" model="approval.category">
+            <field name="name">Mua sắm thiết bị &amp; Văn phòng phẩm</field>
+            <field name="code">PROCUREMENT</field>
+            <field name="sequence">30</field>
+            <field name="icon">fa-shopping-cart</field>
+            <field name="color">3</field>
+            <field name="has_amount">optional</field>
+            <field name="has_date">optional</field>
+            <field name="has_location">no</field>
+            <field name="description">Đề xuất mua sắm máy tính, màn hình, bàn ghế, thiết bị văn phòng hoặc văn phòng phẩm phục vụ công việc.</field>
+        </record>
+
+        <!-- Danh mục 4: Điều xe & Đặt phòng họp -->
+        <record id="approval_category_vehicle" model="approval.category">
+            <field name="name">Điều xe &amp; Đặt phòng họp</field>
+            <field name="code">VEHICLE</field>
+            <field name="sequence">40</field>
+            <field name="icon">fa-car</field>
+            <field name="color">4</field>
+            <field name="has_amount">no</field>
+            <field name="has_date">required</field>
+            <field name="has_location">required</field>
+            <field name="description">Yêu cầu điều xe công ty đưa đón công tác, vận chuyển hoặc đăng ký sử dụng phòng họp lớn.</field>
+        </record>
+
+        <!-- Danh mục 5: Trình duyệt hợp đồng & Pháp chế -->
+        <record id="approval_category_contract" model="approval.category">
+            <field name="name">Trình duyệt hợp đồng &amp; Pháp chế</field>
+            <field name="code">CONTRACT</field>
+            <field name="sequence">50</field>
+            <field name="icon">fa-file-text-o</field>
+            <field name="color">5</field>
+            <field name="has_amount">optional</field>
+            <field name="has_date">optional</field>
+            <field name="has_location">no</field>
+            <field name="description">Thẩm định điều khoản hợp đồng kinh tế, biên bản ghi nhớ hợp tác hoặc rà soát tính pháp lý văn bản.</field>
+        </record>
+
+        <!-- Danh mục 6: Lịch trình công tác -->
+        <record id="approval_category_business_trip" model="approval.category">
+            <field name="name">Lịch trình công tác</field>
+            <field name="code">TRIP</field>
+            <field name="sequence">5</field>
+            <field name="icon">fa-plane</field>
+            <field name="color">6</field>
+            <field name="has_amount">optional</field>
+            <field name="has_date">required</field>
+            <field name="has_location">required</field>
+            <field name="description">Yêu cầu phê duyệt lịch trình công tác, địa điểm làm việc và dự toán chi phí di chuyển.</field>
+        </record>
+
+    </data>
+</odoo>

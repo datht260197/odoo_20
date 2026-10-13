@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ====================================================================
+         MENU SYSTEM: PHÊ DUYỆT DOANH NGHIỆP
+         ==================================================================== -->
+
+    <!-- Menu gốc -->
+    <menuitem id="menu_approval_root"
+              name="Phê duyệt"
+              sequence="20"
+              groups="enterprise_approval.group_approval_user"/>
+
+    <!-- ====================================================================
+         1. TỔNG QUAN (Dashboard các loại phê duyệt)
+         ==================================================================== -->
+    <menuitem id="menu_approval_dashboard"
+              name="Tổng quan"
+              parent="menu_approval_root"
+              action="action_approval_category"
+              sequence="1"/>
+
+    <!-- ====================================================================
+         2. ĐƠN CỦA TÔI
+         ==================================================================== -->
+    <menuitem id="menu_approval_my_root"
+              name="Đơn của tôi"
+              parent="menu_approval_root"
+              action="action_approval_request_my"
+              sequence="10"/>
+
+    <!-- ====================================================================
+         3. QUẢN LÝ (Dành cho Người phê duyệt & Quản trị viên)
+         ==================================================================== -->
+    <menuitem id="menu_approval_manager_root"
+              name="Quản lý"
+              parent="menu_approval_root"
+              sequence="20"
+              groups="enterprise_approval.group_approval_approver"/>
+
+    <!-- 3.1 Yêu cầu cần duyệt -->
+    <menuitem id="menu_approval_request_to_approve"
+              name="Yêu cầu cần duyệt"
+              parent="menu_approval_manager_root"
+              action="action_approval_request_to_approve"
+              sequence="10"/>
+
+    <!-- 3.2 Tất cả phê duyệt -->
+    <menuitem id="menu_approval_request_all"
+              name="Tất cả phê duyệt"
+              parent="menu_approval_manager_root"
+              action="action_approval_request_all"
+              sequence="20"
+              groups="enterprise_approval.group_approval_manager"/>
+
+    <!-- ====================================================================
+         4. CẤU HÌNH
+         ==================================================================== -->
+    <menuitem id="menu_approval_config_root"
+              name="Cấu hình"
+              parent="menu_approval_root"
+              sequence="100"
+              groups="enterprise_approval.group_approval_manager"/>
+
+    <!-- 4.1 Loại phê duyệt -->
+    <menuitem id="menu_approval_category"
+              name="Loại phê duyệt"
+              parent="menu_approval_config_root"
+              action="action_approval_category"
+              sequence="10"/>
+
+    <!-- 4.2 Các bước phê duyệt -->
+    <menuitem id="menu_approval_workflow_stage"
+              name="Các bước phê duyệt"
+              parent="menu_approval_config_root"
+              action="action_approval_workflow_stage"
+              sequence="20"/>
+
+</odoo>

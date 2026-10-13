@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- ====================================================================
+         DỮ LIỆU MẪU ĐỘI NGŨ HỖ TRỢ (HELPDESK TEAMS)
+    ==================================================================== -->
+    <record id="team_customer_care" model="it.team">
+        <field name="name">Customer Care</field>
+        <field name="sequence">1</field>
+        <field name="color">1</field>
+        <field name="active">1</field>
+    </record>
+
+    <record id="team_it_support" model="it.team">
+        <field name="name">IT Support</field>
+        <field name="sequence">2</field>
+        <field name="color">2</field>
+        <field name="active">1</field>
+    </record>
+
+    <record id="team_hardware" model="it.team">
+        <field name="name">Phần cứng &amp; Thiết bị</field>
+        <field name="sequence">3</field>
+        <field name="color">3</field>
+        <field name="active">1</field>
+    </record>
+
+    <record id="team_software" model="it.team">
+        <field name="name">Phần mềm &amp; Hệ thống</field>
+        <field name="sequence">4</field>
+        <field name="color">4</field>
+        <field name="active">1</field>
+    </record>
+
+    <!-- ====================================================================
+         DỮ LIỆU MẪU THẺ PHÂN LOẠI (TICKET TAGS)
+    ==================================================================== -->
+    <record id="tag_hardware" model="it.ticket.tag">
+        <field name="name">Hardware</field>
+        <field name="color">1</field>
+    </record>
+
+    <record id="tag_software" model="it.ticket.tag">
+        <field name="name">Software</field>
+        <field name="color">2</field>
+    </record>
+
+    <record id="tag_network" model="it.ticket.tag">
+        <field name="name">Network</field>
+        <field name="color">3</field>
+    </record>
+
+    <record id="tag_urgent" model="it.ticket.tag">
+        <field name="name">Khẩn cấp (Urgent)</field>
+        <field name="color">9</field>
+    </record>
+
+    <record id="tag_vip" model="it.ticket.tag">
+        <field name="name">VIP Request</field>
+        <field name="color">10</field>
+    </record>
+
+</odoo>

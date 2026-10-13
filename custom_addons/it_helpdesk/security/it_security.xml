@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    ============================================================================
+    PHÂN QUYỀN NHÓM NGƯỜI DÙNG - IT Helpdesk Security Groups
+    ============================================================================
+    -->
+
+    <!-- ========================================================================
+         CATEGORY: IT Helpdesk
+    ======================================================================== -->
+    <record id="module_category_it_helpdesk" model="ir.module.category">
+        <field name="name">IT Helpdesk</field>
+        <field name="description">Technical support tickets and internal IT assets management</field>
+        <field name="sequence">90</field>
+    </record>
+
+    <record id="res_groups_privilege_it_helpdesk" model="res.groups.privilege">
+        <field name="name">IT Helpdesk</field>
+        <field name="sequence">90</field>
+        <field name="category_id" ref="module_category_it_helpdesk"/>
+    </record>
+
+    <!-- ========================================================================
+         GROUP 1: IT User
+    ======================================================================== -->
+    <record id="group_it_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="sequence">10</field>
+        <field name="privilege_id" ref="res_groups_privilege_it_helpdesk"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">Users can create support tickets, view and update tickets assigned to them.</field>
+    </record>
+
+    <!-- ========================================================================
+         GROUP 2: IT Manager
+    ======================================================================== -->
+    <record id="group_it_manager" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="sequence">20</field>
+        <field name="privilege_id" ref="res_groups_privilege_it_helpdesk"/>
+        <field name="implied_ids" eval="[(4, ref('group_it_user'))]"/>
+        <field name="user_ids" eval="[(4, ref('base.user_admin'))]"/>
+        <field name="comment">Full administrator access: view, edit, delete all tickets, assets, templates and configurations.</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,15 @@
+id,name,model_id,group_id/id,operation,domain
+access_approval_category_user,approval.category.user,approval.category,enterprise_approval.group_approval_user,r,
+access_approval_category_manager,approval.category.manager,approval.category,enterprise_approval.group_approval_manager,crud,
+access_approval_workflow_stage_user,approval.workflow.stage.user,approval.workflow.stage,enterprise_approval.group_approval_user,r,
+access_approval_workflow_stage_manager,approval.workflow.stage.manager,approval.workflow.stage,enterprise_approval.group_approval_manager,crud,
+access_approval_history_user,approval.history.user,approval.history,enterprise_approval.group_approval_user,cr,
+access_approval_history_manager,approval.history.manager,approval.history,enterprise_approval.group_approval_manager,crud,
+access_approval_reject_wizard_approver,approval.reject.wizard.approver,approval.reject.wizard,enterprise_approval.group_approval_approver,crud,
+access_approval_reject_wizard_manager,approval.reject.wizard.manager,approval.reject.wizard,enterprise_approval.group_approval_manager,crud,
+access_approval_approver_user,approval.approver.user,approval.approver,enterprise_approval.group_approval_user,crud,
+access_approval_approver_manager,approval.approver.manager,approval.approver,enterprise_approval.group_approval_manager,crud,
+access_approval_request_user,approval.request.user,approval.request,enterprise_approval.group_approval_user,crud,"['|', ('requester_id', '=', user.id), ('create_uid', '=', user.id)]"
+access_approval_request_approver,approval.request.approver,approval.request,enterprise_approval.group_approval_approver,cru,"['|', '|', ('requester_id', '=', user.id), ('approver_id', '=', user.id), ('approver_ids.user_id', '=', user.id)]"
+access_approval_request_manager,approval.request.manager,approval.request,enterprise_approval.group_approval_manager,crud,
+approval_request_comp_rule,Approval Request multi company rule,approval.request,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"

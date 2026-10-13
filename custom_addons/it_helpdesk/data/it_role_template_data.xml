@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- 1. Mẫu quyền: Trưởng phòng IT -->
+        <record id="role_template_it_manager" model="it.department.role.template">
+            <field name="name">Trưởng phòng IT (IT Manager)</field>
+            <field name="code">IT_MGR</field>
+            <field name="role_type">manager</field>
+            <field name="sequence">1</field>
+            <field name="description">Toàn quyền quản trị IT Helpdesk, quản lý tài sản CNTT, phê duyệt yêu cầu và phân công công việc kỹ thuật.</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('it_helpdesk.group_it_manager')),
+                (4, ref('project.group_project_manager')),
+                (4, ref('hr.group_hr_user'))
+            ]"/>
+        </record>
+
+        <!-- 2. Mẫu quyền: Nhân viên IT -->
+        <record id="role_template_it_staff" model="it.department.role.template">
+            <field name="name">Nhân viên IT (IT Staff)</field>
+            <field name="code">IT_STAFF</field>
+            <field name="role_type">employee</field>
+            <field name="sequence">2</field>
+            <field name="description">Quyền tiếp nhận, cập nhật trạng thái phiếu hỗ trợ IT được giao và quản lý thiết bị được phân công.</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('it_helpdesk.group_it_user')),
+                (4, ref('project.group_project_user'))
+            ]"/>
+        </record>
+
+        <!-- 3. Mẫu quyền: Trưởng phòng nghiệp vụ (Chung) -->
+        <record id="role_template_dept_manager" model="it.department.role.template">
+            <field name="name">Trưởng phòng / Quản lý bộ phận</field>
+            <field name="code">DEPT_MGR</field>
+            <field name="role_type">manager</field>
+            <field name="sequence">5</field>
+            <field name="description">Được cấp toàn quyền xem báo cáo, duyệt phiếu, quản lý task của phòng ban và giám sát tiến độ công việc.</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('project.group_project_manager')),
+                (4, ref('hr.group_hr_user'))
+            ]"/>
+        </record>
+
+        <!-- 4. Mẫu quyền: Nhân viên nghiệp vụ (Chung) -->
+        <record id="role_template_dept_employee" model="it.department.role.template">
+            <field name="name">Nhân viên phòng ban (Tiêu chuẩn)</field>
+            <field name="code">DEPT_EMP</field>
+            <field name="role_type">employee</field>
+            <field name="sequence">10</field>
+            <field name="description">Quyền cơ bản: tạo yêu cầu hỗ trợ, theo dõi công việc được giao và thao tác tác vụ nội bộ cá nhân.</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('project.group_project_user'))
+            ]"/>
+        </record>
+
+    </data>
+</odoo>

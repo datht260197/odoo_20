@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ====================================================================
+         1. FORM VIEW: Phiếu yêu cầu phê duyệt
+         ==================================================================== -->
+    <record id="view_approval_request_form" model="ir.ui.view">
+        <field name="name">approval.request.form</field>
+        <field name="model">approval.request</field>
+        <field name="arch" type="xml">
+            <form string="Yêu cầu phê duyệt" class="o_approval_request_form">
+
+                <!-- Header: Thanh trạng thái và nút hành động -->
+                <header>
+                    <button name="action_submit"
+                            string="Nộp duyệt"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+
+                    <button name="action_approve"
+                            string="Phê duyệt"
+                            type="object"
+                            class="btn-success"
+                            invisible="not can_approve or state != 'submitted'"/>
+
+                    <button name="action_reject"
+                            string="Từ chối"
+                            type="object"
+                            class="btn-danger"
+                            invisible="not can_reject or state != 'submitted'"/>
+
+                    <button name="action_reset_to_draft"
+                            string="Đặt về nháp"
+                            type="object"
+                            invisible="state not in ['submitted', 'rejected']"/>
+
+                    <button name="action_cancel"
+                            string="Hủy"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="state in ['approved', 'cancelled']"/>
+
+                    <button name="action_attach_document"
+                            string="Đính kèm tài liệu"
+                            type="object"
+                            class="btn-secondary"/>
+
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="draft,submitted,approved,rejected"/>
+                </header>
+
+                <sheet>
+                    <!-- Các trường ẩn điều khiển quyền và hiển thị -->
+                    <field name="can_approve" invisible="1"/>
+                    <field name="can_reject" invisible="1"/>
+                    <field name="has_amount" invisible="1"/>
+                    <field name="has_date" invisible="1"/>
+                    <field name="has_location" invisible="1"/>
+
+                    <!-- Ruy-băng trạng thái -->
+                    <widget name="web_ribbon" title="Đã duyệt" bg_color="text-bg-success" invisible="state != 'approved'"/>
+                    <widget name="web_ribbon" title="Từ chối" bg_color="text-bg-danger" invisible="state != 'rejected'"/>
+                    <widget name="web_ribbon" title="Đã hủy" bg_color="text-bg-secondary" invisible="state != 'cancelled'"/>
+
+                    <!-- Nút thống kê: Tài liệu đính kèm -->
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_attachments"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-paperclip">
+                            <field name="attachment_number" widget="statinfo" string="Tài liệu đính kèm"/>
+                        </button>
+                    </div>
+
+                    <!-- Ảnh đại diện danh mục (góc trên bên phải) -->
+                    <field name="category_image" widget="image" class="oe_avatar float-end" options="{'image_preview': 'category_image'}"/>
+
+                    <!-- Tiêu đề phiếu -->
+                    <div class="oe_title">
+                        <label for="title" string="Tiêu đề phê duyệt" class="text-muted fw-bold d-block"/>
+                        <h1>
+                            <field name="title"
+                                   placeholder="Ví dụ: Công tác Hà Nội, Tạm ứng công tác phí..."
+                                   class="w-100 fw-bold"
+                                   readonly="state not in ['draft']"/>
+                        </h1>
+                    </div>
+
+                    <!-- Các trường thông tin chính -->
+                    <group>
+                        <group>
+                            <field name="requester_id" string="Người tạo yêu cầu" widget="many2one_avatar_user" readonly="state not in ['draft']"/>
+                            <field name="category_id" string="Loại phê duyệt" options="{'no_create': True}" readonly="state not in ['draft']"/>
+                            <label for="date_start" string="Khoảng thời gian" invisible="has_date == 'no'"/>
+                            <div class="o_row" invisible="has_date == 'no'">
+                                <field name="date_start" widget="daterange" options="{'end_date_field': 'date_end'}" readonly="state not in ['draft']"/>
+                                <i class="fa fa-arrow-right mx-2 text-muted" aria-label="đến" title="đến"/>
+                                <field name="date_end" readonly="state not in ['draft']"/>
+                            </div>
+                            <field name="location" string="Địa điểm / Lộ trình" invisible="has_location == 'no'" readonly="state not in ['draft']" placeholder="Ví dụ: Chi nhánh Hà Nội - Hải Phòng hoặc Phòng họp 402"/>
+                        </group>
+                        <group>
+                            <field name="amount" string="Số tiền" invisible="has_amount == 'no'" widget="monetary" readonly="state not in ['draft']"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="approver_id" string="Người phê duyệt" options="{'no_create': True}" widget="many2one_avatar_user" readonly="state not in ['draft']"/>
+                        </group>
+                    </group>
+
+                    <!-- Hệ thống Tab chi tiết -->
+                    <notebook>
+                        <!-- Tab 1: Nội dung mô tả -->
+                        <page string="Nội dung mô tả" name="page_description">
+                            <field name="description" placeholder="Nhập chi tiết nội dung đề xuất, lý do, mục đích..." readonly="state not in ['draft']"/>
+                        </page>
+
+                        <!-- Tab 2: Người phê duyệt -->
+                        <page string="Người phê duyệt" name="page_approvers">
+                            <field name="approver_ids">
+                                <list editable="bottom" string="Người phê duyệt">
+                                    <field name="user_id" string="Nhân viên" widget="many2one_avatar_user"/>
+                                    <field name="status" string="Trạng thái" widget="badge"
+                                           decoration-info="status == 'new'"
+                                           decoration-success="status == 'approved'"
+                                           decoration-danger="status == 'refused'"
+                                           decoration-muted="status == 'cancel'"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <!-- Tab 3: Thông tin bổ sung -->
+                        <page string="Thông tin bổ sung" name="page_extra">
+                            <group>
+                                <group name="audit_left">
+                                    <field name="employee_id" string="Nhân viên" options="{'no_create': True}" readonly="state not in ['draft']"/>
+                                    <field name="department_id" string="Phòng ban" options="{'no_create': True}" readonly="1"/>
+                                    <field name="company_id" string="Công ty" options="{'no_create': True}" readonly="1"/>
+                                    <field name="current_stage_id" string="Bước duyệt hiện tại" readonly="1" invisible="not current_stage_id"/>
+                                </group>
+                                <group name="audit_right">
+                                    <field name="date_submitted" string="Thời gian gửi duyệt" readonly="1"/>
+                                    <field name="date_confirmed" string="Thời gian xử lý" readonly="1"/>
+                                    <field name="confirmed_by" string="Người quyết định" readonly="1" options="{'no_create': True}"/>
+                                    <field name="priority" string="Độ ưu tiên" widget="priority" readonly="state not in ['draft']"/>
+                                </group>
+                            </group>
+                            <field name="history_ids" readonly="1" class="mt-3">
+                                <list string="Nhật ký phê duyệt" default_order="timestamp desc">
+                                    <field name="timestamp" string="Thời gian"/>
+                                    <field name="user_id" string="Người thực hiện"/>
+                                    <field name="action"
+                                           string="Hành động"
+                                           widget="badge"
+                                           decoration-info="action == 'submit'"
+                                           decoration-success="action == 'approve'"
+                                           decoration-danger="action == 'reject'"
+                                           decoration-muted="action in ['draft', 'reset', 'cancel']"/>
+                                    <field name="comment" string="Ghi chú / Phản hồi"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+
+                <!-- Chatter trao đổi & Nhật ký hoạt động -->
+                <chatter/>
+
+            </form>
+        </field>
+    </record>
+
+    <!-- ====================================================================
+         2. LIST VIEW: Danh sách yêu cầu phê duyệt
+         ==================================================================== -->
+    <record id="view_approval_request_list" model="ir.ui.view">
+        <field name="name">approval.request.list</field>
+        <field name="model">approval.request</field>
+        <field name="arch" type="xml">
+            <list string="Danh sách yêu cầu phê duyệt"
+                  decoration-muted="state in ['draft', 'cancelled']"
+                  decoration-warning="state == 'submitted'"
+                  decoration-success="state == 'approved'"
+                  decoration-danger="state == 'rejected'">
+                <field name="name" string="Mã yêu cầu"/>
+                <field name="title" string="Tiêu đề"/>
+                <field name="category_id" string="Loại phê duyệt" widget="badge"/>
+                <field name="requester_id" string="Người tạo"/>
+                <field name="department_id" string="Phòng ban" optional="show"/>
+                <field name="approver_id" string="Người phê duyệt"/>
+                <field name="amount" string="Số tiền" sum="Tổng cộng" optional="show"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="priority" widget="priority" optional="show"/>
+                <field name="date_submitted" string="Thời gian gửi" optional="show"/>
+                <field name="state"
+                       string="Trạng thái"
+                       widget="badge"
+                       decoration-muted="state in ['draft', 'cancelled']"
+                       decoration-warning="state == 'submitted'"
+                       decoration-success="state == 'approved'"
+                       decoration-danger="state == 'rejected'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ====================================================================
+         3. KANBAN VIEW
+         ==================================================================== -->
+    <record id="view_approval_request_kanban" model="ir.ui.view">
+        <field name="name">approval.request.kanban</field>
+        <field name="model">approval.request</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_small_column" sample="1">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="title"/>
+                <field name="category_id"/>
+                <field name="requester_id"/>
+                <field name="approver_id"/>
+                <field name="amount"/>
+                <field name="currency_id"/>
+                <field name="priority"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card oe_kanban_global_click p-3 rounded-3 shadow-sm border bg-white">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge text-bg-light border text-primary fw-bold small">
+                                    <field name="name"/>
+                                </span>
+                                <field name="priority" widget="priority" readonly="1"/>
+                            </div>
+                            <div class="mb-2">
+                                <strong class="fs-6 text-dark d-block text-truncate">
+                                    <field name="title"/>
+                                </strong>
+                                <span class="badge rounded-pill text-bg-info text-white small">
+                                    <field name="category_id"/>
+                                </span>
+                            </div>
+                            <div class="mb-2 text-primary fw-bold" t-if="record.amount.raw_value">
+                                <field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            </div>
+                            <div class="pt-2 border-top d-flex justify-content-between align-items-center text-muted small">
+                                <div class="d-flex align-items-center">
+                                    <i class="fa fa-user me-1"/>
+                                    <span><field name="requester_id"/></span>
+                                </div>
+                                <div t-if="record.approver_id.raw_value">
+                                    <i class="fa fa-user-circle me-1"/>
+                                    <field name="approver_id"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ====================================================================
+         4. SEARCH VIEW
+         ==================================================================== -->
+    <record id="view_approval_request_search" model="ir.ui.view">
+        <field name="name">approval.request.search</field>
+        <field name="model">approval.request</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm yêu cầu phê duyệt">
+                <field name="name" string="Mã yêu cầu"/>
+                <field name="title" string="Tiêu đề"/>
+                <field name="requester_id" string="Người tạo"/>
+                <field name="approver_id" string="Người phê duyệt"/>
+                <field name="category_id" string="Loại phê duyệt"/>
+
+                <!-- Bộ lọc cá nhân -->
+                <filter name="filter_my_requests"
+                        string="Đơn của tôi"
+                        domain="[('requester_id', '=', uid)]"/>
+                <filter name="filter_to_approve"
+                        string="Cần duyệt"
+                        domain="[('state', '=', 'submitted'), '|', ('approver_id', '=', uid), ('approver_ids.user_id', '=', uid)]"/>
+                <separator/>
+
+                <!-- Bộ lọc trạng thái -->
+                <filter name="filter_draft"
+                        string="Chờ nộp"
+                        domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_submitted"
+                        string="Chờ duyệt"
+                        domain="[('state', '=', 'submitted')]"/>
+                <filter name="filter_approved"
+                        string="Đã duyệt"
+                        domain="[('state', '=', 'approved')]"/>
+                <filter name="filter_rejected"
+                        string="Từ chối"
+                        domain="[('state', '=', 'rejected')]"/>
+                <separator/>
+
+                <filter name="filter_urgent"
+                        string="Khẩn cấp"
+                        domain="[('priority', '=', '3')]"/>
+
+                <!-- Nhóm theo -->
+                <group>
+                    <filter name="group_category"
+                            string="Loại phê duyệt"
+                            context="{'group_by': 'category_id'}"/>
+                    <filter name="group_state"
+                            string="Trạng thái"
+                            context="{'group_by': 'state'}"/>
+                    <filter name="group_requester"
+                            string="Người tạo"
+                            context="{'group_by': 'requester_id'}"/>
+                    <filter name="group_approver"
+                            string="Người phê duyệt"
+                            context="{'group_by': 'approver_id'}"/>
+                    <filter name="group_date"
+                            string="Tháng gửi đơn"
+                            context="{'group_by': 'date_submitted:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ====================================================================
+         5. ACTIONS
+         ==================================================================== -->
+
+    <!-- Action 1: Đơn của tôi -->
+    <record id="action_approval_request_my" model="ir.actions.act_window">
+        <field name="name">Đơn của tôi</field>
+        <field name="res_model">approval.request</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="domain">[('requester_id', '=', uid)]</field>
+        <field name="context">{'search_default_filter_my_requests': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo yêu cầu phê duyệt đầu tiên của bạn!
+            </p>
+            <p>
+                Chọn loại phê duyệt phù hợp (Thanh toán, Nghỉ phép, Điều xe, Mua sắm...) và điền thông tin chi tiết để gửi cấp quản lý phê duyệt.
+            </p>
+        </field>
+    </record>
+
+    <!-- Action 2: Yêu cầu cần duyệt -->
+    <record id="action_approval_request_to_approve" model="ir.actions.act_window">
+        <field name="name">Yêu cầu cần duyệt</field>
+        <field name="res_model">approval.request</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="domain">[('state', '=', 'submitted'), '|', ('approver_id', '=', uid), ('approver_ids.user_id', '=', uid)]</field>
+        <field name="context">{'search_default_filter_submitted': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tuyệt vời! Hiện không có yêu cầu nào đang chờ bạn duyệt.
+            </p>
+            <p>
+                Khi nhân viên gửi yêu cầu được giao cho bạn, yêu cầu sẽ xuất hiện tại đây.
+            </p>
+        </field>
+    </record>
+
+    <!-- Action 3: Tất cả phê duyệt -->
+    <record id="action_approval_request_all" model="ir.actions.act_window">
+        <field name="name">Tất cả phê duyệt</field>
+        <field name="res_model">approval.request</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Chưa có yêu cầu phê duyệt nào trong hệ thống!
+            </p>
+        </field>
+    </record>
+
+</odoo>

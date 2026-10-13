@@ -1,0 +1,1573 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following module:
+#   * enterprise_approval
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-07 00:00+0000\n"
+"PO-Revision-Date: 2026-10-07 00:00+0000\n"
+"Last-Translator: Enterprise Solution\n"
+"Language-Team: Vietnamese <vi@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "<b>%s</b> has submitted an approval request: \"%s\". Please review and process."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "<b>Approval request has been submitted.</b><br/>Assigned approver: <b>%s</b>"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "<b>Stage approved.</b> Forwarded to next approval stage: <b>%s</b>"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Account of the user who created and submitted the request"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Account responsible for reviewing and approving this request"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Action"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Action History"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Active"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Advanced"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model:ir.actions.act_window,name:enterprise_approval.action_approval_request_all
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_request_all
+msgid "All Approvals"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+msgid "Amount"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Amount / Cost Field"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+msgid "Amount Field"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+msgid "Any member of this group can approve at this stage"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,description:enterprise_approval.approval_category_payment
+msgid "Applicable to business travel advances, vendor invoice payments, expense reimbursements, or project disbursements."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+msgid "Approval Approver"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+msgid "Approval Category"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Approval History"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/ir_sequence_data.xml:0
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+#: model:ir.sequence,name:enterprise_approval.seq_approval_request
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Approval Request"
+msgstr ""
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_rules.xml:0
+#: model:ir.rule,name:enterprise_approval.rule_approval_request_approver
+msgid "Approval Request: Approver sees assigned requests"
+msgstr ""
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_rules.xml:0
+#: model:ir.rule,name:enterprise_approval.rule_approval_request_manager
+msgid "Approval Request: Manager sees all"
+msgstr ""
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_rules.xml:0
+#: model:ir.rule,name:enterprise_approval.rule_approval_request_multi_company
+msgid "Approval Request: Multi-company"
+msgstr ""
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_rules.xml:0
+#: model:ir.rule,name:enterprise_approval.rule_approval_request_user
+msgid "Approval Request: User sees own requests"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+msgid "Approval Requests"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Approval Requests: %s"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+msgid "Approval Stage"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model:ir.actions.act_window,name:enterprise_approval.action_approval_workflow_stage
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_workflow_stage
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_list
+msgid "Approval Stages"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Approval Subject"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Approval Type"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Approval Type Name"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: model:ir.actions.act_window,name:enterprise_approval.action_approval_category
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_category
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+msgid "Approval Types"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Approval Workflow"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+msgid "Approval Workflow Stage"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Approval needed: %s"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Approval request cancelled"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Approval request created"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,description:enterprise_approval.approval_category_business_trip
+msgid "Approval requests for business trip itinerary, working locations, and estimated travel expenses."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_root
+msgid "Approvals"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model:ir.actions.act_window,name:enterprise_approval.action_approval_request_to_approve
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_request_to_approve
+msgid "Approvals to Review"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Approve"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Approved"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Approved by Direct Manager"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model:res.groups,name:enterprise_approval.group_approval_approver
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Approver"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_list
+msgid "Approver Group"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Approver(s)"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Archived"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Attach Document"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Attachments"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Auto-generated request code in sequence REQ/YYYY/NNNN"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+msgid "Automatically assign the requester's direct manager as approver"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,name:enterprise_approval.approval_category_business_trip
+msgid "Business Trip"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Can Approve"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Can Refuse"
+msgstr ""
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: model:res.groups,comment:enterprise_approval.group_approval_approver
+msgid "Can view assigned approval requests and perform Approve or Refuse actions."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Cancel"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Cancelled"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid ""
+"Cannot edit the following fields: %(fields)s!\n"
+"Request \"%(code)s\" is currently in status \"%(state)s\"."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_list
+msgid "Category"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Category Code"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Category Image"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+msgid "Category Name"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+msgid "Code"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Color Index"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Company"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,description:enterprise_approval.approval_category_vehicle
+msgid "Company car dispatch requests, business trip transportation, or large conference room reservations."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_config_root
+msgid "Configuration"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Configure which fields employees must fill when creating a request"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_reject_wizard_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_reject_wizard_form
+msgid "Confirm Refusal"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,name:enterprise_approval.approval_category_contract
+msgid "Contract & Legal Review"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+msgid "Create your first approval request!"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+msgid "Create your first approval type!"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+msgid "Created"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Currency"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Current Approval Stage"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Current Stage"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_dashboard
+msgid "Dashboard"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Date / Time Field"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+msgid "Date Field"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Decided By"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Default Approval Mechanism"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+msgid "Default Approver"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+msgid "Define request types such as Payment, Advance, Vehicle, Procurement... and configure approvers or multi-stage approval workflows."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+msgid "Department"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Department of the employee"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Description"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Description & Guidelines"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Description..."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+msgid "Designate a specific user as approver for this stage"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_list
+msgid "Designated Approver"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Detailed reason, related documents, or proposal content"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_list
+msgid "Direct Manager"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_reject_wizard_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_reject_wizard_form
+msgid "Discard"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Display Order"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Display Settings"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+msgid "E.g., Level 1 - Department Head, Level 2 - Chief Accountant, Level 3 - Director"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Employee"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Employee profile linked to the request owner"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "End Date"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Enter conditions, internal policies or required documents employees must provide when creating this type of request..."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_reject_wizard_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_reject_wizard_form
+msgid "Enter the specific reason for refusing (e.g., Missing invoice documents, Exceeds approved budget limit...)"
+msgstr ""
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: model:ir.module.category,name:enterprise_approval.module_category_enterprise_approval
+msgid "Enterprise Approval"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Enterprise Approval Management System - Multi-stage workflow, RBAC, Audit Trail"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Extra Information"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+msgid "Fixed Approver"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "FontAwesome Icon"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "FontAwesome class name (e.g., fa-money, fa-car, fa-plane)"
+msgstr ""
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: model:res.groups,comment:enterprise_approval.group_approval_manager
+msgid "Full administrative access to approval categories, stages configuration, and all requests."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+msgid "Great! No requests are waiting for your review."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Group By"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Has Amount Field"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Has Date Field"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Has Location Field"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "High"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Icon (FontAwesome class)"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "If enabled, the system automatically assigns the employee's direct manager as approver"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Illustration image for this approval category"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Instructions for employees on conditions required when creating a request of this type"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,name:enterprise_approval.approval_category_leave
+msgid "Leave & Trip"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Location"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Location / Route"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Location / Route Field"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Low"
+msgstr ""
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: model:ir.module.category,description:enterprise_approval.module_category_enterprise_approval
+msgid "Manage enterprise requests and approval workflows"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_manager_root
+#: model:res.groups,name:enterprise_approval.group_approval_manager
+msgid "Manager"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model:ir.actions.act_window,name:enterprise_approval.action_approval_request_my
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_my_root
+msgid "My Approvals"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "My Requests"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Name of the request/approval category"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "New Approval Request: %s"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_kanban
+msgid "New Request"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "No Approver found! Please select an Approver before submitting."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+msgid "No approval requests in the system yet!"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Normal"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Not Used"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Note / Feedback"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Note:"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Only requests awaiting approval can be approved."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Only requests awaiting approval can be refused."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Only requests in \"To Submit\" status can be submitted."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Only the request owner or an Administrator can cancel this request."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Only the request owner or an Administrator can reset to draft."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Optional"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,name:enterprise_approval.approval_category_payment
+msgid "Payment & Advance"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Period"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+msgid "Please clearly explain why you are not approving this request"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Please enter the Amount for category \"%s\"."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Please enter the Date for category \"%s\"."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Please enter the Location / Route for category \"%s\"."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Priority"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Processed On"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Processing status of the approval request"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,name:enterprise_approval.approval_category_procurement
+msgid "Procurement & Supplies"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,description:enterprise_approval.approval_category_procurement
+msgid "Proposals for purchasing computers, monitors, desks, chairs, or office stationery for operational needs."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Reason:"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Reference"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_reject_wizard_views.xml:0
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_reject_wizard_form
+msgid "Refusal Reason"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Refuse"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_reject_wizard_views.xml:0
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_reject_wizard_form
+msgid "Refuse Approval Request"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_reject_wizard_views.xml:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_reject_wizard_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Refused"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Request Code"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Request Data"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Request Owner"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Request Subject"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Request fully approved."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Request has been refused!"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+msgid "Request refused. Reason: %s"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Request submitted to %s"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+msgid "Requests"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,description:enterprise_approval.approval_category_leave
+msgid "Requests for annual leave, compensatory leave, or domestic and overseas business trip schedules."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Required"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Reset to Draft"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Reset to Draft to update information"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Search Approval Requests"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+msgid "Select the appropriate category (Payment, Leave, Vehicle, Procurement...) and fill in the details to submit for management approval."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+msgid "Sequence"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Short code identifying the category (e.g., EXPENSE, LEAVE, PROCUREMENT)"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Short description of the purpose or reason for the request"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Stage \"%(prev)s\" approved. Forwarded to: \"%(next)s\" (%(approver)s)"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_list
+msgid "Stage Name"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Start Date"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Status"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Subject"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Submission Month"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,description:enterprise_approval.approval_category_contract
+msgid "Submissions for review and approval of commercial contracts, appendices, NDAs, or corporate legal documents."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Submit"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Submitted"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+msgid "Submitted On"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Technical Identification"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "The approval request has been cancelled."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "The request has been reset to <b>To Submit</b> status."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+msgid "The request is no longer awaiting approval."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Timestamp"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "To Approve"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "To Submit"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Type of request / approval workflow category"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Uncheck to hide this category from the request creation list"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Urgent"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model:res.groups,name:enterprise_approval.group_approval_user
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "User"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "User automatically assigned as approver when no specific setting exists"
+msgstr ""
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: model:res.groups,comment:enterprise_approval.group_approval_user
+msgid "Users can create, edit drafts, submit and track their own approval requests."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,name:enterprise_approval.approval_category_vehicle
+msgid "Vehicle & Meeting Room"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_reject_wizard_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_reject_wizard_form
+msgid "Warning:"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+msgid "When an employee submits a request assigned to you, it will appear here."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Work location, delivery address, or vehicle route"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "You can only delete a request that is in \"To Submit\" or \"Cancelled\" status."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "You do not have the authority to approve this request."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+msgid "You do not have the authority to refuse this request."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "e.g. Business Trip to Hanoi"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "e.g. Business Trip, Payment Request..."
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "e.g. Hanoi"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_list
+msgid "e.g. Level 1 - Department Head"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+msgid "e.g. Level 1 - Department Head Review"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "e.g. TRIP, PAYMENT, LEAVE"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "fa-plane, fa-money, fa-car"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "to"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+msgid "❌ <b>REQUEST HAS BEEN REFUSED!</b><br/>Refused by: <b>%s</b><br/>Reason: <i>%s</i>"
+msgstr ""
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "🎉 <b>REQUEST HAS BEEN APPROVED!</b><br/>Approved by: <b>%s</b>"
+msgstr ""

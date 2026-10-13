@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ====================================================================
+         IR.SEQUENCE: Tự động sinh mã phiếu tuần tự
+    ==================================================================== -->
+    <record id="seq_it_ticket" model="ir.sequence">
+        <field name="name">IT Support Ticket</field>
+        <field name="code">it.ticket</field>
+        <field name="prefix">TICKET/%(year)s/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- ====================================================================
+         IT TICKET: FORM VIEW (Chuẩn giao diện Odoo 18 Helpdesk - Tối ưu 30s)
+    ==================================================================== -->
+    <record id="view_it_ticket_form" model="ir.ui.view">
+        <field name="name">it.ticket.form</field>
+        <field name="model">it.ticket</field>
+        <field name="arch" type="xml">
+            <form string="Phiếu hỗ trợ IT" class="o_helpdesk_ticket_form">
+
+                <!-- Header: Action Buttons & Statusbar -->
+                <header>
+                    <button name="action_set_in_progress"
+                            string="Bắt đầu xử lý"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state not in ['new', 'waiting']"
+                            groups="it_helpdesk.group_it_user"/>
+                    <button name="action_set_waiting"
+                            string="Tạm hoãn (On Hold)"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="state != 'in_progress'"
+                            groups="it_helpdesk.group_it_user"/>
+                    <button name="action_set_done"
+                            string="Hoàn thành"
+                            type="object"
+                            class="btn-success"
+                            invisible="state not in ['in_progress', 'waiting']"
+                            groups="it_helpdesk.group_it_user"/>
+                    <button name="action_reset_to_new"
+                            string="Mở lại phiếu"
+                            type="object"
+                            invisible="state not in ['done', 'cancelled']"
+                            groups="it_helpdesk.group_it_manager"/>
+                    <button name="action_set_cancelled"
+                            string="Hủy phiếu"
+                            type="object"
+                            class="btn-outline-danger"
+                            invisible="state in ['done', 'cancelled']"
+                            groups="it_helpdesk.group_it_user"/>
+                    <button name="action_test_telegram_notification"
+                            string="Test Telegram"
+                            type="object"
+                            icon="fa-paper-plane"
+                            groups="base.group_system"
+                            invisible="not id"
+                            help="Gửi thông báo thử nghiệm tới Telegram (chỉ Admin)"/>
+                    <!-- Statusbar Widget Odoo 18: New > In Progress > On Hold > Done -->
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="new,in_progress,waiting,done"/>
+                </header>
+
+                <sheet>
+                    <!-- Ribbon trạng thái khi hoàn thành hoặc hủy -->
+                    <widget name="web_ribbon" title="Hoàn thành" bg_color="text-bg-success" invisible="state != 'done'"/>
+                    <widget name="web_ribbon" title="Đã hủy" bg_color="text-bg-danger" invisible="state != 'cancelled'"/>
+
+                    <!-- Smart Buttons Box -->
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_asset"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-laptop"
+                                invisible="not asset_id">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Thiết bị CNTT</span>
+                                <span class="o_stat_value"><field name="asset_serial" readonly="1"/></span>
+                            </div>
+                        </button>
+                        <button name="action_view_repair_approval"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-wrench"
+                                invisible="not has_repair and repair_cost &lt;= 0">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Sửa chữa</span>
+                                <span class="o_stat_value">
+                                    <field name="approval_state" readonly="1"/>
+                                </span>
+                            </div>
+                        </button>
+                        <button name="action_view_attachments"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-paperclip"
+                                invisible="attachment_count == 0">
+                            <field name="attachment_count" widget="statinfo" string="Tài liệu"/>
+                        </button>
+                    </div>
+
+                    <!-- Khung tiêu đề chính: Tiêu đề lớn & Trạng thái Kanban -->
+                    <div class="oe_title">
+                        <label for="title" string="Tiêu đề yêu cầu"/>
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <h1 class="d-flex flex-grow-1 my-0">
+                                <field name="title"
+                                       placeholder="Ví dụ: Máy tính không kết nối Wi-Fi, Máy in kẹt giấy, Cần cấp tài khoản..."
+                                       required="1"
+                                       class="w-100 border-0"/>
+                            </h1>
+                            <field name="kanban_state" widget="state_selection" class="ms-2" groups="it_helpdesk.group_it_user"/>
+                        </div>
+                    </div>
+
+                    <!-- KHU VỰC CỐT LÕI DÀNH CHO NGƯỜI DÙNG TẠO YÊU CẦU TRONG 30 GIÂY -->
+                    <group name="quick_request_group">
+                        <group name="request_left_col">
+                            <field name="request_type" widget="selection"/>
+                            <field name="priority" widget="priority"/>
+                            <field name="location" placeholder="Ví dụ: Tầng 2, Chi nhánh Đà Nẵng, P. Kế toán..."/>
+                        </group>
+                        <group name="request_right_col">
+                            <field name="category_id" widget="selection"/>
+                            <field name="asset_id"
+                                   options="{'no_create_edit': True, 'no_quick_create': True}"
+                                   placeholder="Chọn thiết bị gặp sự cố (nếu có)..."/>
+                            <field name="template_id"
+                                   options="{'no_create': True}"
+                                   placeholder="Chọn mẫu sự cố thường gặp để điền nhanh..."/>
+                        </group>
+                    </group>
+
+                    <!-- MÔ TẢ SỰ CỐ & ĐÍNH KÈM TỆP -->
+                    <group name="description_group">
+                        <field name="description"
+                               placeholder="Mô tả chi tiết tình trạng sự cố, thông báo lỗi hoặc yêu cầu cụ thể..."
+                               colspan="2"/>
+                        <field name="attachment_ids"
+                               widget="many2many_binary"
+                               string="Tệp đính kèm"
+                               colspan="2"/>
+                    </group>
+
+                    <!-- NOTEBOOK: THÔNG TIN CHI TIẾT THEO VAI TRÒ -->
+                    <notebook>
+                        <!-- TAB 1: THÔNG TIN YÊU CẦU -->
+                        <page string="Thông tin yêu cầu" name="request_info_page">
+                            <group>
+                                <group string="Người gửi &amp; Đơn vị">
+                                    <field name="employee_id"
+                                           options="{'no_create': True}"
+                                           readonly="state in ['done', 'cancelled']"/>
+                                    <field name="department_id" readonly="state in ['done', 'cancelled']"/>
+                                    <field name="partner_id"
+                                           widget="res_partner_many2one"
+                                           options="{'no_create_edit': True}"
+                                           readonly="state in ['done', 'cancelled']"/>
+                                    <field name="phone" widget="phone"/>
+                                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                                </group>
+                                <group string="Hệ thống &amp; Phân loại">
+                                    <field name="name" readonly="1"/>
+                                    <field name="date_opened" readonly="1"/>
+                                    <field name="tag_ids"
+                                           widget="many2many_tags"
+                                           options="{'color_field': 'color', 'no_create_edit': True}"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- TAB 2: THIẾT BỊ CNTT (Chỉ hiển thị khi có liên kết Asset) -->
+                        <page string="Thiết bị CNTT" name="asset_page" invisible="not asset_id">
+                            <group>
+                                <group string="Thông tin phần cứng">
+                                    <field name="asset_id" readonly="1"/>
+                                    <field name="asset_serial" readonly="1"/>
+                                    <field name="asset_brand" readonly="1"/>
+                                    <field name="asset_model" readonly="1"/>
+                                </group>
+                                <group string="Hiện trạng &amp; Cấp phát">
+                                    <field name="asset_employee_id" readonly="1"/>
+                                    <field name="asset_department_id" readonly="1"/>
+                                    <field name="asset_warranty" readonly="1"/>
+                                    <field name="asset_state" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- TAB 3: XỬ LÝ KỸ THUẬT (Dành cho IT Team) -->
+                        <page string="Xử lý kỹ thuật" name="processing_page" groups="it_helpdesk.group_it_user">
+                            <group>
+                                <group string="Phân công xử lý">
+                                    <field name="team_id"
+                                           options="{'no_create_edit': True}"
+                                           placeholder="Chọn đội ngũ IT..."/>
+                                    <field name="user_id"
+                                           widget="many2one_avatar_user"
+                                           options="{'no_quick_create': True}"
+                                           placeholder="Gán kỹ thuật viên..."/>
+                                    <field name="assignee_id"
+                                           options="{'no_create': True}"
+                                           placeholder="Nhân viên IT phụ trách..."/>
+                                    <field name="date_deadline"/>
+                                </group>
+                                <group string="Tiến độ &amp; KPI">
+                                    <field name="estimated_hours"/>
+                                    <field name="actual_hours"/>
+                                    <field name="date_closed" readonly="1"/>
+                                </group>
+                            </group>
+                            <group string="Giải pháp / Ghi chú xử lý sự cố">
+                                <field name="resolution_note"
+                                       placeholder="Ghi nhận nguyên nhân sự cố, các bước khắc phục hoặc khuyến nghị..."
+                                       nolabel="1"/>
+                            </group>
+                        </page>
+
+                        <!-- TAB 4: SỬA CHỮA & CHI PHÍ (Dành cho IT & Quản lý) -->
+                        <page string="Sửa chữa &amp; Chi phí"
+                              name="repair_page"
+                              groups="it_helpdesk.group_it_user">
+                            <group>
+                                <group string="Hình thức sửa chữa">
+                                    <field name="repair_type" widget="radio" options="{'horizontal': True}"/>
+                                    <field name="repair_partner_id"
+                                           invisible="repair_type != 'external'"
+                                           options="{'no_create_edit': True}"
+                                           placeholder="Chọn trung tâm bảo hành / nhà cung cấp..."/>
+                                    <field name="repair_status" widget="badge"/>
+                                </group>
+                                <group string="Lộ trình bảo hành / sửa chữa" invisible="repair_type != 'external'">
+                                    <field name="repair_date_sent"/>
+                                    <field name="repair_date_expected"/>
+                                    <field name="repair_date_received"/>
+                                </group>
+                            </group>
+                            <group string="Ngân sách &amp; Phê duyệt chi phí" groups="it_helpdesk.group_it_manager">
+                                <group>
+                                    <field name="repair_cost"/>
+                                    <field name="repair_actual_cost"/>
+                                </group>
+                                <group>
+                                    <field name="approval_state"
+                                           widget="badge"
+                                           decoration-warning="approval_state == 'pending'"
+                                           decoration-success="approval_state == 'approved'"
+                                           decoration-danger="approval_state == 'rejected'"/>
+                                    <field name="approval_ref" readonly="1" invisible="not approval_ref"/>
+                                </group>
+                            </group>
+                            <div class="mt-2"
+                                 groups="it_helpdesk.group_it_manager"
+                                 invisible="repair_cost &lt;= 0">
+                                <button name="action_request_repair_approval"
+                                        string="Gửi đề xuất duyệt chi phí sửa chữa"
+                                        type="object"
+                                        class="btn btn-outline-primary"
+                                        icon="fa-check-circle"
+                                        invisible="approval_ref and approval_state in ['pending', 'approved']"/>
+                                <button name="action_view_repair_approval"
+                                        string="Xem phiếu phê duyệt"
+                                        type="object"
+                                        class="btn btn-link ms-2"
+                                        icon="fa-external-link"
+                                        invisible="not approval_ref"/>
+                                <span class="text-muted small ms-2" invisible="approval_ref">
+                                    <i class="fa fa-info-circle"/> Tạo phiếu đề xuất tự động qua phân hệ Phê duyệt doanh nghiệp.
+                                </span>
+                            </div>
+                        </page>
+
+                        <!-- TAB 5: TÀI LIỆU -->
+                        <page string="Tài liệu" name="documents_page">
+                            <field name="attachment_ids" nolabel="1">
+                                <list string="Tài liệu đính kèm" editable="bottom">
+                                    <field name="name" string="Tên tệp"/>
+                                    <field name="file_size" string="Kích thước"/>
+                                    <field name="create_date" string="Ngày tải lên"/>
+                                    <field name="create_uid" string="Người tải lên"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+
+                <!-- Chatter chuẩn Odoo 18: Tự động tương thích giao diện Responsive Split-View (phóng to/thu nhỏ) -->
+                <chatter/>
+
+            </form>
+        </field>
+    </record>
+
+    <!-- ====================================================================
+         IT TICKET: LIST VIEW
+    ==================================================================== -->
+    <record id="view_it_ticket_tree" model="ir.ui.view">
+        <field name="name">it.ticket.list</field>
+        <field name="model">it.ticket</field>
+        <field name="arch" type="xml">
+            <list string="Tickets"
+                  decoration-info="state == 'new'"
+                  decoration-warning="state == 'waiting'"
+                  decoration-success="state == 'done'"
+                  decoration-muted="state == 'cancelled'">
+                <field name="priority" widget="priority" optional="show"/>
+                <field name="name"/>
+                <field name="title"/>
+                <field name="employee_id" string="Người yêu cầu" optional="show"/>
+                <field name="department_id" optional="show"/>
+                <field name="request_type" optional="show"/>
+                <field name="category_id" optional="show"/>
+                <field name="asset_id" optional="show"/>
+                <field name="location" optional="hide"/>
+                <field name="user_id" widget="many2one_avatar_user" string="Người phụ trách"/>
+                <field name="team_id" optional="hide"/>
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" optional="hide"/>
+                <field name="date_opened" optional="show"/>
+                <field name="date_deadline" widget="remaining_days" optional="show"/>
+                <field name="state"
+                       widget="badge"
+                       decoration-info="state == 'new'"
+                       decoration-warning="state == 'waiting'"
+                       decoration-success="state == 'done'"
+                       decoration-danger="state == 'cancelled'"
+                       decoration-primary="state == 'in_progress'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ====================================================================
+         IT TICKET: KANBAN VIEW
+    ==================================================================== -->
+    <record id="view_it_ticket_kanban" model="ir.ui.view">
+        <field name="name">it.ticket.kanban</field>
+        <field name="model">it.ticket</field>
+        <field name="arch" type="xml">
+            <kanban string="Kanban phiếu IT"
+                    default_group_by="state"
+                    group_create="false"
+                    class="o_kanban_small_column">
+                <field name="name"/>
+                <field name="title"/>
+                <field name="priority"/>
+                <field name="team_id"/>
+                <field name="user_id"/>
+                <field name="partner_id"/>
+                <field name="tag_ids"/>
+                <field name="state"/>
+                <field name="kanban_state"/>
+                <field name="color"/>
+                <templates>
+                    <t t-name="menu">
+                        <field name="color" widget="kanban_color_picker"/>
+                    </t>
+                    <t t-name="card">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click
+                                           o_kanban_record_has_image_fill
+                                           #{record.color.raw_value ? 'oe_kanban_color_' + record.color.raw_value : ''}">
+                            <div class="oe_kanban_top_color"/>
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="title"/>
+                                    </strong>
+                                    <small class="o_kanban_record_subtitle text-muted d-block">
+                                        <field name="name"/> <t t-if="record.partner_id.raw_value">• <field name="partner_id"/></t>
+                                    </small>
+                                </div>
+                                <div class="o_kanban_manage_button_section">
+                                    <a class="o_kanban_manage_toggle_button" href="#">
+                                        <i class="fa fa-ellipsis-v" role="img" aria-label="Manage"/>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="o_kanban_record_body">
+                                <div class="mb-1" t-if="record.tag_ids.raw_value">
+                                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <field name="priority" widget="priority"/>
+                                    <field name="kanban_state" widget="state_selection"/>
+                                </div>
+                            </div>
+
+                            <div class="o_kanban_record_bottom mt-2">
+                                <div class="oe_kanban_bottom_left">
+                                    <span class="badge text-bg-light border" t-if="record.team_id.raw_value">
+                                        <field name="team_id"/>
+                                    </span>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <field name="user_id" widget="many2one_avatar_user"/>
+                                    <field name="activity_ids" widget="kanban_activity"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ====================================================================
+         IT TICKET: SEARCH VIEW
+    ==================================================================== -->
+    <record id="view_it_ticket_search" model="ir.ui.view">
+        <field name="name">it.ticket.search</field>
+        <field name="model">it.ticket</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm phiếu hỗ trợ IT">
+                <field name="name" string="Mã phiếu"/>
+                <field name="title" string="Tiêu đề"/>
+                <field name="employee_id" string="Người yêu cầu"/>
+                <field name="department_id" string="Phòng ban"/>
+                <field name="user_id" string="Người phụ trách (Assigned to)"/>
+                <field name="team_id" string="Helpdesk Team"/>
+                <field name="asset_id" string="Thiết bị CNTT"/>
+                <field name="category_id" string="Danh mục"/>
+                <field name="request_type" string="Loại yêu cầu"/>
+                <field name="location" string="Địa điểm"/>
+                <field name="tag_ids" string="Thẻ (Tags)"/>
+                <separator/>
+                <filter name="filter_new"
+                        string="Mới tiếp nhận (New)"
+                        domain="[('state', '=', 'new')]"/>
+                <filter name="filter_in_progress"
+                        string="Đang xử lý (In Progress)"
+                        domain="[('state', '=', 'in_progress')]"/>
+                <filter name="filter_waiting"
+                        string="Tạm hoãn (On Hold)"
+                        domain="[('state', '=', 'waiting')]"/>
+                <filter name="filter_done"
+                        string="Hoàn thành (Done)"
+                        domain="[('state', '=', 'done')]"/>
+                <separator/>
+                <filter name="filter_my_tickets"
+                        string="Phiếu tôi phụ trách"
+                        domain="[('user_id', '=', uid)]"/>
+                <filter name="filter_my_created"
+                        string="Phiếu tôi tạo (Người yêu cầu)"
+                        domain="['|', ('create_uid', '=', uid), ('employee_id.user_id', '=', uid)]"/>
+                <separator/>
+                <filter name="filter_urgent"
+                        string="🔴 Khẩn cấp (Urgent)"
+                        domain="[('priority', '=', '3')]"/>
+                <group>
+                    <filter name="group_by_state" string="Trạng thái" context="{'group_by': 'state'}"/>
+                    <filter name="group_by_category" string="Danh mục sự cố" context="{'group_by': 'category_id'}"/>
+                    <filter name="group_by_request_type" string="Loại yêu cầu" context="{'group_by': 'request_type'}"/>
+                    <filter name="group_by_department" string="Phòng ban" context="{'group_by': 'department_id'}"/>
+                    <filter name="group_by_team" string="Helpdesk Team" context="{'group_by': 'team_id'}"/>
+                    <filter name="group_by_user" string="Người phụ trách" context="{'group_by': 'user_id'}"/>
+                    <filter name="group_by_priority" string="Độ ưu tiên" context="{'group_by': 'priority'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ====================================================================
+         IT TICKET: PIVOT & GRAPH (Báo cáo & Phân tích)
+    ==================================================================== -->
+    <record id="view_it_ticket_pivot" model="ir.ui.view">
+        <field name="name">it.ticket.pivot</field>
+        <field name="model">it.ticket</field>
+        <field name="arch" type="xml">
+            <pivot string="Phân tích phiếu hỗ trợ">
+                <field name="team_id" type="row"/>
+                <field name="state" type="col"/>
+                <field name="priority" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_it_ticket_graph" model="ir.ui.view">
+        <field name="name">it.ticket.graph</field>
+        <field name="model">it.ticket</field>
+        <field name="arch" type="xml">
+            <graph string="Thống kê phiếu hỗ trợ" type="bar">
+                <field name="team_id"/>
+                <field name="state"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- ====================================================================
+         HELPDESK TEAM: KANBAN VIEW (Overview Dashboard)
+    ==================================================================== -->
+    <record id="view_it_team_kanban" model="ir.ui.view">
+        <field name="name">it.team.kanban</field>
+        <field name="model">it.team</field>
+        <field name="arch" type="xml">
+            <kanban string="Helpdesk Overview" class="oe_background_grey o_kanban_dashboard">
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="color"/>
+                <field name="ticket_count"/>
+                <field name="ticket_open_count"/>
+                <field name="ticket_urgent_count"/>
+                <templates>
+                    <t t-name="card">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click p-3 rounded-3 shadow-sm bg-white border">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h4 class="fw-bold text-primary mb-0">
+                                    <field name="name"/>
+                                </h4>
+                                <span class="badge text-bg-secondary" t-if="record.user_id.raw_value">
+                                    <field name="user_id"/>
+                                </span>
+                            </div>
+                            <div class="row g-2 text-center my-3">
+                                <div class="col-4">
+                                    <div class="border rounded p-2 bg-light">
+                                        <div class="fs-4 fw-bold text-dark"><field name="ticket_count"/></div>
+                                        <small class="text-muted">Tổng phiếu</small>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="border rounded p-2 bg-light">
+                                        <div class="fs-4 fw-bold text-primary"><field name="ticket_open_count"/></div>
+                                        <small class="text-muted">Đang mở</small>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="border rounded p-2 bg-light">
+                                        <div class="fs-4 fw-bold text-danger"><field name="ticket_urgent_count"/></div>
+                                        <small class="text-muted">Khẩn cấp</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between pt-2 border-top">
+                                <button name="action_view_open_tickets" type="object" class="btn btn-sm btn-primary">
+                                    <i class="fa fa-folder-open me-1"/> Xem phiếu đang mở
+                                </button>
+                                <button name="action_view_tickets" type="object" class="btn btn-sm btn-outline-secondary">
+                                    Tất cả
+                                </button>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- HELPDESK TEAM: LIST VIEW -->
+    <record id="view_it_team_tree" model="ir.ui.view">
+        <field name="name">it.team.list</field>
+        <field name="model">it.team</field>
+        <field name="arch" type="xml">
+            <list string="Helpdesk Teams">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="ticket_open_count"/>
+                <field name="ticket_count"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- HELPDESK TEAM: FORM VIEW -->
+    <record id="view_it_team_form" model="ir.ui.view">
+        <field name="name">it.team.form</field>
+        <field name="model">it.team</field>
+        <field name="arch" type="xml">
+            <form string="Helpdesk Team">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Tên đội ngũ"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Customer Care, IT Support..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="color"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Thành viên" name="members_page">
+                            <field name="member_ids" widget="many2many_tags"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ====================================================================
+         TICKET TAG: LIST & FORM VIEW
+    ==================================================================== -->
+    <record id="view_it_ticket_tag_tree" model="ir.ui.view">
+        <field name="name">it.ticket.tag.list</field>
+        <field name="model">it.ticket.tag</field>
+        <field name="arch" type="xml">
+            <list string="Ticket Tags" editable="bottom">
+                <field name="name"/>
+                <field name="color" widget="color_picker"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ====================================================================
+         IT TICKET TEMPLATE: FORM & LIST VIEW
+    ==================================================================== -->
+    <record id="view_it_ticket_template_form" model="ir.ui.view">
+        <field name="name">it.ticket.template.form</field>
+        <field name="model">it.ticket.template</field>
+        <field name="arch" type="xml">
+            <form string="Mẫu công việc IT">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Tên mẫu công việc"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Cấp tài khoản mới..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="subject"/>
+                            <field name="priority" widget="priority"/>
+                        </group>
+                        <group>
+                            <field name="estimated_hours"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Mô tả mẫu" name="description_page">
+                            <field name="description" placeholder="Nội dung mô tả mẫu..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_it_ticket_template_tree" model="ir.ui.view">
+        <field name="name">it.ticket.template.list</field>
+        <field name="model">it.ticket.template</field>
+        <field name="arch" type="xml">
+            <list string="Danh sách mẫu công việc IT">
+                <field name="name"/>
+                <field name="subject"/>
+                <field name="priority" widget="priority"/>
+                <field name="estimated_hours"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ====================================================================
+         ACTIONS
+    ==================================================================== -->
+    <!-- Action Overview (Teams Dashboard) -->
+    <record id="action_it_team_overview" model="ir.actions.act_window">
+        <field name="name">Overview</field>
+        <field name="res_model">it.team</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo đội ngũ hỗ trợ đầu tiên!
+            </p>
+        </field>
+    </record>
+
+    <!-- Action All Tickets -->
+    <record id="action_it_ticket" model="ir.actions.act_window">
+        <field name="name">All Tickets</field>
+        <field name="res_model">it.ticket</field>
+        <field name="view_mode">list,kanban,form,pivot,graph</field>
+        <field name="context">{'search_default_filter_new': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo phiếu hỗ trợ IT đầu tiên!
+            </p>
+            <p>
+                Quản lý toàn bộ yêu cầu hỗ trợ kỹ thuật và theo dõi tiến trình xử lý.
+            </p>
+        </field>
+    </record>
+
+    <!-- Action My Tickets -->
+    <record id="action_it_ticket_my" model="ir.actions.act_window">
+        <field name="name">My Tickets</field>
+        <field name="res_model">it.ticket</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="domain">['|', ('user_id', '=', uid), ('employee_id.user_id', '=', uid)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Không có phiếu nào được gán cho bạn.
+            </p>
+        </field>
+    </record>
+
+    <!-- Action Ticket Analysis (Reporting) -->
+    <record id="action_it_ticket_analysis" model="ir.actions.act_window">
+        <field name="name">Tickets Analysis</field>
+        <field name="res_model">it.ticket</field>
+        <field name="view_mode">graph,pivot</field>
+    </record>
+
+    <!-- Action Teams Configuration -->
+    <record id="action_it_team_config" model="ir.actions.act_window">
+        <field name="name">Helpdesk Teams</field>
+        <field name="res_model">it.team</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Action Tags Configuration -->
+    <record id="action_it_ticket_tag_config" model="ir.actions.act_window">
+        <field name="name">Ticket Tags</field>
+        <field name="res_model">it.ticket.tag</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Action Templates Configuration -->
+    <record id="action_it_ticket_template" model="ir.actions.act_window">
+        <field name="name">Templates</field>
+        <field name="res_model">it.ticket.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- ====================================================================
+         TOP MENUS (Chuẩn giao diện Odoo Helpdesk: Overview, Tickets, Reporting, Configuration)
+    ==================================================================== -->
+    <!-- Root Menu: Helpdesk -->
+    <menuitem id="menu_it_helpdesk_root"
+              name="Helpdesk"
+              sequence="80"
+              web_icon="it_helpdesk,static/description/icon.png"
+              groups="it_helpdesk.group_it_user"/>
+
+    <!-- 1. Overview -->
+    <menuitem id="menu_it_helpdesk_overview"
+              name="Overview"
+              parent="menu_it_helpdesk_root"
+              action="action_it_team_overview"
+              sequence="10"
+              groups="it_helpdesk.group_it_user"/>
+
+    <!-- 2. Tickets -->
+    <menuitem id="menu_it_helpdesk_tickets"
+              name="Tickets"
+              parent="menu_it_helpdesk_root"
+              sequence="20"
+              groups="it_helpdesk.group_it_user"/>
+
+    <menuitem id="menu_it_ticket_all"
+              name="All Tickets"
+              parent="menu_it_helpdesk_tickets"
+              action="action_it_ticket"
+              sequence="10"
+              groups="it_helpdesk.group_it_user"/>
+
+    <menuitem id="menu_it_ticket_my"
+              name="My Tickets"
+              parent="menu_it_helpdesk_tickets"
+              action="action_it_ticket_my"
+              sequence="20"
+              groups="it_helpdesk.group_it_user"/>
+
+    <!-- 3. Reporting -->
+    <menuitem id="menu_it_helpdesk_reporting"
+              name="Reporting"
+              parent="menu_it_helpdesk_root"
+              sequence="30"
+              groups="it_helpdesk.group_it_manager"/>
+
+    <menuitem id="menu_it_ticket_report"
+              name="Tickets Analysis"
+              parent="menu_it_helpdesk_reporting"
+              action="action_it_ticket_analysis"
+              sequence="10"
+              groups="it_helpdesk.group_it_manager"/>
+
+    <!-- 4. Configuration -->
+    <menuitem id="menu_it_helpdesk_config"
+              name="Configuration"
+              parent="menu_it_helpdesk_root"
+              sequence="100"
+              groups="it_helpdesk.group_it_manager"/>
+
+    <menuitem id="menu_it_team_config"
+              name="Helpdesk Teams"
+              parent="menu_it_helpdesk_config"
+              action="action_it_team_config"
+              sequence="10"
+              groups="it_helpdesk.group_it_manager"/>
+
+    <menuitem id="menu_it_ticket_tag_config"
+              name="Ticket Tags"
+              parent="menu_it_helpdesk_config"
+              action="action_it_ticket_tag_config"
+              sequence="20"
+              groups="it_helpdesk.group_it_manager"/>
+
+    <menuitem id="menu_it_ticket_template"
+              name="Templates"
+              parent="menu_it_helpdesk_config"
+              action="action_it_ticket_template"
+              sequence="30"
+              groups="it_helpdesk.group_it_manager"/>
+
+</odoo>

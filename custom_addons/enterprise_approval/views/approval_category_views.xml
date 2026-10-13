@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Category List View -->
+    <record id="view_approval_category_list" model="ir.ui.view">
+        <field name="name">approval.category.list</field>
+        <field name="model">approval.category</field>
+        <field name="arch" type="xml">
+            <list string="Loại phê duyệt">
+                <field name="sequence" widget="handle"/>
+                <field name="name" string="Tên loại phê duyệt"/>
+                <field name="code" string="Mã loại"/>
+                <field name="approver_id" string="Người duyệt mặc định"/>
+                <field name="manager_approval" string="Quản lý trực tiếp duyệt" widget="boolean_toggle"/>
+                <field name="has_amount" string="Trường số tiền"/>
+                <field name="has_date" string="Trường thời gian"/>
+                <field name="request_count" string="Số yêu cầu"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Category Form View -->
+    <record id="view_approval_category_form" model="ir.ui.view">
+        <field name="name">approval.category.form</field>
+        <field name="model">approval.category</field>
+        <field name="arch" type="xml">
+            <form string="Loại phê duyệt" class="o_approval_category_form">
+                <sheet>
+                    <!-- Smart Button: Số lượng yêu cầu -->
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_requests"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-tasks">
+                            <field name="request_count" widget="statinfo" string="Số yêu cầu"/>
+                        </button>
+                    </div>
+
+                    <widget name="web_ribbon" title="Đã lưu trữ" bg_color="text-bg-danger" invisible="active"/>
+                    <field name="active" invisible="1"/>
+
+                    <!-- Ảnh đại diện danh mục (góc trên bên phải) -->
+                    <field name="image" widget="image" class="oe_avatar float-end" options="{'image_preview': 'image'}"/>
+
+                    <!-- Tiêu đề loại phê duyệt -->
+                    <div class="oe_title mb-3">
+                        <label for="name" string="Tên loại phê duyệt" class="text-muted small fw-bold text-uppercase d-block mb-1"/>
+                        <h1>
+                            <field name="name" placeholder="Ví dụ: Đi công tác, Đề xuất thanh toán, Mua sắm thiết bị..." class="w-100 fw-bold"/>
+                        </h1>
+                    </div>
+
+                    <!-- Cơ chế phê duyệt mặc định -->
+                    <div class="card border-0 bg-light p-3 mb-3 rounded-3 shadow-sm">
+                        <div class="row g-3">
+                            <div class="col-md-6 col-12">
+                                <group string="Cơ chế phê duyệt mặc định">
+                                    <field name="manager_approval" string="Quản lý trực tiếp phê duyệt" widget="boolean_toggle"/>
+                                    <field name="approver_id" string="Người duyệt chỉ định" options="{'no_create': True}" widget="many2one_avatar_user"/>
+                                </group>
+                            </div>
+                            <div class="col-md-6 col-12 d-flex align-items-center">
+                                <div class="alert alert-info border-0 mb-0 py-2 px-3 small w-100 rounded-3" role="status">
+                                    <i class="fa fa-info-circle me-1"/>
+                                    <strong>Lưu ý:</strong> Đối với quy trình phê duyệt đa cấp (Ví dụ: Trưởng bộ phận → Kế toán → Ban Giám đốc), hãy cấu hình các bước trong tab <strong>Quy trình phê duyệt</strong> bên dưới.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hệ thống Tab chi tiết -->
+                    <notebook>
+                        <!-- Tab 1: Quy trình phê duyệt -->
+                        <page string="Quy trình phê duyệt" name="page_stages">
+                            <field name="stage_ids" nolabel="1">
+                                <list editable="bottom" string="Các bước duyệt">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name" string="Tên bước duyệt" placeholder="Ví dụ: Bước 1 - Trưởng bộ phận duyệt"/>
+                                    <field name="manager_approval" string="Quản lý trực tiếp" widget="boolean_toggle"/>
+                                    <field name="approver_id" string="Người duyệt chỉ định" options="{'no_create': True}" widget="many2one_avatar_user" invisible="manager_approval"/>
+                                    <field name="approver_group_id" string="Nhóm người duyệt" options="{'no_create': True}" invisible="manager_approval"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <!-- Tab 2: Cấu hình trường dữ liệu -->
+                        <page string="Dữ liệu yêu cầu" name="page_fields">
+                            <group string="Cấu hình các trường thông tin nhân viên cần điền khi tạo yêu cầu">
+                                <group>
+                                    <field name="has_amount" string="Trường Số tiền / Chi phí" widget="radio" options="{'horizontal': true}"/>
+                                    <field name="has_date" string="Trường Thời gian / Khoảng ngày" widget="radio" options="{'horizontal': true}"/>
+                                </group>
+                                <group>
+                                    <field name="has_location" string="Trường Địa điểm / Lộ trình" widget="radio" options="{'horizontal': true}"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- Tab 3: Mô tả & Hướng dẫn -->
+                        <page string="Mô tả &amp; Hướng dẫn" name="page_description">
+                            <field name="description" placeholder="Nhập điều kiện, quy định nội bộ hoặc chứng từ giấy tờ bắt buộc nhân viên cần cung cấp khi tạo loại đề xuất này..." class="w-100"/>
+                        </page>
+
+                        <!-- Tab 4: Cài đặt nâng cao -->
+                        <page string="Nâng cao" name="page_advanced">
+                            <group>
+                                <group string="Định danh kỹ thuật">
+                                    <field name="code" string="Mã nhận diện" placeholder="Ví dụ: TRIP, PAYMENT, LEAVE"/>
+                                    <field name="sequence" string="Thứ tự hiển thị"/>
+                                </group>
+                                <group string="Cấu hình hiển thị">
+                                    <field name="icon" string="Biểu tượng FontAwesome" placeholder="fa-plane, fa-money, fa-car"/>
+                                    <field name="color" string="Mã màu"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Category Kanban View (Dashboard) -->
+    <record id="view_approval_category_kanban" model="ir.ui.view">
+        <field name="name">approval.category.kanban</field>
+        <field name="model">approval.category</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="icon"/>
+                <field name="image"/>
+                <field name="request_count"/>
+                <field name="description"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click p-3 rounded-3 shadow-sm border bg-white d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <div t-if="record.image.raw_value" class="me-2">
+                                        <field name="image" widget="image" class="oe_avatar" style="width: 44px; height: 44px; object-fit: contain;"/>
+                                    </div>
+                                    <div t-else="" class="rounded-circle p-2 bg-primary text-white me-2">
+                                        <i t-attf-class="fa #{record.icon.raw_value or 'fa-check-square-o'} fa-lg"/>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-0 fw-bold"><field name="name"/></h5>
+                                        <span class="badge text-bg-light border small text-muted"><field name="code"/></span>
+                                    </div>
+                                </div>
+                                <div class="text-muted small mb-3" t-if="record.description.raw_value">
+                                    <field name="description"/>
+                                </div>
+                            </div>
+                            <div class="pt-2 border-top d-flex justify-content-between align-items-center">
+                                <button type="object" name="action_create_request" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-plus me-1"/> <span>Tạo yêu cầu</span>
+                                </button>
+                                <a type="object" name="action_view_requests" class="text-muted small text-decoration-none">
+                                    <span class="badge rounded-pill text-bg-info text-white fs-6 px-2 py-1">
+                                        <field name="request_count"/>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Category Action -->
+    <record id="action_approval_category" model="ir.actions.act_window">
+        <field name="name">Loại phê duyệt</field>
+        <field name="res_model">approval.category</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo loại phê duyệt đầu tiên của bạn!
+            </p>
+            <p>
+                Định nghĩa các loại yêu cầu như Thanh toán, Tạm ứng, Nghỉ phép, Điều xe, Mua sắm... và thiết lập người duyệt hoặc luồng phê duyệt đa cấp.
+            </p>
+        </field>
+    </record>
+
+</odoo>

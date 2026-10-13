@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ====================================================================
+             1. MẪU VAI TRÒ & PHÂN QUYỀN (it.department.role.template)
+             ==================================================================== -->
+
+        <!-- List View -->
+        <record id="view_it_department_role_template_list" model="ir.ui.view">
+            <field name="name">it.department.role.template.list</field>
+            <field name="model">it.department.role.template</field>
+            <field name="arch" type="xml">
+                <list string="Mẫu phân quyền theo vai trò">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name" string="Tên vai trò / Gói quyền"/>
+                    <field name="code" string="Mã vai trò"/>
+                    <field name="department_id" string="Phòng ban áp dụng"/>
+                    <field name="role_type" string="Cấp bậc" widget="badge" 
+                           decoration-success="role_type == 'manager'"
+                           decoration-info="role_type == 'employee'"/>
+                    <field name="user_count" string="Số người dùng"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_it_department_role_template_form" model="ir.ui.view">
+            <field name="name">it.department.role.template.form</field>
+            <field name="model">it.department.role.template</field>
+            <field name="arch" type="xml">
+                <form string="Mẫu phân quyền theo vai trò">
+                    <header>
+                        <button name="action_load_department_members" 
+                                string="Quét nhân sự phòng ban" 
+                                type="object" 
+                                class="btn-secondary" 
+                                icon="fa-users"
+                                invisible="not department_id"/>
+                        <button name="action_apply_to_users" 
+                                string="Đồng bộ &amp; Gán quyền người dùng" 
+                                type="object" 
+                                class="btn-primary" 
+                                icon="fa-refresh"
+                                confirm="Hệ thống sẽ cập nhật và gán toàn bộ nhóm quyền bên dưới cho tất cả nhân viên / tài khoản trong danh sách vai trò này. Bạn có muốn tiếp tục?"/>
+                    </header>
+                    <sheet>
+                        <widget name="web_ribbon" title="Lưu trữ" bg_color="text-bg-danger" invisible="active"/>
+                        <div class="oe_title">
+                            <label for="name" string="Tên vai trò / Mẫu quyền"/>
+                            <h1>
+                                <field name="name" placeholder="Ví dụ: Trưởng phòng IT, Nhân viên Kinh doanh..."/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group name="info_left">
+                                <field name="code" placeholder="Vd: IT_MGR, SALE_STAFF..."/>
+                                <field name="department_id" options="{'no_create': True}"/>
+                                <field name="role_type"/>
+                            </group>
+                            <group name="info_right">
+                                <field name="sequence"/>
+                                <field name="user_count" string="Số người dùng đang áp dụng"/>
+                                <field name="active" invisible="1"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <!-- Tab 1: Danh sách Nhóm quyền -->
+                            <page string="Danh sách Nhóm quyền Odoo" name="page_groups">
+                                <field name="group_ids" nolabel="1">
+                                    <list string="Nhóm quyền hạn" default_order="privilege_id, name">
+                                        <field name="privilege_id" string="Phạm vi / Phân hệ"/>
+                                        <field name="full_name" string="Tên nhóm quyền"/>
+                                        <field name="comment" string="Mô tả chức năng"/>
+                                    </list>
+                                </field>
+                            </page>
+
+                            <!-- Tab 2: Danh sách Tài khoản & Nhân viên -->
+                            <page string="Tài khoản &amp; Nhân sự áp dụng" name="page_targets">
+                                <group>
+                                    <group string="Tài khoản người dùng (res.users)">
+                                        <field name="user_ids" widget="many2many_tags" nolabel="1" placeholder="Chọn tài khoản người dùng..."/>
+                                    </group>
+                                    <group string="Nhân viên áp dụng (hr.employee)">
+                                        <field name="employee_ids" widget="many2many_tags" nolabel="1" placeholder="Chọn nhân viên..."/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <!-- Tab 3: Mô tả & Ghi chú -->
+                            <page string="Mô tả &amp; Hướng dẫn" name="page_description">
+                                <field name="description" placeholder="Ghi chú tóm tắt quyền hạn: Xem báo cáo, duyệt phiếu, quản lý task của phòng ban..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_it_department_role_template_search" model="ir.ui.view">
+            <field name="name">it.department.role.template.search</field>
+            <field name="model">it.department.role.template</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm mẫu vai trò">
+                    <field name="name" string="Tên vai trò hoặc mã" filter_domain="['|', ('name', 'ilike', self), ('code', 'ilike', self)]"/>
+                    <field name="department_id" string="Phòng ban"/>
+                    <separator/>
+                    <filter string="Trưởng phòng / Quản lý" name="filter_manager" domain="[('role_type', '=', 'manager')]"/>
+                    <filter string="Nhân viên" name="filter_employee" domain="[('role_type', '=', 'employee')]"/>
+                    <separator/>
+                    <filter string="Đã lưu trữ" name="filter_archived" domain="[('active', '=', False)]"/>
+                    <group>
+                        <filter string="Phòng ban" name="group_department" context="{'group_by': 'department_id'}"/>
+                        <filter string="Cấp bậc" name="group_role_type" context="{'group_by': 'role_type'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Window Action -->
+        <record id="action_it_department_role_template" model="ir.actions.act_window">
+            <field name="name">Mẫu phân quyền theo vai trò</field>
+            <field name="res_model">it.department.role.template</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_it_department_role_template_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo mẫu phân quyền đầu tiên cho vị trí / phòng ban!
+                </p>
+                <p>
+                    Định nghĩa sẵn các nhóm quyền Odoo tương ứng với từng chức danh 
+                    (Trưởng phòng, Nhân viên...). Bấm "Đồng bộ &amp; Gán quyền" để hệ thống 
+                    tự động nạp toàn bộ quyền cho các tài khoản được chọn.
+                </p>
+            </field>
+        </record>
+
+        <!-- ====================================================================
+             2. MENU ITEMS
+             ==================================================================== -->
+        <!-- Menu trong IT Helpdesk -> Cấu hình -->
+        <menuitem id="menu_it_department_role_template"
+                  name="Mẫu phân quyền vai trò"
+                  parent="it_helpdesk.menu_it_helpdesk_config"
+                  action="action_it_department_role_template"
+                  sequence="50"
+                  groups="it_helpdesk.group_it_manager"/>
+
+        <!-- Menu trong Nhân sự -> Cấu hình -->
+        <menuitem id="menu_hr_department_role_template"
+                  name="Mẫu phân quyền vai trò"
+                  parent="hr.menu_human_resources_configuration"
+                  action="action_it_department_role_template"
+                  sequence="15"
+                  groups="hr.group_hr_manager"/>
+
+    </data>
+</odoo>

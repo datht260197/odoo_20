@@ -1,0 +1,17 @@
+id,name,model_id,group_id/id,operation,domain
+access_it_ticket_user,it.ticket.user,it.ticket,it_helpdesk.group_it_user,cru,"['|', '|', ('employee_id.user_id', '=', user.id), ('user_id', '=', user.id), ('assignee_id.user_id', '=', user.id)]"
+access_it_ticket_manager,it.ticket.manager,it.ticket,it_helpdesk.group_it_manager,crud,
+it_ticket_comp_rule,IT Ticket multi company rule,it.ticket,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_it_ticket_template_user,it.ticket.template.user,it.ticket.template,it_helpdesk.group_it_user,r,
+access_it_ticket_template_manager,it.ticket.template.manager,it.ticket.template,it_helpdesk.group_it_manager,crud,
+access_it_asset_user,it.asset.user,it.asset,it_helpdesk.group_it_user,r,
+access_it_asset_manager,it.asset.manager,it.asset,it_helpdesk.group_it_manager,crud,
+access_it_department_role_template_user,it.department.role.template.user,it.department.role.template,base.group_user,r,
+access_it_department_role_template_manager,it.department.role.template.manager,it.department.role.template,it_helpdesk.group_it_manager,crud,
+access_it_department_role_template_hr_manager,it.department.role.template.hr_manager,it.department.role.template,hr.group_hr_manager,crud,
+access_it_team_user,it.team.user,it.team,it_helpdesk.group_it_user,r,
+access_it_team_manager,it.team.manager,it.team,it_helpdesk.group_it_manager,crud,
+access_it_ticket_tag_user,it.ticket.tag.user,it.ticket.tag,it_helpdesk.group_it_user,cru,
+access_it_ticket_tag_manager,it.ticket.tag.manager,it.ticket.tag,it_helpdesk.group_it_manager,crud,
+access_project_task_it_user,project.task.it_user,project.task,it_helpdesk.group_it_user,cru,"['|', ('user_ids', 'in', user.id), ('create_uid', '=', user.id)]"
+access_project_task_it_manager,project.task.it_manager,project.task,it_helpdesk.group_it_manager,crud,

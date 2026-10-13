@@ -1,0 +1,232 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* it_helpdesk
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-07 14:00+0000\n"
+"PO-Revision-Date: 2026-10-07 14:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Vietnamese <vi@li.org>\n"
+"Language: vi_VN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: it_helpdesk
+#: model:ir.ui.menu,name:it_helpdesk.menu_it_helpdesk_root
+msgid "Helpdesk"
+msgstr "Hỗ trợ (Helpdesk)"
+
+#. module: it_helpdesk
+#: model:ir.ui.menu,name:it_helpdesk.menu_it_helpdesk_overview
+msgid "Overview"
+msgstr "Tổng quan"
+
+#. module: it_helpdesk
+#: model:ir.ui.menu,name:it_helpdesk.menu_it_helpdesk_tickets
+msgid "Tickets"
+msgstr "Phiếu hỗ trợ"
+
+#. module: it_helpdesk
+#: model:ir.ui.menu,name:it_helpdesk.menu_it_ticket_all
+msgid "All Tickets"
+msgstr "Tất cả phiếu"
+
+#. module: it_helpdesk
+#: model:ir.ui.menu,name:it_helpdesk.menu_it_ticket_my
+msgid "My Tickets"
+msgstr "Phiếu của tôi"
+
+#. module: it_helpdesk
+#: model:ir.ui.menu,name:it_helpdesk.menu_it_helpdesk_reporting
+msgid "Reporting"
+msgstr "Báo cáo"
+
+#. module: it_helpdesk
+#: model:ir.ui.menu,name:it_helpdesk.menu_it_ticket_report
+msgid "Tickets Analysis"
+msgstr "Phân tích phiếu"
+
+#. module: it_helpdesk
+#: model:ir.ui.menu,name:it_helpdesk.menu_it_helpdesk_config
+msgid "Configuration"
+msgstr "Cấu hình"
+
+#. module: it_helpdesk
+#: model:ir.ui.menu,name:it_helpdesk.menu_it_team_config
+msgid "Helpdesk Teams"
+msgstr "Đội ngũ hỗ trợ"
+
+#. module: it_helpdesk
+#: model:ir.ui.menu,name:it_helpdesk.menu_it_ticket_tag_config
+msgid "Ticket Tags"
+msgstr "Thẻ phân loại"
+
+#. module: it_helpdesk
+#: model:ir.ui.menu,name:it_helpdesk.menu_it_ticket_template
+msgid "Templates"
+msgstr "Mẫu công việc"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__title
+msgid "Tiêu đề yêu cầu"
+msgstr "Tiêu đề"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__team_id
+msgid "Helpdesk Team"
+msgstr "Đội hỗ trợ"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__user_id
+msgid "Assigned to"
+msgstr "Người phụ trách"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__priority
+msgid "Priority"
+msgstr "Độ ưu tiên"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__tag_ids
+msgid "Tags"
+msgstr "Thẻ"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__partner_id
+msgid "Customer"
+msgstr "Khách hàng"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__phone
+msgid "Phone"
+msgstr "Điện thoại"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__description
+msgid "Nội dung chi tiết"
+msgstr "Mô tả chi tiết"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__state
+msgid "Trạng thái"
+msgstr "Trạng thái"
+
+#. module: it_helpdesk
+#: model:ir.model.fields.selection,name:it_helpdesk.selection__it_ticket__state__new
+msgid "New"
+msgstr "Mới"
+
+#. module: it_helpdesk
+#: model:ir.model.fields.selection,name:it_helpdesk.selection__it_ticket__state__in_progress
+msgid "In Progress"
+msgstr "Đang xử lý"
+
+#. module: it_helpdesk
+#: model:ir.model.fields.selection,name:it_helpdesk.selection__it_ticket__state__waiting
+msgid "On Hold"
+msgstr "Tạm hoãn"
+
+#. module: it_helpdesk
+#: model:ir.model.fields.selection,name:it_helpdesk.selection__it_ticket__state__done
+msgid "Done"
+msgstr "Hoàn thành"
+
+#. module: it_helpdesk
+#: model:ir.model.fields.selection,name:it_helpdesk.selection__it_ticket__state__cancelled
+msgid "Cancelled"
+msgstr "Đã hủy"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__approval_state
+msgid "Duyệt chi phí"
+msgstr "Duyệt chi phí"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__approval_ref
+msgid "Mã phiếu duyệt"
+msgstr "Mã phiếu duyệt"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__location
+msgid "Địa điểm"
+msgstr "Địa điểm"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__department_id
+msgid "Bộ phận / Phòng ban"
+msgstr "Bộ phận / Phòng ban"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__attachment_ids
+msgid "Tệp đính kèm"
+msgstr "Tệp đính kèm"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__attachment_count
+msgid "Số tài liệu"
+msgstr "Số tài liệu"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__date_deadline
+msgid "Hạn chót xử lý (Deadline)"
+msgstr "Hạn chót xử lý (Deadline)"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__resolution_note
+msgid "Ghi chú / Giải pháp xử lý"
+msgstr "Ghi chú / Giải pháp xử lý"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__repair_date_sent
+msgid "Ngày gửi sửa chữa"
+msgstr "Ngày gửi sửa chữa"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__repair_date_expected
+msgid "Ngày dự kiến nhận"
+msgstr "Ngày dự kiến nhận"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__repair_date_received
+msgid "Ngày thực tế nhận"
+msgstr "Ngày thực tế nhận"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__repair_actual_cost
+msgid "Chi phí thực tế (VNĐ)"
+msgstr "Chi phí thực tế (VNĐ)"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__repair_status
+msgid "Trạng thái sửa chữa"
+msgstr "Trạng thái sửa chữa"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__asset_brand
+msgid "Thương hiệu"
+msgstr "Thương hiệu"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__asset_model
+msgid "Model"
+msgstr "Model"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__asset_employee_id
+msgid "Người đang sử dụng"
+msgstr "Người đang sử dụng"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__asset_department_id
+msgid "Bộ phận sử dụng"
+msgstr "Bộ phận sử dụng"
+
+#. module: it_helpdesk
+#: model:ir.model.fields,field_description:it_helpdesk.field_it_ticket__has_repair
+msgid "Có sửa chữa"
+msgstr "Có sửa chữa"

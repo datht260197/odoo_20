@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+    ============================================================================
+    PORTAL HOME: Thêm mục IT Helpdesk vào trang /my của nhân viên
+    ============================================================================
+    -->
+    <template id="portal_my_home_it_helpdesk"
+              name="Portal My Home: IT Helpdesk"
+              inherit_id="portal.portal_my_home"
+              priority="30">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-if="it_ticket_count != None">
+                <a t-attf-class="list-group-item #{'list-group-item-info' if it_ticket_count else ''}"
+                   href="/it/helpdesk">
+                    <span class="badge" t-esc="it_ticket_count"/>
+                    Phiếu hỗ trợ IT
+                </a>
+            </t>
+        </xpath>
+    </template>
+
+    <!--
+    ============================================================================
+    TEMPLATE CHUNG: Breadcrumb cho các trang IT Helpdesk
+    ============================================================================
+    -->
+    <template id="portal_it_helpdesk_breadcrumb" name="IT Helpdesk Breadcrumb">
+        <ol class="breadcrumb o_portal_submenu">
+            <li>
+                <a href="/my/home">
+                    <i class="fa fa-home" aria-label="Trang chủ"/>
+                </a>
+            </li>
+            <li t-if="page_name != 'it_helpdesk'">
+                <a href="/it/helpdesk">Phiếu hỗ trợ IT</a>
+            </li>
+            <li t-if="page_name == 'it_helpdesk'" class="active">
+                Phiếu hỗ trợ IT
+            </li>
+            <li t-if="page_name == 'it_helpdesk_new'" class="active">
+                Tạo phiếu mới
+            </li>
+            <li t-if="page_name == 'it_helpdesk_detail'" class="active">
+                Chi tiết phiếu
+            </li>
+        </ol>
+    </template>
+
+    <!--
+    ============================================================================
+    TRANG 1: DANH SÁCH PHIẾU HỖ TRỢ IT — /it/helpdesk
+    ============================================================================
+    -->
+    <template id="portal_it_helpdesk_list" name="IT Helpdesk - Danh sách phiếu">
+        <t t-call="portal.portal_layout">
+
+            <!-- Breadcrumb -->
+            <div class="oe_structure">
+                <div class="container">
+                    <t t-call="it_helpdesk.portal_it_helpdesk_breadcrumb"/>
+                </div>
+            </div>
+
+            <div id="wrap" class="o_portal_wrap">
+                <div class="container py-4">
+
+                    <!-- Header -->
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-md-8">
+                            <h2 class="mb-0">
+                                <i class="fa fa-ticket text-primary mr-2"/>
+                                Phiếu hỗ trợ IT của tôi
+                            </h2>
+                            <p class="text-muted mt-1 mb-0" t-if="employee">
+                                Xin chào, <strong t-esc="employee.name"/>!
+                                Dưới đây là toàn bộ yêu cầu hỗ trợ bạn đã gửi.
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <a href="/it/helpdesk/new" class="btn btn-primary">
+                                <i class="fa fa-plus mr-1"/>
+                                Gửi yêu cầu mới
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Thông báo thành công sau khi tạo phiếu -->
+                    <t t-set="success" t-value="request.httprequest.args.get('success', '')"/>
+                    <div t-if="success" class="alert alert-success alert-dismissable fade in mb-4" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&#215;</span>
+                        </button>
+                        <strong><i class="fa fa-check-circle mr-1"/>Gửi thành công!</strong>
+                        Phiếu hỗ trợ của bạn đã được tiếp nhận. Team IT sẽ xử lý trong thời gian sớm nhất.
+                    </div>
+
+                    <!-- Thanh lọc và sắp xếp -->
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <form method="get" action="/it/helpdesk" class="form-inline">
+
+                                <!-- Lọc theo trạng thái -->
+                                <div class="dropdown mr-3">
+                                    <button class="btn btn-default dropdown-toggle" type="button"
+                                            data-toggle="dropdown">
+                                        <i class="fa fa-filter mr-1"/>
+                                        <span t-esc="searchbar_filters.get(filterby, {}).get('label', 'Tất cả')"/>
+                                        <span class="caret"/>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <t t-foreach="searchbar_filters" t-as="filter_key">
+                                            <li t-attf-class="#{filterby == filter_key and 'active' or ''}">
+                                                <a t-attf-href="/it/helpdesk?filterby=#{filter_key}&amp;sortby=#{sortby}">
+                                                    <t t-esc="searchbar_filters[filter_key]['label']"/>
+                                                </a>
+                                            </li>
+                                        </t>
+                                    </ul>
+                                </div>
+
+                                <!-- Sắp xếp -->
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button"
+                                            data-toggle="dropdown">
+                                        <i class="fa fa-sort mr-1"/>
+                                        <span t-esc="searchbar_sortings.get(sortby, {}).get('label', 'Mới nhất')"/>
+                                        <span class="caret"/>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <t t-foreach="searchbar_sortings" t-as="sort_key">
+                                            <li t-attf-class="#{sortby == sort_key and 'active' or ''}">
+                                                <a t-attf-href="/it/helpdesk?sortby=#{sort_key}&amp;filterby=#{filterby}">
+                                                    <t t-esc="searchbar_sortings[sort_key]['label']"/>
+                                                </a>
+                                            </li>
+                                        </t>
+                                    </ul>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Danh sách phiếu -->
+                    <div t-if="tickets" class="table-responsive">
+                        <table class="table table-hover o_portal_my_doc_table">
+                            <thead>
+                                <tr>
+                                    <th>Mã phiếu</th>
+                                    <th>Tiêu đề</th>
+                                    <th>Ưu tiên</th>
+                                    <th>Ngày gửi</th>
+                                    <th>Trạng thái</th>
+                                    <th/>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="tickets" t-as="ticket">
+                                    <td>
+                                        <span class="text-muted small" t-esc="ticket.name"/>
+                                    </td>
+                                    <td>
+                                        <a t-attf-href="/it/helpdesk/#{ticket.id}"
+                                           t-esc="ticket.title"
+                                           class="font-weight-bold"/>
+                                    </td>
+                                    <td>
+                                        <t t-set="prio" t-value="ticket.priority"/>
+                                        <span t-attf-class="badge
+                                            #{'badge-danger' if prio == '3'
+                                            else 'badge-warning' if prio == '2'
+                                            else 'badge-info' if prio == '1'
+                                            else 'badge-default'}">
+                                            <t t-esc="get_priority_label(prio)"/>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="ticket.date_opened"
+                                              t-options="{'widget': 'date'}"/>
+                                    </td>
+                                    <td>
+                                        <t t-set="st" t-value="ticket.state"/>
+                                        <span t-attf-class="badge
+                                            #{'badge-success' if st == 'done'
+                                            else 'badge-primary' if st == 'in_progress'
+                                            else 'badge-warning' if st == 'waiting'
+                                            else 'badge-danger' if st == 'cancelled'
+                                            else 'badge-info'}">
+                                            <t t-esc="get_state_label(st)"/>
+                                        </span>
+                                    </td>
+                                    <td class="text-right">
+                                        <a t-attf-href="/it/helpdesk/#{ticket.id}"
+                                           class="btn btn-sm btn-default">
+                                            <i class="fa fa-eye"/> Xem
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Trạng thái rỗng -->
+                    <div t-if="not tickets" class="text-center py-5">
+                        <i class="fa fa-inbox fa-4x text-muted mb-3" style="display:block;"/>
+                        <h4 class="text-muted">Chưa có phiếu hỗ trợ nào</h4>
+                        <p class="text-muted">Bạn chưa gửi yêu cầu hỗ trợ IT nào. Hãy tạo phiếu khi cần nhé!</p>
+                        <a href="/it/helpdesk/new" class="btn btn-primary mt-2">
+                            <i class="fa fa-plus mr-1"/>
+                            Tạo phiếu hỗ trợ đầu tiên
+                        </a>
+                    </div>
+
+                    <!-- Phân trang -->
+                    <div t-if="pager" class="text-center mt-4">
+                        <t t-call="portal.portal_pager"/>
+                    </div>
+
+                </div>
+            </div>
+
+        </t>
+    </template>
+
+    <!--
+    ============================================================================
+    TRANG 2: FORM GỬI YÊU CẦU HỖ TRỢ MỚI — /it/helpdesk/new
+    ============================================================================
+    -->
+    <template id="portal_it_helpdesk_new" name="IT Helpdesk - Tạo phiếu mới">
+        <t t-call="portal.portal_layout">
+
+            <!-- Breadcrumb -->
+            <div class="oe_structure">
+                <div class="container">
+                    <t t-call="it_helpdesk.portal_it_helpdesk_breadcrumb"/>
+                </div>
+            </div>
+
+            <div id="wrap" class="o_portal_wrap">
+                <div class="container py-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+
+                            <!-- Card Form -->
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-primary text-white">
+                                    <h4 class="mb-0">
+                                        <i class="fa fa-paper-plane mr-2"/>
+                                        Gửi yêu cầu hỗ trợ IT
+                                    </h4>
+                                    <small>Điền thông tin bên dưới — team IT sẽ phản hồi trong thời gian sớm nhất</small>
+                                </div>
+                                <div class="card-body">
+
+                                    <form method="post"
+                                          action="/it/helpdesk/new"
+                                          class="it-helpdesk-form">
+
+                                        <!-- CSRF Token -->
+                                        <input type="hidden" name="csrf_token"
+                                               t-att-value="request.csrf_token()"/>
+
+                                        <!-- Thông tin người gửi (chỉ đọc) -->
+                                        <div class="alert alert-light border mb-4" role="status">
+                                            <i class="fa fa-user-circle mr-1 text-primary"/>
+                                            Gửi bởi:
+                                            <strong t-esc="employee.name if employee else request.env.user.name"/>
+                                            <span t-if="employee" class="text-muted ml-2">
+                                                (<t t-esc="employee.job_id.name if employee.job_id else ''"/>
+                                                <t t-if="employee.department_id">
+                                                    — <t t-esc="employee.department_id.name"/>
+                                                </t>)
+                                            </span>
+                                        </div>
+
+                                        <!-- Chọn mẫu công việc -->
+                                        <div class="form-group">
+                                            <label for="template_id">
+                                                <i class="fa fa-clone mr-1 text-muted"/>
+                                                Chọn mẫu yêu cầu (tùy chọn)
+                                            </label>
+                                            <select name="template_id"
+                                                    id="template_id"
+                                                    class="form-control"
+                                                    onchange="applyTemplate(this)">
+                                                <option value="">-- Không dùng mẫu --</option>
+                                                <t t-foreach="templates" t-as="tpl">
+                                                    <option t-att-value="tpl.id"
+                                                            t-att-selected="preselect_template and preselect_template.id == tpl.id"
+                                                            t-att-data-subject="tpl.subject or ''"
+                                                            t-att-data-description="tpl.description or ''"
+                                                            t-att-data-priority="tpl.priority or '1'">
+                                                        <t t-esc="tpl.name"/>
+                                                        <t t-if="tpl.estimated_hours">
+                                                            (~ <t t-esc="'%.1f' % tpl.estimated_hours"/>h)
+                                                        </t>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                            <small class="form-text text-muted">
+                                                Chọn mẫu để tự động điền tiêu đề và mô tả.
+                                            </small>
+                                        </div>
+
+                                        <!-- Tiêu đề yêu cầu -->
+                                        <div t-attf-class="form-group #{errors.get('title') and 'has-error' or ''}">
+                                            <label for="title" class="control-label">
+                                                <i class="fa fa-header mr-1 text-muted"/>
+                                                Tiêu đề yêu cầu
+                                                <span class="text-danger ml-1">*</span>
+                                            </label>
+                                            <input type="text"
+                                                   name="title"
+                                                   id="title"
+                                                   class="form-control"
+                                                   placeholder="Ví dụ: Laptop không kết nối được WiFi..."
+                                                   t-att-value="post.get('title', preselect_template.subject if preselect_template else '')"
+                                                   required="required"/>
+                                            <span t-if="errors.get('title')"
+                                                  class="help-block text-danger">
+                                                <i class="fa fa-exclamation-circle mr-1"/>
+                                                <t t-esc="errors['title']"/>
+                                            </span>
+                                        </div>
+
+                                        <!-- Mức độ ưu tiên -->
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                <i class="fa fa-flag mr-1 text-muted"/>
+                                                Mức độ ưu tiên
+                                            </label>
+                                            <div class="row">
+                                                <t t-foreach="priority_options" t-as="prio">
+                                                    <div class="col-xs-6 col-sm-3 mb-2">
+                                                        <label t-attf-class="btn btn-block
+                                                            #{'btn-danger' if prio[0] == '3'
+                                                            else 'btn-warning' if prio[0] == '2'
+                                                            else 'btn-info' if prio[0] == '1'
+                                                            else 'btn-default'}
+                                                            #{'active' if (post.get('priority', '1') == prio[0] or (preselect_template and preselect_template.priority == prio[0] and not post)) else ''}"
+                                                               style="cursor:pointer;">
+                                                            <input type="radio"
+                                                                   name="priority"
+                                                                   t-att-value="prio[0]"
+                                                                   style="display:none;"
+                                                                   t-att-checked="post.get('priority', '1') == prio[0]"/>
+                                                            <t t-esc="prio[1]"/>
+                                                        </label>
+                                                    </div>
+                                                </t>
+                                            </div>
+                                        </div>
+
+                                        <!-- Mô tả chi tiết -->
+                                        <div class="form-group">
+                                            <label for="description">
+                                                <i class="fa fa-align-left mr-1 text-muted"/>
+                                                Mô tả chi tiết sự cố
+                                            </label>
+                                            <textarea name="description"
+                                                      id="description"
+                                                      class="form-control"
+                                                      rows="6"
+                                                      placeholder="Mô tả chi tiết vấn đề bạn đang gặp phải: lỗi xuất hiện khi nào, các bước tái hiện lỗi, thông báo lỗi nếu có...">
+                                                <t t-esc="post.get('description', '')"/>
+                                            </textarea>
+                                        </div>
+
+                                        <!-- Nút gửi -->
+                                        <div class="form-group mt-4">
+                                            <button type="submit" class="btn btn-primary btn-lg">
+                                                <i class="fa fa-paper-plane mr-1"/>
+                                                Gửi yêu cầu hỗ trợ
+                                            </button>
+                                            <a href="/it/helpdesk" class="btn btn-default btn-lg ml-2">
+                                                <i class="fa fa-arrow-left mr-1"/>
+                                                Quay lại
+                                            </a>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Hướng dẫn -->
+                            <div class="card mt-3 border-info">
+                                <div class="card-body py-3">
+                                    <h6 class="text-info mb-2">
+                                        <i class="fa fa-info-circle mr-1"/>
+                                        Hướng dẫn gửi yêu cầu hỗ trợ hiệu quả
+                                    </h6>
+                                    <ul class="mb-0 pl-4 small text-muted">
+                                        <li>Mô tả rõ ràng vấn đề đang gặp phải</li>
+                                        <li>Ghi lại các bước đã thực hiện trước khi lỗi xảy ra</li>
+                                        <li>Chụp màn hình lỗi nếu có thể (có thể đính kèm sau)</li>
+                                        <li>Chọn đúng mức độ ưu tiên để team IT ưu tiên xử lý kịp thời</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JavaScript: Tự động điền từ template -->
+            <script type="text/javascript">
+                function applyTemplate(selectEl) {
+                    var option = selectEl.options[selectEl.selectedIndex];
+                    var subject = option.getAttribute('data-subject') || '';
+                    var description = option.getAttribute('data-description') || '';
+                    var priority = option.getAttribute('data-priority') || '1';
+
+                    // Điền tiêu đề
+                    var titleEl = document.getElementById('title');
+                    if (titleEl &amp;&amp; subject) {
+                        titleEl.value = subject;
+                    }
+
+                    // Điền mô tả (strip HTML tags)
+                    var descEl = document.getElementById('description');
+                    if (descEl &amp;&amp; description) {
+                        var tmp = document.createElement('div');
+                        tmp.innerHTML = description;
+                        descEl.value = tmp.textContent || tmp.innerText || '';
+                    }
+
+                    // Chọn mức ưu tiên
+                    var radios = document.querySelectorAll('input[name="priority"]');
+                    radios.forEach(function(radio) {
+                        var label = radio.closest('label');
+                        if (radio.value === priority) {
+                            radio.checked = true;
+                            if (label) label.classList.add('active');
+                        } else {
+                            radio.checked = false;
+                            if (label) label.classList.remove('active');
+                        }
+                    });
+                }
+
+                // Xử lý click radio button priority
+                document.addEventListener('DOMContentLoaded', function() {
+                    var priorityLabels = document.querySelectorAll('input[name="priority"]');
+                    priorityLabels.forEach(function(radio) {
+                        radio.addEventListener('change', function() {
+                            document.querySelectorAll('input[name="priority"]').forEach(function(r) {
+                                var lbl = r.closest('label');
+                                if (lbl) lbl.classList.remove('active');
+                            });
+                            var myLabel = this.closest('label');
+                            if (myLabel) myLabel.classList.add('active');
+                        });
+                    });
+                });
+            </script>
+
+        </t>
+    </template>
+
+    <!--
+    ============================================================================
+    TRANG 3: CHI TIẾT PHIẾU — /it/helpdesk/<id>
+    ============================================================================
+    -->
+    <template id="portal_it_helpdesk_detail" name="IT Helpdesk - Chi tiết phiếu">
+        <t t-call="portal.portal_layout">
+
+            <!-- Breadcrumb -->
+            <div class="oe_structure">
+                <div class="container">
+                    <t t-call="it_helpdesk.portal_it_helpdesk_breadcrumb"/>
+                </div>
+            </div>
+
+            <div id="wrap" class="o_portal_wrap">
+                <div class="container py-4">
+
+                    <!-- Header ticket -->
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <h3 class="mb-1" t-esc="ticket.title"/>
+                            <span class="text-muted small" t-esc="ticket.name"/>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <a href="/it/helpdesk" class="btn btn-default">
+                                <i class="fa fa-arrow-left mr-1"/>
+                                Danh sách phiếu
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Thông tin chính -->
+                        <div class="col-md-8">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <strong><i class="fa fa-info-circle mr-1"/>Thông tin phiếu</strong>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Mô tả -->
+                                    <div t-if="ticket.description">
+                                        <label class="font-weight-bold text-muted small">MÔ TẢ CHI TIẾT</label>
+                                        <div t-field="ticket.description" class="mt-1 mb-3"/>
+                                    </div>
+                                    <div t-else="" class="text-muted fst-italic mb-3">
+                                        Chưa có mô tả chi tiết.
+                                    </div>
+
+                                    <!-- Thiết bị liên quan -->
+                                    <div t-if="ticket.asset_id" class="alert alert-info py-2 px-3" role="status">
+                                        <i class="fa fa-laptop mr-1"/>
+                                        Thiết bị liên quan:
+                                        <strong t-esc="ticket.asset_id.name"/>
+                                        <span t-if="ticket.asset_id.serial_number"
+                                              class="text-muted ml-1">
+                                            (S/N: <t t-esc="ticket.asset_id.serial_number"/>)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar: Trạng thái và thông tin bổ sung -->
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <strong><i class="fa fa-tasks mr-1"/>Trạng thái xử lý</strong>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <small class="text-muted d-block">TRẠNG THÁI</small>
+                                        <t t-set="st" t-value="ticket.state"/>
+                                        <span t-attf-class="badge badge-lg
+                                            #{'badge-success' if st == 'done'
+                                            else 'badge-primary' if st == 'in_progress'
+                                            else 'badge-warning' if st == 'waiting'
+                                            else 'badge-danger' if st == 'cancelled'
+                                            else 'badge-info'}">
+                                            <t t-esc="get_state_label(st)"/>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <small class="text-muted d-block">ƯU TIÊN</small>
+                                        <t t-set="prio" t-value="ticket.priority"/>
+                                        <span t-attf-class="badge
+                                            #{'badge-danger' if prio == '3'
+                                            else 'badge-warning' if prio == '2'
+                                            else 'badge-info' if prio == '1'
+                                            else 'badge-default'}">
+                                            <t t-esc="get_priority_label(prio)"/>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <small class="text-muted d-block">NGÀY GỬI</small>
+                                        <span t-field="ticket.date_opened"
+                                              t-options="{'widget': 'datetime', 'format': 'dd/MM/yyyy HH:mm'}"/>
+                                    </li>
+                                    <li class="list-group-item" t-if="ticket.assignee_id">
+                                        <small class="text-muted d-block">IT PHỤ TRÁCH</small>
+                                        <i class="fa fa-user-circle mr-1 text-primary"/>
+                                        <span t-esc="ticket.assignee_id.name"/>
+                                    </li>
+                                    <li class="list-group-item" t-else="">
+                                        <small class="text-muted d-block">IT PHỤ TRÁCH</small>
+                                        <span class="text-muted fst-italic">Chưa phân công</span>
+                                    </li>
+                                    <li class="list-group-item" t-if="ticket.date_closed">
+                                        <small class="text-muted d-block">NGÀY HOÀN THÀNH</small>
+                                        <span t-field="ticket.date_closed"
+                                              t-options="{'widget': 'datetime', 'format': 'dd/MM/yyyy HH:mm'}"/>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Nút hành động -->
+                            <a href="/it/helpdesk/new" class="btn btn-primary btn-block">
+                                <i class="fa fa-plus mr-1"/>
+                                Gửi yêu cầu mới
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_approval_reject_wizard_form" model="ir.ui.view">
+        <field name="name">approval.reject.wizard.form</field>
+        <field name="model">approval.reject.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Từ chối yêu cầu phê duyệt">
+                <sheet>
+                    <div class="alert alert-warning d-flex align-items-center mb-3" role="alert">
+                        <i class="fa fa-exclamation-triangle fa-2x me-3"/>
+                        <div>
+                            <strong>Cảnh báo:</strong> Yêu cầu sẽ chuyển sang trạng thái <strong>Từ chối</strong>. Người tạo yêu cầu sẽ nhận được thông báo kèm lý do bạn cung cấp dưới đây.
+                        </div>
+                    </div>
+                    <group>
+                        <field name="request_id" invisible="1"/>
+                        <field name="reason"
+                               string="Lý do từ chối"
+                               placeholder="Nhập lý do cụ thể từ chối duyệt (Ví dụ: Thiếu hóa đơn chứng từ kèm theo, Vượt hạn mức ngân sách được duyệt...)"
+                               required="1"
+                               widget="text"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_confirm_reject"
+                            string="Xác nhận từ chối"
+                            type="object"
+                            class="btn-danger"
+                            icon="fa-times"/>
+                    <button string="Bỏ qua"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

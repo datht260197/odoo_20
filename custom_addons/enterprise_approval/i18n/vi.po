@@ -1,0 +1,1575 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following module:
+#   * enterprise_approval
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-07 00:00+0000\n"
+"PO-Revision-Date: 2026-10-07 00:00+0000\n"
+"Last-Translator: Enterprise Solution\n"
+"Language-Team: Vietnamese <vi@li.org>\n"
+"Language: vi_VN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "<b>%s</b> has submitted an approval request: \"%s\". Please review and process."
+msgstr "<b>%s</b> đã nộp một phiếu yêu cầu phê duyệt: \"%s\". Vui lòng xem xét và xử lý."
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "<b>Approval request has been submitted.</b><br/>Assigned approver: <b>%s</b>"
+msgstr "<b>Phiếu yêu cầu phê duyệt đã được gửi đi.</b><br/>Người duyệt được giao: <b>%s</b>"
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "<b>Stage approved.</b> Forwarded to next approval stage: <b>%s</b>"
+msgstr "<b>Đã duyệt bước này.</b> Đã chuyển sang cấp phê duyệt tiếp theo: <b>%s</b>"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Account of the user who created and submitted the request"
+msgstr "Tài khoản người dùng đã tạo và nộp yêu cầu"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Account responsible for reviewing and approving this request"
+msgstr "Tài khoản chịu trách nhiệm xem xét và phê duyệt yêu cầu này"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Action"
+msgstr "Hành động"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Action History"
+msgstr "Lịch sử hành động"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Active"
+msgstr "Đang hoạt động"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Advanced"
+msgstr "Nâng cao"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model:ir.actions.act_window,name:enterprise_approval.action_approval_request_all
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_request_all
+msgid "All Approvals"
+msgstr "Tất cả yêu cầu"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+msgid "Amount"
+msgstr "Số tiền"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Amount / Cost Field"
+msgstr "Trường Số tiền / Chi phí"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+msgid "Amount Field"
+msgstr "Trường số tiền"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+msgid "Any member of this group can approve at this stage"
+msgstr "Bất kỳ thành viên nào trong nhóm này đều có thể duyệt ở bước này"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,description:enterprise_approval.approval_category_payment
+msgid "Applicable to business travel advances, vendor invoice payments, expense reimbursements, or project disbursements."
+msgstr "Áp dụng cho các khoản tạm ứng công tác, thanh toán hóa đơn đối tác, hoàn ứng chi phí hoặc giải ngân dự án."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+msgid "Approval Approver"
+msgstr "Người phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+msgid "Approval Category"
+msgstr "Danh mục phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Approval History"
+msgstr "Nhật ký phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/ir_sequence_data.xml:0
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+#: model:ir.sequence,name:enterprise_approval.seq_approval_request
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Approval Request"
+msgstr "Phiếu yêu cầu phê duyệt"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_rules.xml:0
+#: model:ir.rule,name:enterprise_approval.rule_approval_request_approver
+msgid "Approval Request: Approver sees assigned requests"
+msgstr "Yêu cầu phê duyệt: Người phê duyệt xem phiếu được giao"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_rules.xml:0
+#: model:ir.rule,name:enterprise_approval.rule_approval_request_manager
+msgid "Approval Request: Manager sees all"
+msgstr "Yêu cầu phê duyệt: Quản trị viên xem tất cả"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_rules.xml:0
+#: model:ir.rule,name:enterprise_approval.rule_approval_request_multi_company
+msgid "Approval Request: Multi-company"
+msgstr "Yêu cầu phê duyệt: Đa công ty"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_rules.xml:0
+#: model:ir.rule,name:enterprise_approval.rule_approval_request_user
+msgid "Approval Request: User sees own requests"
+msgstr "Yêu cầu phê duyệt: Nhân viên xem phiếu của chính mình"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+msgid "Approval Requests"
+msgstr "Phiếu yêu cầu phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Approval Requests: %s"
+msgstr "Phiếu yêu cầu phê duyệt: %s"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+msgid "Approval Stage"
+msgstr "Cấp phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model:ir.actions.act_window,name:enterprise_approval.action_approval_workflow_stage
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_workflow_stage
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_list
+msgid "Approval Stages"
+msgstr "Cấp phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Approval Subject"
+msgstr "Tiêu đề phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Approval Type"
+msgstr "Loại phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Approval Type Name"
+msgstr "Tên loại phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: model:ir.actions.act_window,name:enterprise_approval.action_approval_category
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_category
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+msgid "Approval Types"
+msgstr "Loại phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Approval Workflow"
+msgstr "Luồng phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+msgid "Approval Workflow Stage"
+msgstr "Bước luồng phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Approval needed: %s"
+msgstr "Cần phê duyệt: %s"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Approval request cancelled"
+msgstr "Phiếu yêu cầu phê duyệt đã bị hủy"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Approval request created"
+msgstr "Đã tạo phiếu yêu cầu phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,description:enterprise_approval.approval_category_business_trip
+msgid "Approval requests for business trip itinerary, working locations, and estimated travel expenses."
+msgstr "Yêu cầu phê duyệt lịch trình công tác, địa điểm làm việc và dự trù chi phí công tác."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_root
+msgid "Approvals"
+msgstr "Phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model:ir.actions.act_window,name:enterprise_approval.action_approval_request_to_approve
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_request_to_approve
+msgid "Approvals to Review"
+msgstr "Cần tôi phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Approve"
+msgstr "Phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Approved"
+msgstr "Đã duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Approved by Direct Manager"
+msgstr "Quản lý trực tiếp phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model:res.groups,name:enterprise_approval.group_approval_approver
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Approver"
+msgstr "Người phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_list
+msgid "Approver Group"
+msgstr "Nhóm người duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Approver(s)"
+msgstr "Người phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Archived"
+msgstr "Đã lưu trữ"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Attach Document"
+msgstr "Đính kèm tài liệu"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Attachments"
+msgstr "Tài liệu đính kèm"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Auto-generated request code in sequence REQ/YYYY/NNNN"
+msgstr "Mã yêu cầu tự động tạo theo định dạng REQ/YYYY/NNNN"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+msgid "Automatically assign the requester's direct manager as approver"
+msgstr "Tự động gán Quản lý trực tiếp của người yêu cầu làm người phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,name:enterprise_approval.approval_category_business_trip
+msgid "Business Trip"
+msgstr "Lịch trình công tác"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Can Approve"
+msgstr "Có thể duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Can Refuse"
+msgstr "Có thể từ chối"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: model:res.groups,comment:enterprise_approval.group_approval_approver
+msgid "Can view assigned approval requests and perform Approve or Refuse actions."
+msgstr "Có thể xem các phiếu yêu cầu được phân công và thực hiện thao tác Phê duyệt hoặc Từ chối."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Cancel"
+msgstr "Hủy"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Cancelled"
+msgstr "Đã hủy"
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid ""
+"Cannot edit the following fields: %(fields)s!\n"
+"Request \"%(code)s\" is currently in status \"%(state)s\"."
+msgstr ""
+"Không được chỉnh sửa các trường sau: %(fields)s!\n"
+"Yêu cầu \"%(code)s\" hiện đang ở trạng thái \"%(state)s\"."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_list
+msgid "Category"
+msgstr "Danh mục"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Category Code"
+msgstr "Mã danh mục"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Category Image"
+msgstr "Ảnh danh mục"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+msgid "Category Name"
+msgstr "Tên danh mục"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+msgid "Code"
+msgstr "Mã"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Color Index"
+msgstr "Mã màu"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Company"
+msgstr "Công ty"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,description:enterprise_approval.approval_category_vehicle
+msgid "Company car dispatch requests, business trip transportation, or large conference room reservations."
+msgstr "Yêu cầu điều xe cơ quan, đặt xe đưa đón công tác hoặc đăng ký sử dụng phòng hội nghị lớn."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_config_root
+msgid "Configuration"
+msgstr "Cấu hình"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Configure which fields employees must fill when creating a request"
+msgstr "Cấu hình các trường bắt buộc nhân viên phải điền khi tạo yêu cầu"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_reject_wizard_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_reject_wizard_form
+msgid "Confirm Refusal"
+msgstr "Xác nhận từ chối"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,name:enterprise_approval.approval_category_contract
+msgid "Contract & Legal Review"
+msgstr "Trình duyệt hợp đồng & Pháp chế"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+msgid "Create your first approval request!"
+msgstr "Tạo phiếu yêu cầu phê duyệt đầu tiên của bạn!"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+msgid "Create your first approval type!"
+msgstr "Tạo loại phê duyệt đầu tiên của bạn!"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+msgid "Created"
+msgstr "Đã tạo"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Currency"
+msgstr "Tiền tệ"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Current Approval Stage"
+msgstr "Cấp phê duyệt hiện tại"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Current Stage"
+msgstr "Cấp hiện tại"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_dashboard
+msgid "Dashboard"
+msgstr "Tổng quan"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Date / Time Field"
+msgstr "Trường Ngày / Thời gian"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+msgid "Date Field"
+msgstr "Trường ngày tháng"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Decided By"
+msgstr "Người quyết định"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Default Approval Mechanism"
+msgstr "Cơ chế phê duyệt mặc định"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+msgid "Default Approver"
+msgstr "Người duyệt mặc định"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+msgid "Define request types such as Payment, Advance, Vehicle, Procurement... and configure approvers or multi-stage approval workflows."
+msgstr "Định nghĩa các loại đề xuất như Thanh toán, Tạm ứng, Thuê xe, Mua sắm... và cấu hình người duyệt hoặc luồng duyệt nhiều bước."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+msgid "Department"
+msgstr "Phòng ban"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Department of the employee"
+msgstr "Phòng ban của nhân viên"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Description"
+msgstr "Nội dung mô tả"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Description & Guidelines"
+msgstr "Mô tả & Hướng dẫn"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Description..."
+msgstr "Mô tả chi tiết..."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+msgid "Designate a specific user as approver for this stage"
+msgstr "Chỉ định một người dùng cụ thể làm người phê duyệt cho bước này"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_list
+msgid "Designated Approver"
+msgstr "Người duyệt chỉ định"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Detailed reason, related documents, or proposal content"
+msgstr "Lý do chi tiết, tài liệu liên quan hoặc nội dung đề xuất"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_list
+msgid "Direct Manager"
+msgstr "Quản lý trực tiếp"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_reject_wizard_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_reject_wizard_form
+msgid "Discard"
+msgstr "Bỏ qua"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Display Order"
+msgstr "Thứ tự hiển thị"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Display Settings"
+msgstr "Cấu hình hiển thị"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+msgid "E.g., Level 1 - Department Head, Level 2 - Chief Accountant, Level 3 - Director"
+msgstr "Ví dụ: Cấp 1 - Trưởng bộ phận, Cấp 2 - Kế toán trưởng, Cấp 3 - Giám đốc"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Employee"
+msgstr "Nhân viên"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Employee profile linked to the request owner"
+msgstr "Hồ sơ nhân viên liên kết với người tạo yêu cầu"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "End Date"
+msgstr "Ngày kết thúc"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Enter conditions, internal policies or required documents employees must provide when creating this type of request..."
+msgstr "Nhập các điều kiện, quy định nội bộ hoặc chứng từ yêu cầu nhân viên phải cung cấp khi tạo loại đề xuất này..."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_reject_wizard_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_reject_wizard_form
+msgid "Enter the specific reason for refusing (e.g., Missing invoice documents, Exceeds approved budget limit...)"
+msgstr "Nhập lý do từ chối cụ thể (ví dụ: Thiếu chứng từ hóa đơn, Vượt hạn mức ngân sách được duyệt...)"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: model:ir.module.category,name:enterprise_approval.module_category_enterprise_approval
+msgid "Enterprise Approval"
+msgstr "Hệ thống Phê duyệt Doanh nghiệp"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Enterprise Approval Management System - Multi-stage workflow, RBAC, Audit Trail"
+msgstr "Hệ thống Quản lý Phê duyệt Doanh nghiệp - Luồng duyệt đa cấp, Phân quyền chặt chẽ, Nhật ký kiểm toán"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Extra Information"
+msgstr "Thông tin bổ sung"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+msgid "Fixed Approver"
+msgstr "Người duyệt cố định"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "FontAwesome Icon"
+msgstr "Biểu tượng FontAwesome"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "FontAwesome class name (e.g., fa-money, fa-car, fa-plane)"
+msgstr "Tên lớp FontAwesome (ví dụ: fa-money, fa-car, fa-plane)"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: model:res.groups,comment:enterprise_approval.group_approval_manager
+msgid "Full administrative access to approval categories, stages configuration, and all requests."
+msgstr "Toàn quyền quản trị danh mục phê duyệt, cấu hình luồng duyệt và xử lý toàn bộ các phiếu trong hệ thống."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+msgid "Great! No requests are waiting for your review."
+msgstr "Tuyệt vời! Không có yêu cầu nào đang chờ bạn duyệt."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Group By"
+msgstr "Nhóm theo"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Has Amount Field"
+msgstr "Có trường số tiền"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Has Date Field"
+msgstr "Có trường ngày tháng"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Has Location Field"
+msgstr "Có trường địa điểm"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "High"
+msgstr "Cao"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Icon (FontAwesome class)"
+msgstr "Biểu tượng (Lớp FontAwesome)"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "If enabled, the system automatically assigns the employee's direct manager as approver"
+msgstr "Nếu bật, hệ thống sẽ tự động gán Quản lý trực tiếp của nhân viên làm người phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Illustration image for this approval category"
+msgstr "Hình ảnh minh họa cho danh mục phê duyệt này"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Instructions for employees on conditions required when creating a request of this type"
+msgstr "Hướng dẫn cho nhân viên về các điều kiện cần có khi tạo yêu cầu thuộc loại này"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,name:enterprise_approval.approval_category_leave
+msgid "Leave & Trip"
+msgstr "Nghỉ phép & Công tác"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Location"
+msgstr "Địa điểm"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Location / Route"
+msgstr "Địa điểm / Lộ trình"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Location / Route Field"
+msgstr "Trường Địa điểm / Lộ trình"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Low"
+msgstr "Thấp"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: model:ir.module.category,description:enterprise_approval.module_category_enterprise_approval
+msgid "Manage enterprise requests and approval workflows"
+msgstr "Quản lý hệ thống đơn từ và quy trình phê duyệt doanh nghiệp"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_manager_root
+#: model:res.groups,name:enterprise_approval.group_approval_manager
+msgid "Manager"
+msgstr "Quản lý"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_menus.xml:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model:ir.actions.act_window,name:enterprise_approval.action_approval_request_my
+#: model:ir.ui.menu,name:enterprise_approval.menu_approval_my_root
+msgid "My Approvals"
+msgstr "Yêu cầu của tôi"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "My Requests"
+msgstr "Yêu cầu của tôi"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Name of the request/approval category"
+msgstr "Tên danh mục/loại yêu cầu phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "New Approval Request: %s"
+msgstr "Yêu cầu phê duyệt mới: %s"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_kanban
+msgid "New Request"
+msgstr "Tạo yêu cầu"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "No Approver found! Please select an Approver before submitting."
+msgstr "Chưa có Người phê duyệt! Vui lòng chọn Người duyệt trước khi gửi nộp."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+msgid "No approval requests in the system yet!"
+msgstr "Chưa có phiếu yêu cầu phê duyệt nào trong hệ thống!"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Normal"
+msgstr "Bình thường"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Not Used"
+msgstr "Không sử dụng"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Note / Feedback"
+msgstr "Ghi chú / Ý kiến phản hồi"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Note:"
+msgstr "Lưu ý:"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Only requests awaiting approval can be approved."
+msgstr "Chỉ những yêu cầu đang chờ duyệt mới có thể phê duyệt."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Only requests awaiting approval can be refused."
+msgstr "Chỉ những yêu cầu đang chờ duyệt mới có thể từ chối."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Only requests in \"To Submit\" status can be submitted."
+msgstr "Chỉ có thể nộp các yêu cầu đang ở trạng thái \"Cần nộp\"."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Only the request owner or an Administrator can cancel this request."
+msgstr "Chỉ người tạo yêu cầu hoặc Quản trị viên mới có thể hủy yêu cầu này."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Only the request owner or an Administrator can reset to draft."
+msgstr "Chỉ người tạo yêu cầu hoặc Quản trị viên mới có thể đặt lại về dự thảo."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Optional"
+msgstr "Tùy chọn"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,name:enterprise_approval.approval_category_payment
+msgid "Payment & Advance"
+msgstr "Đề xuất thanh toán & Tạm ứng"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Period"
+msgstr "Khoảng thời gian"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+msgid "Please clearly explain why you are not approving this request"
+msgstr "Vui lòng giải thích rõ lý do bạn từ chối yêu cầu này"
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Please enter the Amount for category \"%s\"."
+msgstr "Vui lòng nhập Số tiền cho danh mục \"%s\"."
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Please enter the Date for category \"%s\"."
+msgstr "Vui lòng nhập Ngày tháng cho danh mục \"%s\"."
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Please enter the Location / Route for category \"%s\"."
+msgstr "Vui lòng nhập Địa điểm / Lộ trình cho danh mục \"%s\"."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Priority"
+msgstr "Độ ưu tiên"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Processed On"
+msgstr "Thời gian xử lý"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Processing status of the approval request"
+msgstr "Trạng thái xử lý của phiếu yêu cầu phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,name:enterprise_approval.approval_category_procurement
+msgid "Procurement & Supplies"
+msgstr "Mua sắm thiết bị & Văn phòng phẩm"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,description:enterprise_approval.approval_category_procurement
+msgid "Proposals for purchasing computers, monitors, desks, chairs, or office stationery for operational needs."
+msgstr "Đề xuất mua sắm bổ sung máy tính, màn hình, bàn ghế hoặc vật tư văn phòng phục vụ công việc."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Reason:"
+msgstr "Lý do:"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Reference"
+msgstr "Mã tham chiếu"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_reject_wizard_views.xml:0
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_reject_wizard_form
+msgid "Refusal Reason"
+msgstr "Lý do từ chối"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Refuse"
+msgstr "Từ chối"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_reject_wizard_views.xml:0
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_reject_wizard_form
+msgid "Refuse Approval Request"
+msgstr "Từ chối yêu cầu phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_reject_wizard_views.xml:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_reject_wizard_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Refused"
+msgstr "Từ chối"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Request Code"
+msgstr "Mã yêu cầu"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Request Data"
+msgstr "Dữ liệu yêu cầu"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Request Owner"
+msgstr "Người tạo yêu cầu"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Request Subject"
+msgstr "Tiêu đề yêu cầu"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Request fully approved."
+msgstr "Yêu cầu đã được phê duyệt hoàn tất."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Request has been refused!"
+msgstr "Yêu cầu đã bị từ chối!"
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+msgid "Request refused. Reason: %s"
+msgstr "Yêu cầu bị từ chối. Lý do: %s"
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Request submitted to %s"
+msgstr "Yêu cầu đã được gửi đến %s"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_list
+msgid "Requests"
+msgstr "Số yêu cầu"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,description:enterprise_approval.approval_category_leave
+msgid "Requests for annual leave, compensatory leave, or domestic and overseas business trip schedules."
+msgstr "Đơn xin nghỉ phép năm, nghỉ chế độ, hoặc đăng ký lịch trình công tác trong và ngoài nước."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Required"
+msgstr "Bắt buộc"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Reset to Draft"
+msgstr "Đặt lại về dự thảo"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Reset to Draft to update information"
+msgstr "Đặt lại về dự thảo để cập nhật thông tin"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Search Approval Requests"
+msgstr "Tìm kiếm phiếu yêu cầu phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+msgid "Select the appropriate category (Payment, Leave, Vehicle, Procurement...) and fill in the details to submit for management approval."
+msgstr "Chọn danh mục phù hợp (Thanh toán, Nghỉ phép, Thuê xe, Mua sắm...) và điền thông tin chi tiết để gửi lên cấp quản lý phê duyệt."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+msgid "Sequence"
+msgstr "Thứ tự"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Short code identifying the category (e.g., EXPENSE, LEAVE, PROCUREMENT)"
+msgstr "Mã viết tắt nhận diện danh mục (ví dụ: EXPENSE, LEAVE, PROCUREMENT)"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Short description of the purpose or reason for the request"
+msgstr "Mô tả ngắn gọn mục đích hoặc lý do của yêu cầu"
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Stage \"%(prev)s\" approved. Forwarded to: \"%(next)s\" (%(approver)s)"
+msgstr "Bước \"%(prev)s\" đã được duyệt. Đã chuyển tiếp đến: \"%(next)s\" (%(approver)s)"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_workflow_stage.py:0
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_list
+msgid "Stage Name"
+msgstr "Tên cấp duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Start Date"
+msgstr "Ngày bắt đầu"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Status"
+msgstr "Trạng thái"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Subject"
+msgstr "Tiêu đề"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Submission Month"
+msgstr "Tháng nộp"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,description:enterprise_approval.approval_category_contract
+msgid "Submissions for review and approval of commercial contracts, appendices, NDAs, or corporate legal documents."
+msgstr "Trình ký duyệt dự thảo hợp đồng kinh tế, phụ lục, thỏa thuận bảo mật (NDA) hoặc văn bản pháp lý."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Submit"
+msgstr "Nộp duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Submitted"
+msgstr "Chờ duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_list
+msgid "Submitted On"
+msgstr "Thời gian nộp"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "Technical Identification"
+msgstr "Định danh kỹ thuật"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "The approval request has been cancelled."
+msgstr "Phiếu yêu cầu phê duyệt đã được hủy."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "The request has been reset to <b>To Submit</b> status."
+msgstr "Yêu cầu đã được đặt lại về trạng thái <b>Cần nộp</b>."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+msgid "The request is no longer awaiting approval."
+msgstr "Yêu cầu này không còn ở trạng thái chờ phê duyệt."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "Timestamp"
+msgstr "Thời gian"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "To Approve"
+msgstr "Chờ phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "To Submit"
+msgstr "Chờ nộp"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Type of request / approval workflow category"
+msgstr "Loại yêu cầu / danh mục luồng phê duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "Uncheck to hide this category from the request creation list"
+msgstr "Bỏ chọn để ẩn danh mục này khỏi danh sách tạo yêu cầu"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_search
+msgid "Urgent"
+msgstr "Khẩn cấp"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_history.py:0
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model:res.groups,name:enterprise_approval.group_approval_user
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "User"
+msgstr "Nhân viên"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_category.py:0
+msgid "User automatically assigned as approver when no specific setting exists"
+msgstr "Người dùng tự động được chỉ định duyệt khi không có cấu hình cụ thể"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/security/approval_security.xml:0
+#: model:res.groups,comment:enterprise_approval.group_approval_user
+msgid "Users can create, edit drafts, submit and track their own approval requests."
+msgstr "Người dùng có thể tạo, chỉnh sửa bản nháp, gửi duyệt và theo dõi các yêu cầu phê duyệt của chính mình."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/data/approval_category_data.xml:0
+#: model:approval.category,name:enterprise_approval.approval_category_vehicle
+msgid "Vehicle & Meeting Room"
+msgstr "Đăng ký xe & Phòng họp"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_reject_wizard_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_reject_wizard_form
+msgid "Warning:"
+msgstr "Cảnh báo:"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+msgid "When an employee submits a request assigned to you, it will appear here."
+msgstr "Khi nhân viên nộp yêu cầu được phân công cho bạn, yêu cầu sẽ xuất hiện tại đây."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Work location, delivery address, or vehicle route"
+msgstr "Địa điểm làm việc, địa chỉ giao hàng hoặc lộ trình xe"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "You can only delete a request that is in \"To Submit\" or \"Cancelled\" status."
+msgstr "Bạn chỉ có thể xóa yêu cầu khi đang ở trạng thái \"Cần nộp\" hoặc \"Đã hủy\"."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "You do not have the authority to approve this request."
+msgstr "Bạn không có thẩm quyền phê duyệt yêu cầu này."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+msgid "You do not have the authority to refuse this request."
+msgstr "Bạn không có thẩm quyền từ chối yêu cầu này."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "e.g. Business Trip to Hanoi"
+msgstr "Ví dụ: Đi công tác Hà Nội"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "e.g. Business Trip, Payment Request..."
+msgstr "Ví dụ: Công tác, Đề xuất thanh toán..."
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "e.g. Hanoi"
+msgstr "Ví dụ: Hà Nội"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_list
+msgid "e.g. Level 1 - Department Head"
+msgstr "Ví dụ: Cấp 1 - Trưởng bộ phận"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_stage_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_workflow_stage_form
+msgid "e.g. Level 1 - Department Head Review"
+msgstr "Ví dụ: Cấp 1 - Trưởng bộ phận xét duyệt"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "e.g. TRIP, PAYMENT, LEAVE"
+msgstr "Ví dụ: TRIP, PAYMENT, LEAVE"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_category_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_category_form
+msgid "fa-plane, fa-money, fa-car"
+msgstr "fa-plane, fa-money, fa-car"
+
+#. module: enterprise_approval
+#. odoo-python
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: model_terms:ir.ui.view,arch_db:enterprise_approval.view_approval_request_form
+msgid "to"
+msgstr "đến"
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/wizards/approval_reject_wizard.py:0
+msgid "❌ <b>REQUEST HAS BEEN REFUSED!</b><br/>Refused by: <b>%s</b><br/>Reason: <i>%s</i>"
+msgstr "❌ <b>YÊU CẦU ĐÃ BỊ TỪ CHỐI!</b><br/>Người từ chối: <b>%s</b><br/>Lý do: <i>%s</i>"
+
+#. module: enterprise_approval
+#. odoo-python
+#, python-format
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "🎉 <b>REQUEST HAS BEEN APPROVED!</b><br/>Approved by: <b>%s</b>"
+msgstr "🎉 <b>YÊU CẦU ĐÃ ĐƯỢC PHÊ DUYỆT!</b><br/>Người phê duyệt: <b>%s</b>"

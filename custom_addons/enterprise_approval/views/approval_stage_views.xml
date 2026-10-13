@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Stage List View -->
+    <record id="view_approval_workflow_stage_list" model="ir.ui.view">
+        <field name="name">approval.workflow.stage.list</field>
+        <field name="model">approval.workflow.stage</field>
+        <field name="arch" type="xml">
+            <list string="Các bước phê duyệt" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name" string="Tên bước duyệt" placeholder="Ví dụ: Bước 1 - Trưởng bộ phận duyệt"/>
+                <field name="category_id" string="Loại phê duyệt" options="{'no_create': True}"/>
+                <field name="manager_approval" string="Quản lý trực tiếp" widget="boolean_toggle"/>
+                <field name="approver_id" string="Người duyệt chỉ định" options="{'no_create': True}" widget="many2one_avatar_user" invisible="manager_approval"/>
+                <field name="approver_group_id" string="Nhóm người duyệt" options="{'no_create': True}" invisible="manager_approval"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Stage Form View -->
+    <record id="view_approval_workflow_stage_form" model="ir.ui.view">
+        <field name="name">approval.workflow.stage.form</field>
+        <field name="model">approval.workflow.stage</field>
+        <field name="arch" type="xml">
+            <form string="Bước phê duyệt">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Tên bước duyệt"/>
+                        <h1>
+                            <field name="name" placeholder="Ví dụ: Bước 1 - Trưởng bộ phận duyệt"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="left">
+                            <field name="category_id" string="Loại phê duyệt" options="{'no_create': True}"/>
+                            <field name="sequence" string="Thứ tự"/>
+                        </group>
+                        <group name="right">
+                            <field name="manager_approval" string="Quản lý trực tiếp" widget="boolean_toggle"/>
+                            <field name="approver_id" string="Người duyệt chỉ định" options="{'no_create': True}" widget="many2one_avatar_user" invisible="manager_approval"/>
+                            <field name="approver_group_id" string="Nhóm người duyệt" options="{'no_create': True}" invisible="manager_approval"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_approval_workflow_stage" model="ir.actions.act_window">
+        <field name="name">Các bước phê duyệt</field>
+        <field name="res_model">approval.workflow.stage</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>
