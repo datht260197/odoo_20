@@ -4,28 +4,28 @@
         <field name="name">approval.slip.print.wizard.form</field>
         <field name="model">approval.slip.print.wizard</field>
         <field name="arch" type="xml">
-            <form string="Print Approval Slip">
+            <form string="In phiếu phê duyệt">
                 <sheet>
                     <field name="request_id" invisible="1"/>
                     <group>
-                        <group>
+                        <group string="Tùy chọn in ấn">
                             <field name="print_watermark" widget="boolean_toggle"/>
                             <field name="include_digital_signatures" widget="boolean_toggle"/>
                             <field name="include_approval_comments" widget="boolean_toggle"/>
                         </group>
                     </group>
-                    <group string="Additional Print Notes">
+                    <group string="Ghi chú in bổ sung">
                         <field name="custom_notes"
                                nolabel="1"
-                               placeholder="Enter any additional notes or terms to print in the document footer..."/>
+                               placeholder="Nhập các ghi chú hoặc điều khoản bổ sung để in ở chân trang tài liệu..."/>
                     </group>
                 </sheet>
                 <footer>
                     <button name="action_print_slip"
-                            string="Print PDF Slip"
+                            string="In phiếu PDF"
                             type="object"
                             class="btn-primary"/>
-                    <button string="Cancel"
+                    <button string="Hủy"
                             class="btn-secondary"
                             special="cancel"/>
                 </footer>

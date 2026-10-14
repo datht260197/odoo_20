@@ -47,7 +47,7 @@
                             class="btn-secondary"/>
 
                     <button name="action_print_slip"
-                            string="Print Slip"
+                            string="In phiếu phê duyệt"
                             type="object"
                             class="btn-outline-primary"
                             icon="fa-print"/>
@@ -132,10 +132,10 @@
                                            decoration-success="status == 'approved'"
                                            decoration-danger="status == 'refused'"
                                            decoration-muted="status == 'cancel'"/>
-                                    <field name="is_otp_verified" string="OTP Verified" widget="boolean_toggle" readonly="1" optional="show"/>
-                                    <field name="otp_verified_email" string="Verified Email" readonly="1" optional="show"/>
-                                    <field name="signed_datetime" string="Signed Date" readonly="1" optional="show"/>
-                                    <field name="signature_hash" string="Signature Hash" readonly="1" optional="hide"/>
+                                    <field name="is_otp_verified" string="Đã xác thực OTP" widget="boolean_toggle" readonly="1" optional="show"/>
+                                    <field name="otp_verified_email" string="Email xác thực" readonly="1" optional="show"/>
+                                    <field name="signed_datetime" string="Thời gian ký" readonly="1" optional="show"/>
+                                    <field name="signature_hash" string="Mã băm chữ ký" readonly="1" optional="hide"/>
 
                                 </list>
                             </field>

@@ -27,11 +27,11 @@ class ApprovalRejectWizard(models.TransientModel):
         current_uid = self.env.uid
 
         if req.state != 'submitted':
-            raise exceptions.UserError(self.env._('This request is no longer awaiting approval.'))
+            raise exceptions.UserError(self.env._('Yêu cầu này không còn ở trạng thái chờ phê duyệt.'))
 
         approver_uids = req.approver_ids.mapped('user_id').ids
         if not is_manager and req.approver_id.id != current_uid and current_uid not in approver_uids:
-            raise exceptions.AccessError(self.env._('You do not have permission to reject this request.'))
+            raise exceptions.AccessError(self.env._('Bạn không có quyền từ chối yêu cầu này.'))
 
         req.approver_ids.filtered(lambda a: a.user_id.id == current_uid).write({'status': 'refused'})
 
@@ -43,7 +43,7 @@ class ApprovalRejectWizard(models.TransientModel):
         })
 
         # Ghi nhật ký lịch sử
-        req._log_history('reject', self.env._('Request rejected. Reason: %s', self.reason))
+        req._log_history('reject', self.env._('Từ chối yêu cầu. Lý do: %s', self.reason))
 
         # Hoàn tất hoạt động nhắc việc
         req.activity_feedback(['mail.mail_activity_data_todo'])
@@ -51,9 +51,9 @@ class ApprovalRejectWizard(models.TransientModel):
         # Gửi thông báo vào Chatter
         req.message_post(
             body=self.env._(
-                '❌ <b>REQUEST REJECTED!</b><br/>'
-                'Rejected by: <b>%s</b><br/>'
-                'Reason: <i>%s</i>',
+                '❌ <b>YÊU CẦU ĐÃ BỊ TỪ CHỐI!</b><br/>'
+                'Người từ chối: <b>%s</b><br/>'
+                'Lý do: <i>%s</i>',
                 self.env.user.name, self.reason,
             ),
             message_type='notification',

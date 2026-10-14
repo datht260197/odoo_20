@@ -10,28 +10,28 @@ class ApprovalSlipPrintWizard(models.TransientModel):
 
     request_id = fields.Many2one(
         comodel_name='approval.request',
-        string='Approval Request',
+        string='Phiếu yêu cầu',
         required=True,
         ondelete='cascade',
     )
     print_watermark = fields.Boolean(
-        string='Print Watermark on Drafts',
+        string='In mờ Bản dự thảo trên phiếu chưa duyệt',
         default=True,
-        help='Display a diagonal draft watermark if the approval request is not yet approved.',
+        help='Hiển thị dòng chữ mờ chéo Bản dự thảo nếu yêu cầu chưa được duyệt hoàn tất.',
     )
     include_digital_signatures = fields.Boolean(
-        string='Include Digital Signatures / OTP Seal',
+        string='Kèm chữ ký số / Con dấu OTP',
         default=True,
-        help='Include OTP verification seals with signer hashes, timestamps, and emails.',
+        help='In kèm con dấu xác thực chữ ký OTP cùng mã băm, thời gian và email người ký.',
     )
     include_approval_comments = fields.Boolean(
-        string='Include Reviewer Comments',
+        string='Kèm ý kiến người phê duyệt',
         default=True,
-        help='Include approver feedback and comments in the audit table.',
+        help='Bao gồm ý kiến phản hồi của người duyệt trong bảng tiến trình.',
     )
     custom_notes = fields.Text(
-        string='Additional Print Notes',
-        help='Optional custom notes or disclaimers printed in the document footer.',
+        string='Ghi chú in bổ sung',
+        help='Nhập các ghi chú hoặc điều khoản bổ sung để in ở chân trang tài liệu.',
     )
 
     def action_print_slip(self):

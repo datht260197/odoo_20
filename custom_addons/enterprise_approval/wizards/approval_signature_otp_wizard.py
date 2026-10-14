@@ -10,35 +10,35 @@ class ApprovalSignatureOtpWizard(models.TransientModel):
     """Wizard for Two-Factor OTP Digital Signature Verification."""
 
     _name = 'approval.signature.otp.wizard'
-    _description = 'Two-Factor OTP Digital Signature Wizard'
+    _description = 'Xác thực chữ ký số 2FA OTP'
 
     request_id = fields.Many2one(
         comodel_name='approval.request',
-        string='Approval Request',
+        string='Phiếu yêu cầu',
         required=True,
         ondelete='cascade',
     )
     approver_id = fields.Many2one(
         comodel_name='approval.approver',
-        string='Approver Line',
+        string='Dòng người duyệt',
         required=True,
         ondelete='cascade',
     )
     otp_input = fields.Char(
-        string='Enter 6-digit OTP',
+        string='Nhập mã OTP 6 chữ số',
         size=6,
-        help='Enter the 6-digit verification code sent to your corporate email.',
+        help='Nhập mã xác thực gồm 6 chữ số được gửi tới email công vụ của bạn.',
     )
     approval_comment = fields.Text(
-        string='Approval Comments',
-        help='Optional comments or feedback regarding this approval decision.',
+        string='Ý kiến phê duyệt',
+        help='Ý kiến đóng góp hoặc ghi chú bổ sung về quyết định phê duyệt.',
     )
     otp_code_hash = fields.Char(
-        string='OTP Hash',
+        string='Mã băm OTP',
         readonly=True,
     )
     otp_expiry = fields.Datetime(
-        string='OTP Expiry',
+        string='Thời hạn OTP',
         readonly=True,
     )
 
@@ -49,17 +49,17 @@ class ApprovalSignatureOtpWizard(models.TransientModel):
         now = fields.Datetime.now()
         if not self.otp_expiry or now > self.otp_expiry:
             raise exceptions.UserError(self.env._(
-                'The OTP code has expired. Please click "Resend OTP" to receive a new verification code.'
+                'Mã OTP đã hết hạn. Vui lòng bấm "Gửi lại mã OTP" để nhận mã xác thực mới.'
             ))
 
         input_code = (self.otp_input or '').strip()
         if not input_code or len(input_code) != 6:
-            raise exceptions.UserError(self.env._('Please enter a valid 6-digit numeric OTP code.'))
+            raise exceptions.UserError(self.env._('Vui lòng nhập đầy đủ mã xác thực OTP gồm 6 chữ số.'))
 
         input_hash = hashlib.sha256(input_code.encode('utf-8')).hexdigest()
         if input_hash != self.otp_code_hash:
             raise exceptions.UserError(self.env._(
-                'Invalid OTP code. Please verify the code sent to your email or request a new one.'
+                'Mã OTP không chính xác. Vui lòng kiểm tra lại mã được gửi vào email hoặc yêu cầu cấp lại mã mới.'
             ))
 
         # Determine signer email
@@ -92,7 +92,7 @@ class ApprovalSignatureOtpWizard(models.TransientModel):
         reviewer_email = signer_user.email or (signer_user.employee_id and signer_user.employee_id.work_email)
         if not reviewer_email:
             raise exceptions.UserError(self.env._(
-                'No corporate email address configured for user "%(user)s".',
+                'Người dùng "%(user)s" chưa được cấu hình địa chỉ email công vụ.',
                 user=signer_user.name,
             ))
 
@@ -119,8 +119,8 @@ class ApprovalSignatureOtpWizard(models.TransientModel):
             'type': 'ir.actions.client',
             'tag': 'display_notification',
             'params': {
-                'title': self.env._('OTP Resent'),
-                'message': self.env._('A new verification code has been dispatched to %(email)s.', email=reviewer_email),
+                'title': self.env._('Đã gửi lại mã OTP'),
+                'message': self.env._('Mã xác thực OTP mới đã được gửi tới địa chỉ %(email)s.', email=reviewer_email),
                 'type': 'info',
                 'sticky': False,
                 'next': {

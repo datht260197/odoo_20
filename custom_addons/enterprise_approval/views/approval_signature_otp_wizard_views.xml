@@ -4,7 +4,7 @@
         <field name="name">approval.signature.otp.wizard.form</field>
         <field name="model">approval.signature.otp.wizard</field>
         <field name="arch" type="xml">
-            <form string="Two-Factor OTP Digital Signature">
+            <form string="Xác thực chữ ký số 2FA OTP">
                 <sheet>
                     <field name="request_id" invisible="1"/>
                     <field name="approver_id" invisible="1"/>
@@ -14,9 +14,9 @@
                     <div class="alert alert-info d-flex align-items-center mb-3" role="alert">
                         <i class="fa fa-shield fa-2x me-3 text-primary"/>
                         <div>
-                            <div class="fw-bold">Two-Factor Authentication Required</div>
+                            <div class="fw-bold">Yêu cầu xác thực 2 lớp (2FA)</div>
                             <div style="font-size: 13px;">
-                                A 6-digit verification code has been dispatched to your corporate email. This OTP is valid for 10 minutes.
+                                Mã xác thực OTP gồm 6 chữ số đã được gửi tới email công vụ của bạn. Mã xác thực này có hiệu lực trong 10 phút.
                             </div>
                         </div>
                     </div>
@@ -28,20 +28,20 @@
                                class="fw-bold fs-4 text-center text-primary"
                                style="letter-spacing: 6px; max-width: 200px;"/>
                         <field name="approval_comment"
-                               placeholder="Optional approval comments or remarks..."
+                               placeholder="Ý kiến hoặc ghi chú phê duyệt (không bắt buộc)..."
                                rows="3"/>
                     </group>
                 </sheet>
                 <footer>
                     <button name="action_confirm_signature"
-                            string="Sign &amp; Approve"
+                            string="Ký số &amp; Phê duyệt"
                             type="object"
                             class="btn-success"/>
                     <button name="action_resend_otp"
-                            string="Resend OTP"
+                            string="Gửi lại mã OTP"
                             type="object"
                             class="btn-outline-secondary"/>
-                    <button string="Cancel"
+                    <button string="Hủy"
                             class="btn-secondary"
                             special="cancel"/>
                 </footer>

@@ -318,7 +318,7 @@ class ApprovalRequest(models.Model):
 
         requests = super().create(vals_list)
         for request in requests:
-            request._log_history('draft', request.env._('Created approval request'))
+            request._log_history('draft', request.env._('Khởi tạo yêu cầu phê duyệt'))
         return requests
 
     def write(self, vals):
@@ -331,8 +331,8 @@ class ApprovalRequest(models.Model):
                 if attempted:
                     field_names = ', '.join(rec._fields[f].string for f in attempted if f in rec._fields)
                     raise exceptions.UserError(rec.env._(
-                        'Cannot edit the following fields: %(fields)s!\n'
-                        'Request "%(code)s" is currently in status "%(state)s".',
+                        'Không thể sửa các trường sau: %(fields)s!\n'
+                        'Yêu cầu "%(code)s" hiện đang ở trạng thái "%(state)s".',
                         fields=field_names,
                         code=rec.name,
                         state=dict(rec._fields['state'].selection).get(rec.state, rec.state),
@@ -346,7 +346,7 @@ class ApprovalRequest(models.Model):
         for rec in self:
             if not is_manager and rec.state not in ('draft', 'cancelled'):
                 raise exceptions.UserError(rec.env._(
-                    'You can only delete requests in "Draft" or "Cancelled" state.'
+                    'Bạn chỉ có thể xóa các yêu cầu ở trạng thái "Nháp" hoặc "Đã hủy".'
                 ))
         return super().unlink()
 
@@ -359,15 +359,15 @@ class ApprovalRequest(models.Model):
         self.check_access('write')
         for rec in self:
             if rec.state != 'draft':
-                raise exceptions.UserError(rec.env._('Only requests in "Draft" status can be submitted.'))
+                raise exceptions.UserError(rec.env._('Chỉ các yêu cầu ở trạng thái "Nháp" mới có thể nộp duyệt.'))
 
             # Validate required fields based on category configuration
             if rec.category_id.has_amount == 'required' and not rec.amount:
-                raise exceptions.ValidationError(rec.env._('Please enter the Amount for approval category "%s".', rec.category_id.name))
+                raise exceptions.ValidationError(rec.env._('Vui lòng nhập Số tiền cho loại phê duyệt "%s".', rec.category_id.name))
             if rec.category_id.has_date == 'required' and not rec.date_start:
-                raise exceptions.ValidationError(rec.env._('Please enter the Date for approval category "%s".', rec.category_id.name))
+                raise exceptions.ValidationError(rec.env._('Vui lòng nhập Thời gian cho loại phê duyệt "%s".', rec.category_id.name))
             if rec.category_id.has_location == 'required' and not rec.location:
-                raise exceptions.ValidationError(rec.env._('Please enter the Location for approval category "%s".', rec.category_id.name))
+                raise exceptions.ValidationError(rec.env._('Vui lòng nhập Địa điểm cho loại phê duyệt "%s".', rec.category_id.name))
 
             # Ensure an approver is assigned
             if not rec.approver_id:
@@ -383,7 +383,7 @@ class ApprovalRequest(models.Model):
 
             if not rec.approver_id:
                 raise exceptions.UserError(rec.env._(
-                    'No approver assigned! Please select an approver before submitting.'
+                    'Chưa chỉ định người phê duyệt! Vui lòng chọn người duyệt trước khi nộp.'
                 ))
 
             # Đồng bộ danh sách người duyệt nếu chưa có dòng nào
@@ -401,11 +401,11 @@ class ApprovalRequest(models.Model):
             })
 
             # Log action
-            rec._log_history('submit', rec.env._('Submitted request to %s', rec.approver_id.name))
+            rec._log_history('submit', rec.env._('Đã gửi yêu cầu tới %s', rec.approver_id.name))
 
             # Notify via Chatter and schedule activity
             rec.message_post(
-                body=rec.env._('<b>Approval request has been submitted.</b><br/>Assigned approver: <b>%s</b>', rec.approver_id.name),
+                body=rec.env._('<b>Phiếu yêu cầu phê duyệt đã được gửi đi.</b><br/>Người duyệt được giao: <b>%s</b>', rec.approver_id.name),
                 message_type='notification',
                 subtype_xmlid='mail.mt_comment',
             )
@@ -419,12 +419,12 @@ class ApprovalRequest(models.Model):
         current_uid = self.env.uid
 
         if self.state != 'submitted':
-            raise exceptions.UserError(self.env._('Only submitted requests can be approved.'))
+            raise exceptions.UserError(self.env._('Chỉ những yêu cầu ở trạng thái Chờ duyệt mới có thể phê duyệt.'))
 
         # Check approval permission
         approver_uids = self.approver_ids.mapped('user_id').ids
         if not is_manager and self.approver_id.id != current_uid and current_uid not in approver_uids:
-            raise exceptions.AccessError(self.env._('You do not have permission to approve this request.'))
+            raise exceptions.AccessError(self.env._('Bạn không có quyền phê duyệt yêu cầu này.'))
 
         # Ensure approver line exists
         approver = self.approver_ids.filtered(lambda a: a.user_id.id == current_uid)
@@ -441,8 +441,8 @@ class ApprovalRequest(models.Model):
         reviewer_email = self.env.user.email or (self.env.user.employee_id and self.env.user.employee_id.work_email)
         if not reviewer_email:
             raise exceptions.UserError(self.env._(
-                'No corporate email address configured for user "%(user)s". '
-                'An email is required to send the 2FA verification OTP.',
+                'Người dùng "%(user)s" chưa được cấu hình địa chỉ email công vụ. '
+                'Cần có email để nhận mã OTP xác thực ký số 2FA.',
                 user=self.env.user.name,
             ))
 
@@ -469,7 +469,7 @@ class ApprovalRequest(models.Model):
             'otp_expiry': otp_expiry,
         })
         return {
-            'name': self.env._('Two-Factor OTP Digital Signature'),
+            'name': self.env._('Xác thực chữ ký số OTP'),
             'type': 'ir.actions.act_window',
             'res_model': 'approval.signature.otp.wizard',
             'view_mode': 'form',
@@ -506,16 +506,16 @@ class ApprovalRequest(models.Model):
                     'status': 'new',
                 })
             log_msg = self.env._(
-                'Stage "%(prev)s" approved with 2FA digital signature. Forwarded to: "%(next)s" (%(approver)s)',
+                'Bước "%(prev)s" đã được phê duyệt bằng chữ ký số 2FA. Đã chuyển tiếp tới: "%(next)s" (%(approver)s)',
                 prev=self.current_stage_id.name,
                 next=next_stage.name,
                 approver=next_approver.name,
             )
             if comment:
-                log_msg += f"\n{self.env._('Comment:')} {comment}"
+                log_msg += f"\n{self.env._('Ý kiến:')} {comment}"
             self._log_history('approve', log_msg)
             self.message_post(
-                body=self.env._('<b>Stage approved with 2FA OTP signature.</b> Forwarded to next approval stage: <b>%s</b>', next_stage.name),
+                body=self.env._('<b>Bước duyệt đã được phê duyệt bằng chữ ký số 2FA OTP.</b> Chuyển tiếp tới bước duyệt: <b>%s</b>', next_stage.name),
             )
             self._schedule_approver_activity()
         else:
@@ -526,9 +526,9 @@ class ApprovalRequest(models.Model):
                 'date_confirmed': fields.Datetime.now(),
                 'confirmed_by': signer_user.id,
             })
-            log_msg = self.env._('Approval request approved with 2FA digital signature.')
+            log_msg = self.env._('Phiếu yêu cầu đã được phê duyệt với chữ ký số 2FA OTP.')
             if comment:
-                log_msg += f"\n{self.env._('Comment:')} {comment}"
+                log_msg += f"\n{self.env._('Ý kiến:')} {comment}"
             self._log_history('approve', log_msg)
 
             # Close pending activity
@@ -536,7 +536,7 @@ class ApprovalRequest(models.Model):
 
             # Notify via Chatter
             self.message_post(
-                body=self.env._('🎉 <b>REQUEST APPROVED WITH 2FA DIGITAL SIGNATURE!</b><br/>Approved by: <b>%s</b> (Hash: <code>%s</code>)', signer_user.name, approver.signature_hash or ''),
+                body=self.env._('🎉 <b>YÊU CẦU ĐÃ ĐƯỢC PHÊ DUYỆT BẰNG CHỮ KÝ SỐ 2FA!</b><br/>Người phê duyệt: <b>%s</b> (Mã băm: <code>%s</code>)', signer_user.name, approver.signature_hash or ''),
                 message_type='notification',
             )
 
@@ -544,7 +544,7 @@ class ApprovalRequest(models.Model):
         """Mở cửa sổ cấu hình in phiếu phê duyệt A4."""
         self.ensure_one()
         return {
-            'name': self.env._('Print Approval Slip'),
+            'name': self.env._('In phiếu phê duyệt'),
             'type': 'ir.actions.act_window',
             'res_model': 'approval.slip.print.wizard',
             'view_mode': 'form',
@@ -563,14 +563,14 @@ class ApprovalRequest(models.Model):
         current_uid = self.env.uid
 
         if self.state != 'submitted':
-            raise exceptions.UserError(self.env._('Only submitted requests can be rejected.'))
+            raise exceptions.UserError(self.env._('Chỉ có thể từ chối các yêu cầu ở trạng thái Chờ duyệt.'))
 
         approver_uids = self.approver_ids.mapped('user_id').ids
         if not is_manager and self.approver_id.id != current_uid and current_uid not in approver_uids:
-            raise exceptions.AccessError(self.env._('You do not have permission to reject this request.'))
+            raise exceptions.AccessError(self.env._('Bạn không có quyền từ chối yêu cầu này.'))
 
         return {
-            'name': self.env._('Reject Approval Request'),
+            'name': self.env._('Từ chối yêu cầu phê duyệt'),
             'type': 'ir.actions.act_window',
             'res_model': 'approval.reject.wizard',
             'view_mode': 'form',
@@ -586,7 +586,7 @@ class ApprovalRequest(models.Model):
         is_manager = self.env.user.has_group('enterprise_approval.group_approval_manager')
         for rec in self:
             if not is_manager and rec.requester_id.id != self.env.uid:
-                raise exceptions.AccessError(rec.env._('Only the requester or an administrator can reset the request to draft.'))
+                raise exceptions.AccessError(rec.env._('Chỉ người tạo hoặc quản trị viên mới có quyền đặt lại yêu cầu về trạng thái nháp.'))
 
             rec.write({
                 'state': 'draft',
@@ -595,8 +595,8 @@ class ApprovalRequest(models.Model):
                 'rejection_reason': False,
             })
             rec.approver_ids.write({'status': 'new'})
-            rec._log_history('reset', rec.env._('Reset to Draft for revision'))
-            rec.message_post(body=rec.env._('Request has been reset to <b>Draft</b>.'))
+            rec._log_history('reset', rec.env._('Đặt về Nháp để chỉnh sửa'))
+            rec.message_post(body=rec.env._('Yêu cầu đã được đặt lại về trạng thái <b>Nháp</b>.'))
 
     def action_cancel(self):
         """Hủy phiếu yêu cầu."""
@@ -604,19 +604,19 @@ class ApprovalRequest(models.Model):
         is_manager = self.env.user.has_group('enterprise_approval.group_approval_manager')
         for rec in self:
             if not is_manager and rec.requester_id.id != self.env.uid:
-                raise exceptions.AccessError(rec.env._('Only the requester or an administrator can cancel this request.'))
+                raise exceptions.AccessError(rec.env._('Chỉ người tạo hoặc quản trị viên mới có thể hủy yêu cầu này.'))
 
             rec.write({'state': 'cancelled'})
             rec.approver_ids.write({'status': 'cancel'})
-            rec._log_history('cancel', rec.env._('Approval request cancelled'))
+            rec._log_history('cancel', rec.env._('Yêu cầu phê duyệt đã bị hủy'))
             rec.activity_unlink(['mail.mail_activity_data_todo'])
-            rec.message_post(body=rec.env._('Approval request has been cancelled.'))
+            rec.message_post(body=rec.env._('Yêu cầu phê duyệt đã được hủy.'))
 
     def action_attach_document(self):
         """Mở trình quản lý tệp đính kèm."""
         self.ensure_one()
         return {
-            'name': self.env._('Attached Documents'),
+            'name': self.env._('Tài liệu đính kèm'),
             'type': 'ir.actions.act_window',
             'res_model': 'ir.attachment',
             'view_mode': 'kanban,list,form',
@@ -632,7 +632,7 @@ class ApprovalRequest(models.Model):
         """Xem danh sách tài liệu đính kèm của phiếu này."""
         self.ensure_one()
         return {
-            'name': self.env._('Attached Documents'),
+            'name': self.env._('Tài liệu đính kèm'),
             'type': 'ir.actions.act_window',
             'res_model': 'ir.attachment',
             'view_mode': 'kanban,list,form',
@@ -665,9 +665,9 @@ class ApprovalRequest(models.Model):
                 rec.activity_schedule(
                     'mail.mail_activity_data_todo',
                     user_id=rec.approver_id.id,
-                    summary=rec.env._('Approval Needed: %s', rec.title),
+                    summary=rec.env._('Cần phê duyệt: %s', rec.title),
                     note=rec.env._(
-                        '<b>%s</b> has submitted an approval request: "%s". Please review and process.',
+                        '<b>%s</b> đã nộp một phiếu yêu cầu phê duyệt: "%s". Vui lòng xem xét và xử lý.',
                         rec.requester_id.name, rec.title
                     ),
                 )
