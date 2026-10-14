@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Paper Format: A4 Portrait with Official Legal Document Margins -->
+    <record id="paperformat_hr_labor_contract" model="report.paperformat">
+        <field name="name">Labor Contract A4 Portrait</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">15</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">18</field>
+        <field name="margin_right">18</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">96</field>
+    </record>
+
+    <!-- Report Action for Employee -->
+    <record id="action_report_hr_labor_contract" model="ir.actions.report">
+        <field name="name">Labor Contract</field>
+        <field name="model">hr.employee</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_hr_contract.report_labor_contract</field>
+        <field name="paperformat_id" ref="paperformat_hr_labor_contract"/>
+        <field name="print_report_name">'Labor_Contract_%s' % (object.name.replace('/', '_'))</field>
+        <field name="binding_model_id" ref="model_hr_employee"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

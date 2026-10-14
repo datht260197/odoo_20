@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================================
+         Extend Employee Form: Vietnamese Localization Fields
+         Adds fields to the "Personal" tab of the employee form.
+         ================================================================ -->
+    <record id="view_employee_form_custom_hr_contract" model="ir.ui.view">
+        <field name="name">hr.employee.form.custom_hr_contract</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+            <!-- === Vietnamese Citizen ID (CCCD) Details ===
+                 Adds issue date/place after the existing identification_id field
+                 inside the "Citizenship" group. -->
+            <xpath expr="//group[@name='citizenship']//field[@name='identification_id']" position="after">
+                <field name="id_card_date"/>
+                <field name="id_card_place"/>
+            </xpath>
+
+            <!-- === Tax &amp; Insurance ===
+                 New group after Family section. -->
+            <xpath expr="//group[@name='hr_family_group']" position="after">
+                <group string="Tax &amp; Insurance" name="hr_tax_insurance_group">
+                    <field name="tax_id_number"/>
+                    <field name="social_insurance_number"/>
+                </group>
+            </xpath>
+
+            <!-- === Permanent Address ===
+                 New group after Location section. -->
+            <xpath expr="//group[@name='hr_location_group']" position="after">
+                <group string="Permanent Address" name="hr_permanent_address_group">
+                    <field name="permanent_street" placeholder="Số nhà, đường..."/>
+                    <field name="permanent_ward" placeholder="Phường/Xã"/>
+                    <field name="permanent_district" placeholder="Quận/Huyện"/>
+                    <field name="permanent_city" placeholder="Tỉnh/Thành phố"/>
+                </group>
+
+                <!-- === Temporary Address === -->
+                <group string="Temporary Address" name="hr_temporary_address_group">
+                    <field name="temporary_street" placeholder="Số nhà, đường..."/>
+                    <field name="temporary_ward" placeholder="Phường/Xã"/>
+                    <field name="temporary_district" placeholder="Quận/Huyện"/>
+                    <field name="temporary_city" placeholder="Tỉnh/Thành phố"/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

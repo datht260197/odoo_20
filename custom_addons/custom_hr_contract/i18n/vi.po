@@ -1,0 +1,210 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* custom_hr_contract
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 20.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-14 16:30:00+0000\n"
+"PO-Revision-Date: 2026-10-14 16:30:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Vietnamese (https://www.transifex.com/odoo/teams/41243/vi/)\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: custom_hr_contract
+#: model:ir.actions.report,name:custom_hr_contract.action_report_hr_labor_contract
+msgid "Labor Contract"
+msgstr "Hợp đồng lao động"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_employee__id_card_date
+msgid "ID Card Issue Date"
+msgstr "Ngày cấp CCCD/CMND"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_employee__id_card_place
+msgid "ID Card Issue Place"
+msgstr "Nơi cấp CCCD/CMND"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_employee__permanent_street
+msgid "Permanent Street"
+msgstr "Địa chỉ thường trú (Số nhà, đường)"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_employee__permanent_ward
+msgid "Permanent Ward"
+msgstr "Phường/Xã thường trú"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_employee__permanent_district
+msgid "Permanent District"
+msgstr "Quận/Huyện thường trú"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_employee__permanent_city
+msgid "Permanent City/Province"
+msgstr "Tỉnh/Thành phố thường trú"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_employee__temporary_street
+msgid "Temporary Street"
+msgstr "Chỗ ở hiện tại (Số nhà, đường)"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_employee__temporary_ward
+msgid "Temporary Ward"
+msgstr "Phường/Xã tạm trú"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_employee__temporary_district
+msgid "Temporary District"
+msgstr "Quận/Huyện tạm trú"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_employee__temporary_city
+msgid "Temporary City/Province"
+msgstr "Tỉnh/Thành phố tạm trú"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_employee__tax_id_number
+msgid "Tax ID Number"
+msgstr "Mã số thuế cá nhân"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_employee__social_insurance_number
+msgid "Social Insurance Number"
+msgstr "Số sổ BHXH"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_employee__permanent_address
+msgid "Full Permanent Address"
+msgstr "Địa chỉ thường trú đầy đủ"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_employee__temporary_address
+msgid "Full Temporary Address"
+msgstr "Chỗ ở hiện tại đầy đủ"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_version__contract_category
+msgid "Contract Category"
+msgstr "Loại hợp đồng"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields.selection,name:custom_hr_contract.selection__hr_version__contract_category__definite
+msgid "Definite Term"
+msgstr "Hợp đồng xác định thời hạn"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields.selection,name:custom_hr_contract.selection__hr_version__contract_category__indefinite
+msgid "Indefinite Term"
+msgstr "Hợp đồng không xác định thời hạn"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields.selection,name:custom_hr_contract.selection__hr_version__contract_category__seasonal
+msgid "Seasonal / Job-based"
+msgstr "Hợp đồng theo mùa vụ / công việc"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_version__allowance_meal
+msgid "Meal Allowance"
+msgstr "Phụ cấp ăn trưa"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_version__allowance_transport
+msgid "Transport Allowance"
+msgstr "Phụ cấp đi lại"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_version__allowance_phone
+msgid "Phone Allowance"
+msgstr "Phụ cấp điện thoại"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_version__allowance_housing
+msgid "Housing Allowance"
+msgstr "Phụ cấp nhà ở"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_version__allowance_responsibility
+msgid "Responsibility Allowance"
+msgstr "Phụ cấp trách nhiệm"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_version__allowance_other
+msgid "Other Allowances"
+msgstr "Phụ cấp khác"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_version__total_allowance
+msgid "Total Allowances"
+msgstr "Tổng phụ cấp"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_version__total_compensation
+msgid "Total Compensation"
+msgstr "Tổng thu nhập"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_version__payment_method
+msgid "Payment Method"
+msgstr "Hình thức trả lương"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields.selection,name:custom_hr_contract.selection__hr_version__payment_method__bank
+msgid "Bank Transfer"
+msgstr "Chuyển khoản ngân hàng"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields.selection,name:custom_hr_contract.selection__hr_version__payment_method__cash
+msgid "Cash"
+msgstr "Tiền mặt"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_version__work_hours_per_day
+msgid "Working Hours/Day"
+msgstr "Giờ làm việc/ngày"
+
+#. module: custom_hr_contract
+#: model:ir.model.fields,field_description:custom_hr_contract.field_hr_version__work_days_per_week
+msgid "Working Days/Week"
+msgstr "Ngày làm việc/tuần"
+
+#. module: custom_hr_contract
+#: model:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
+msgid "Tax & Insurance"
+msgstr "Thuế & Bảo hiểm"
+
+#. module: custom_hr_contract
+#: model:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
+msgid "Permanent Address"
+msgstr "Địa chỉ thường trú"
+
+#. module: custom_hr_contract
+#: model:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
+msgid "Temporary Address"
+msgstr "Chỗ ở hiện tại"
+
+#. module: custom_hr_contract
+#: model:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract_version
+#: model:ir.ui.view,arch_db:custom_hr_contract.hr_contract_template_form_view_custom_hr_contract
+msgid "Allowances"
+msgstr "Phụ cấp"
+
+#. module: custom_hr_contract
+#: model:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract_version
+#: model:ir.ui.view,arch_db:custom_hr_contract.hr_contract_template_form_view_custom_hr_contract
+msgid "Payment & Work Schedule"
+msgstr "Hình thức chi trả & Lịch làm việc"
+
+#. module: custom_hr_contract
+#: model:report.paperformat,name:custom_hr_contract.paperformat_hr_labor_contract
+msgid "Labor Contract A4 Portrait"
+msgstr "Hợp đồng lao động A4"
+

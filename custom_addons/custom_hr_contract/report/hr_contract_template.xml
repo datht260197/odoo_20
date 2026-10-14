@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Template for Vietnamese Labor Contract QWeb PDF Report -->
+    <template id="report_labor_contract">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="employee">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="font-family: 'Times New Roman', Times, serif; font-size: 13pt; line-height: 1.45; color: #111827; position: relative;">
+
+                        <!-- Watermark for Draft / Inactive Version -->
+                        <t t-if="not employee.contract_category or (employee.version_id and not employee.version_id.active)">
+                            <div style="position: absolute; top: 38%; left: 10%; transform: rotate(-35deg); font-size: 65pt; font-weight: bold; color: rgba(220, 38, 38, 0.15); border: 4px dashed rgba(220, 38, 38, 0.2); padding: 15px 40px; text-transform: uppercase; letter-spacing: 6px; pointer-events: none; z-index: 1000;">
+                                BẢN NHÁP / DRAFT
+                            </div>
+                        </t>
+
+                        <!-- Quốc hiệu & Tiêu ngữ -->
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <div style="font-weight: bold; font-size: 13pt; text-transform: uppercase; letter-spacing: 0.5px;">
+                                CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
+                            </div>
+                            <div style="font-weight: bold; font-size: 13pt;">
+                                Độc lập - Tự do - Hạnh phúc
+                            </div>
+                            <div style="margin: 3px auto 16px auto; width: 170px; border-bottom: 1.5px solid #111827;"></div>
+
+                            <!-- Tiêu đề Hợp đồng -->
+                            <div style="font-weight: bold; font-size: 18pt; text-transform: uppercase; margin-top: 10px; color: #0f172a;">
+                                HỢP ĐỒNG LAO ĐỘNG
+                            </div>
+                            <div style="font-style: italic; font-size: 12pt; color: #4b5563; margin-bottom: 5px;">
+                                (LABOR CONTRACT)
+                            </div>
+                            <div style="font-size: 12pt;">
+                                Số / No: HDLD/<span t-out="employee.id"/>/<span t-out="context_timestamp(datetime.datetime.now()).strftime('%Y')"/>
+                            </div>
+                        </div>
+
+                        <!-- Lời mở đầu -->
+                        <p style="text-align: justify; margin-bottom: 12px;">
+                            Hôm nay, ngày <span t-out="context_timestamp(datetime.datetime.now()).strftime('%d')"/>
+                            tháng <span t-out="context_timestamp(datetime.datetime.now()).strftime('%m')"/>
+                            năm <span t-out="context_timestamp(datetime.datetime.now()).strftime('%Y')"/>,
+                            tại trụ sở Công ty, chúng tôi gồm các bên dưới đây:
+                        </p>
+
+                        <!-- BÊN A: NGƯỜI SỬ DỤNG LAO ĐỘNG -->
+                        <div style="margin-bottom: 12px;">
+                            <div style="font-weight: bold; text-transform: uppercase; background-color: #f1f5f9; padding: 4px 8px; border-left: 3px solid #1e293b; margin-bottom: 6px;">
+                                BÊN A: NGƯỜI SỬ DỤNG LAO ĐỘNG (EMPLOYER)
+                            </div>
+                            <table style="width: 100%; border-collapse: collapse; margin-left: 8px;">
+                                <tr>
+                                    <td style="width: 32%; padding: 2px 0;"><strong>Tên Công ty / Company:</strong></td>
+                                    <td style="width: 68%; padding: 2px 0;"><span t-out="employee.company_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0;"><strong>Địa chỉ / Address:</strong></td>
+                                    <td style="padding: 2px 0;">
+                                        <span t-out="employee.company_id.partner_id.contact_address or employee.company_id.street or '...'"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0;"><strong>Mã số thuế / Tax ID:</strong></td>
+                                    <td style="padding: 2px 0;"><span t-out="employee.company_id.vat or '...'"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0;"><strong>Điện thoại / Phone:</strong></td>
+                                    <td style="padding: 2px 0;"><span t-out="employee.company_id.phone or '...'"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0;"><strong>Đại diện bởi / Represented by:</strong></td>
+                                    <td style="padding: 2px 0;">
+                                        <span t-out="employee.company_id.partner_id.name or 'Tổng Giám đốc / Director'"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <!-- BÊN B: NGƯỜI LAO ĐỘNG -->
+                        <div style="margin-bottom: 12px;">
+                            <div style="font-weight: bold; text-transform: uppercase; background-color: #f1f5f9; padding: 4px 8px; border-left: 3px solid #1e293b; margin-bottom: 6px;">
+                                BÊN B: NGƯỜI LAO ĐỘNG (EMPLOYEE)
+                            </div>
+                            <table style="width: 100%; border-collapse: collapse; margin-left: 8px;">
+                                <tr>
+                                    <td style="width: 32%; padding: 2px 0;"><strong>Họ và tên / Full name:</strong></td>
+                                    <td style="width: 68%; padding: 2px 0; font-weight: bold; text-transform: uppercase;">
+                                        <span t-out="employee.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0;"><strong>Ngày sinh / Date of Birth:</strong></td>
+                                    <td style="padding: 2px 0;">
+                                        <span t-out="employee.birthday and employee.birthday.strftime('%d/%m/%Y') or '...'"/>
+                                        <span style="margin-left: 20px;"><strong>Giới tính / Gender:</strong></span>
+                                        <span style="margin-left: 6px;" t-if="employee.sex == 'male'">Nam / Male</span>
+                                        <span style="margin-left: 6px;" t-elif="employee.sex == 'female'">Nữ / Female</span>
+                                        <span style="margin-left: 6px;" t-else="">...</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0;"><strong>Quốc tịch / Nationality:</strong></td>
+                                    <td style="padding: 2px 0;"><span t-out="employee.country_id.name or 'Việt Nam'"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0;"><strong>Số CCCD/CMND / ID No:</strong></td>
+                                    <td style="padding: 2px 0;">
+                                        <span style="font-weight: bold;" t-out="employee.identification_id or '...'"/>
+                                        <span style="margin-left: 15px;"><strong>Ngày cấp:</strong></span>
+                                        <span style="margin-left: 4px;" t-out="employee.id_card_date and employee.id_card_date.strftime('%d/%m/%Y') or '...'"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0;"><strong>Nơi cấp / Place of issue:</strong></td>
+                                    <td style="padding: 2px 0;"><span t-out="employee.id_card_place or 'Cục Cảnh sát QLHC về TTXH'"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0;"><strong>Địa chỉ thường trú:</strong></td>
+                                    <td style="padding: 2px 0;">
+                                        <span t-out="employee.permanent_address or employee.permanent_street or '...'"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0;"><strong>Nơi ở hiện tại:</strong></td>
+                                    <td style="padding: 2px 0;">
+                                        <span t-out="employee.temporary_address or employee.temporary_street or '...'"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0;"><strong>Mã số thuế cá nhân:</strong></td>
+                                    <td style="padding: 2px 0;">
+                                        <span t-out="employee.tax_id_number or '...'"/>
+                                        <span style="margin-left: 20px;"><strong>Số sổ BHXH:</strong></span>
+                                        <span style="margin-left: 6px;" t-out="employee.social_insurance_number or '...'"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <p style="text-align: justify; margin: 10px 0;">
+                            Cùng thỏa thuận ký kết Hợp đồng lao động và cam kết làm đúng những điều khoản sau đây:
+                        </p>
+
+                        <!-- ĐIỀU 1: THỜI HẠN VÀ CÔNG VIỆC -->
+                        <div style="margin-bottom: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 4px;">
+                                ĐIỀU 1: THỜI HẠN VÀ CÔNG VIỆC HỢP ĐỒNG (TERM &amp; JOB)
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; list-style-type: square;">
+                                <li>
+                                    <strong>Loại hợp đồng / Contract type:</strong>
+                                    <t t-if="employee.contract_category == 'definite'"> Hợp đồng xác định thời hạn (Definite Term)</t>
+                                    <t t-elif="employee.contract_category == 'indefinite'"> Hợp đồng không xác định thời hạn (Indefinite Term)</t>
+                                    <t t-elif="employee.contract_category == 'seasonal'"> Hợp đồng theo mùa vụ / công việc nhất định (Seasonal / Project-based)</t>
+                                    <t t-else=""> Hợp đồng lao động</t>
+                                </li>
+                                <li>
+                                    <strong>Thời hạn / Term:</strong> Từ ngày
+                                    <span t-out="employee.contract_date_start and employee.contract_date_start.strftime('%d/%m/%Y') or '...'"/>
+                                    <t t-if="employee.contract_category != 'indefinite' and employee.contract_date_end">
+                                        đến ngày <span t-out="employee.contract_date_end.strftime('%d/%m/%Y')"/>
+                                    </t>
+                                    <t t-elif="employee.contract_category == 'indefinite'">
+                                        (Không xác định thời hạn)
+                                    </t>
+                                </li>
+                                <li>
+                                    <strong>Chức danh chuyên môn / Job position:</strong>
+                                    <span t-out="employee.job_id.name or employee.job_title or '...'"/>
+                                    - Phòng ban: <span t-out="employee.department_id.name or '...'"/>
+                                </li>
+                                <li>
+                                    <strong>Địa điểm làm việc / Workplace:</strong>
+                                    <span t-out="employee.work_location_id.name or employee.company_id.name"/>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- ĐIỀU 2: CHẾ ĐỘ LÀM VIỆC -->
+                        <div style="margin-bottom: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 4px;">
+                                ĐIỀU 2: CHẾ ĐỘ LÀM VIỆC (WORKING SCHEDULE)
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; list-style-type: square;">
+                                <li>
+                                    <strong>Thời giờ làm việc:</strong>
+                                    <span t-out="'%.1f' % (employee.work_hours_per_day or 8.0)"/> giờ/ngày,
+                                    <span t-out="'%.1f' % (employee.work_days_per_week or 5.0)"/> ngày/tuần.
+                                </li>
+                                <li>
+                                    Được trang bị bảo hộ lao động và dụng cụ làm việc theo quy định vị trí việc làm.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- ĐIỀU 3: TIỀN LƯƠNG VÀ PHỤ CẤP -->
+                        <div style="margin-bottom: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 4px;">
+                                ĐIỀU 3: TIỀN LƯƠNG, PHỤ CẤP VÀ CHẾ ĐỘ ĐÃI NGỘ (COMPENSATION &amp; BENEFITS)
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; list-style-type: square;">
+                                <li>
+                                    <strong>Mức lương chính / Basic Wage:</strong>
+                                    <span style="font-weight: bold;" t-out="'{:,.0f}'.format(employee.wage or 0).replace(',', '.')"/>
+                                    <span t-out="employee.currency_id.symbol or 'VNĐ'"/>/tháng.
+                                    <t t-if="employee.wage and num_to_words_vi">
+                                        <div style="font-style: italic; color: #374151;">
+                                            (Bằng chữ: <span t-out="num_to_words_vi(employee.wage)"/>)
+                                        </div>
+                                    </t>
+                                </li>
+                                <t t-if="employee.total_allowance">
+                                    <li>
+                                        <strong>Các khoản phụ cấp hàng tháng / Allowances:</strong>
+                                        <table style="width: 90%; margin: 4px 0 4px 10px; border-collapse: collapse; font-size: 11pt;">
+                                            <tr t-if="employee.allowance_meal">
+                                                <td style="width: 50%; padding: 1px 0;">- Phụ cấp ăn trưa / Meal:</td>
+                                                <td style="width: 50%; padding: 1px 0; text-align: right;">
+                                                    <span t-out="'{:,.0f}'.format(employee.allowance_meal).replace(',', '.')"/> VNĐ
+                                                </td>
+                                            </tr>
+                                            <tr t-if="employee.allowance_transport">
+                                                <td style="padding: 1px 0;">- Phụ cấp đi lại / Transport:</td>
+                                                <td style="padding: 1px 0; text-align: right;">
+                                                    <span t-out="'{:,.0f}'.format(employee.allowance_transport).replace(',', '.')"/> VNĐ
+                                                </td>
+                                            </tr>
+                                            <tr t-if="employee.allowance_phone">
+                                                <td style="padding: 1px 0;">- Phụ cấp điện thoại / Phone:</td>
+                                                <td style="padding: 1px 0; text-align: right;">
+                                                    <span t-out="'{:,.0f}'.format(employee.allowance_phone).replace(',', '.')"/> VNĐ
+                                                </td>
+                                            </tr>
+                                            <tr t-if="employee.allowance_housing">
+                                                <td style="padding: 1px 0;">- Phụ cấp nhà ở / Housing:</td>
+                                                <td style="padding: 1px 0; text-align: right;">
+                                                    <span t-out="'{:,.0f}'.format(employee.allowance_housing).replace(',', '.')"/> VNĐ
+                                                </td>
+                                            </tr>
+                                            <tr t-if="employee.allowance_responsibility">
+                                                <td style="padding: 1px 0;">- Phụ cấp trách nhiệm / Responsibility:</td>
+                                                <td style="padding: 1px 0; text-align: right;">
+                                                    <span t-out="'{:,.0f}'.format(employee.allowance_responsibility).replace(',', '.')"/> VNĐ
+                                                </td>
+                                            </tr>
+                                            <tr t-if="employee.allowance_other">
+                                                <td style="padding: 1px 0;">- Phụ cấp khác / Other:</td>
+                                                <td style="padding: 1px 0; text-align: right;">
+                                                    <span t-out="'{:,.0f}'.format(employee.allowance_other).replace(',', '.')"/> VNĐ
+                                                </td>
+                                            </tr>
+                                            <tr style="border-top: 1px dashed #cbd5e1; font-weight: bold;">
+                                                <td style="padding: 2px 0;">Tổng phụ cấp / Total Allowances:</td>
+                                                <td style="padding: 2px 0; text-align: right;">
+                                                    <span t-out="'{:,.0f}'.format(employee.total_allowance).replace(',', '.')"/> VNĐ
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </li>
+                                </t>
+                                <li>
+                                    <strong>Tổng thu nhập hàng tháng / Total Compensation:</strong>
+                                    <span style="font-weight: bold; color: #047857;" t-out="'{:,.0f}'.format(employee.total_compensation or employee.wage or 0).replace(',', '.')"/>
+                                    <span t-out="employee.currency_id.symbol or 'VNĐ'"/>/tháng.
+                                    <t t-if="employee.total_compensation and num_to_words_vi">
+                                        <div style="font-style: italic; color: #374151;">
+                                            (Bằng chữ: <span t-out="num_to_words_vi(employee.total_compensation)"/>)
+                                        </div>
+                                    </t>
+                                </li>
+                                <li>
+                                    <strong>Hình thức trả lương / Payment Method:</strong>
+                                    <span t-if="employee.payment_method == 'bank'">Chuyển khoản qua tài khoản ngân hàng (Bank Transfer)</span>
+                                    <span t-elif="employee.payment_method == 'cash'">Tiền mặt (Cash)</span>
+                                    <span t-else="">Chuyển khoản</span>
+                                </li>
+                                <li>
+                                    <strong>Kỳ hạn thanh toán / Payment Schedule:</strong> Định kỳ vào ngày 05 đến ngày 10 hàng tháng.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- ĐIỀU 4: BẢO HIỂM -->
+                        <div style="margin-bottom: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 4px;">
+                                ĐIỀU 4: BẢO HIỂM XÃ HỘI VÀ BẢO HIỂM Y TẾ (INSURANCE)
+                            </div>
+                            <p style="text-align: justify; margin: 0; padding-left: 20px;">
+                                Người sử dụng lao động và Người lao động có nghĩa vụ đóng Bảo hiểm xã hội, Bảo hiểm y tế và Bảo hiểm thất nghiệp theo đúng quy định của pháp luật hiện hành của Nước Cộng hòa Xã hội Chủ nghĩa Việt Nam.
+                            </p>
+                        </div>
+
+                        <!-- ĐIỀU 5 & 6: NGHĨA VỤ VÀ ĐIỀU KHOẢN THI HÀNH -->
+                        <div style="margin-bottom: 15px;">
+                            <div style="font-weight: bold; margin-bottom: 4px;">
+                                ĐIỀU 5: ĐIỀU KHOẢN THI HÀNH (EXECUTION CLAUSE)
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; list-style-type: square;">
+                                <li>
+                                    Những vấn đề chưa được quy định trong Hợp đồng này sẽ áp dụng theo Thỏa ước lao động tập thể, Nội quy lao động của Công ty và Bộ luật Lao động Việt Nam năm 2019.
+                                </li>
+                                <li>
+                                    Hợp đồng này được lập thành 02 (hai) bản có giá trị pháp lý như nhau, mỗi bên giữ 01 (một) bản và có hiệu lực kể từ ngày ký.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- CHỮ KÝ HAI BÊN -->
+                        <div style="margin-top: 25px; page-break-inside: avoid;">
+                            <table style="width: 100%; border-collapse: collapse; text-align: center;">
+                                <tr>
+                                    <td style="width: 50%; vertical-align: top;">
+                                        <div style="font-weight: bold; text-transform: uppercase;">
+                                            NGƯỜI LAO ĐỘNG
+                                        </div>
+                                        <div style="font-style: italic; font-size: 11pt; color: #4b5563;">
+                                            (Ký và ghi rõ họ tên)
+                                        </div>
+                                        <div style="height: 75px;"></div>
+                                        <div style="font-weight: bold;">
+                                            <span t-out="employee.name"/>
+                                        </div>
+                                    </td>
+                                    <td style="width: 50%; vertical-align: top;">
+                                        <div style="font-weight: bold; text-transform: uppercase;">
+                                            ĐẠI DIỆN NGƯỜI SỬ DỤNG LAO ĐỘNG
+                                        </div>
+                                        <div style="font-style: italic; font-size: 11pt; color: #4b5563;">
+                                            (Ký, ghi rõ họ tên và đóng dấu)
+                                        </div>
+                                        <div style="height: 75px;"></div>
+                                        <div style="font-weight: bold;">
+                                            <span t-out="employee.company_id.partner_id.name or 'Đại diện có thẩm quyền'"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

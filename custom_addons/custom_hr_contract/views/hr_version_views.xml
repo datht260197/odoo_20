@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================================
+         Extend Employee Form: Vietnamese Contract Fields
+         Adds contract category, allowances, payment method to the
+         Payroll tab (which displays hr.version fields via _inherits).
+         ================================================================ -->
+    <record id="view_employee_form_custom_hr_contract_version" model="ir.ui.view">
+        <field name="name">hr.employee.form.custom_hr_contract.version</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Add contract category after employee_type_id in the Contract Overview -->
+            <xpath expr="//page[@name='payroll_information']//group[@name='contract']//field[@name='employee_type_id']" position="after">
+                <field name="contract_category"/>
+            </xpath>
+
+            <!-- Add allowances group after the schedule group -->
+            <xpath expr="//page[@name='payroll_information']//group[@name='schedule']" position="after">
+                <group name="allowances" string="Allowances" groups="hr.group_hr_manager">
+                    <group>
+                        <field name="allowance_meal"/>
+                        <field name="allowance_transport"/>
+                        <field name="allowance_phone"/>
+                    </group>
+                    <group>
+                        <field name="allowance_housing"/>
+                        <field name="allowance_responsibility"/>
+                        <field name="allowance_other"/>
+                    </group>
+                    <group colspan="2">
+                        <field name="total_allowance"/>
+                        <field name="total_compensation"/>
+                    </group>
+                </group>
+
+                <group name="payment_work" string="Payment &amp; Work Schedule" groups="hr.group_hr_manager">
+                    <group>
+                        <field name="payment_method"/>
+                    </group>
+                    <group>
+                        <field name="work_hours_per_day"/>
+                        <field name="work_days_per_week"/>
+                    </group>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- ================================================================
+         Extend Version List View: Add contract_category column
+         ================================================================ -->
+    <record id="hr_version_list_view_custom_hr_contract" model="ir.ui.view">
+        <field name="name">hr.version.list.custom_hr_contract</field>
+        <field name="model">hr.version</field>
+        <field name="inherit_id" ref="hr.hr_version_list_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='wage']" position="after">
+                <field name="contract_category" optional="show"/>
+                <field name="total_allowance" optional="hide"/>
+                <field name="total_compensation" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ================================================================
+         Extend Contract Template Form: Add allowance fields
+         ================================================================ -->
+    <record id="hr_contract_template_form_view_custom_hr_contract" model="ir.ui.view">
+        <field name="name">hr.contract.template.form.custom_hr_contract</field>
+        <field name="model">hr.version</field>
+        <field name="inherit_id" ref="hr.hr_contract_template_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Add contract category after employee type -->
+            <xpath expr="//page[@name='information']//group[@name='contract']//field[@name='employee_type_id']" position="after">
+                <field name="contract_category"/>
+            </xpath>
+
+            <!-- Add allowances page in the notebook -->
+            <xpath expr="//page[@name='information']//group[@name='schedule']" position="after">
+                <group name="allowances" string="Allowances">
+                    <group>
+                        <field name="allowance_meal"/>
+                        <field name="allowance_transport"/>
+                        <field name="allowance_phone"/>
+                    </group>
+                    <group>
+                        <field name="allowance_housing"/>
+                        <field name="allowance_responsibility"/>
+                        <field name="allowance_other"/>
+                    </group>
+                    <group colspan="2">
+                        <field name="total_allowance"/>
+                        <field name="total_compensation"/>
+                    </group>
+                </group>
+
+                <group name="payment_work" string="Payment &amp; Work Schedule">
+                    <group>
+                        <field name="payment_method"/>
+                    </group>
+                    <group>
+                        <field name="work_hours_per_day"/>
+                        <field name="work_days_per_week"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
