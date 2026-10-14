@@ -15,3 +15,16 @@ access_fleet_dispatch_expense_user,fleet.dispatch.expense.user,fleet.dispatch.ex
 access_fleet_dispatch_expense_officer,fleet.dispatch.expense.officer,fleet.dispatch.expense,frontdesk_admin.group_frontdesk_officer,cru,
 access_fleet_dispatch_expense_manager,fleet.dispatch.expense.manager,fleet.dispatch.expense,frontdesk_admin.group_frontdesk_manager,crud,
 rule_fleet_dispatch_expense_multicompany,fleet.dispatch.expense multi-company,fleet.dispatch.expense,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_frontdesk_visitor_user,frontdesk.visitor.user,frontdesk.visitor,frontdesk_admin.group_frontdesk_user,r,"['|', ('host_id.user_id', '=', user.id), ('create_uid', '=', user.id)]"
+access_frontdesk_visitor_officer,frontdesk.visitor.officer,frontdesk.visitor,frontdesk_admin.group_frontdesk_officer,cru,
+access_frontdesk_visitor_manager,frontdesk.visitor.manager,frontdesk.visitor,frontdesk_admin.group_frontdesk_manager,crud,
+rule_frontdesk_visitor_multicompany,frontdesk.visitor multi-company,frontdesk.visitor,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_frontdesk_meeting_room_user,frontdesk.meeting.room.user,frontdesk.meeting.room,frontdesk_admin.group_frontdesk_user,r,
+access_frontdesk_meeting_room_officer,frontdesk.meeting.room.officer,frontdesk.meeting.room,frontdesk_admin.group_frontdesk_officer,cru,
+access_frontdesk_meeting_room_manager,frontdesk.meeting.room.manager,frontdesk.meeting.room,frontdesk_admin.group_frontdesk_manager,crud,
+rule_frontdesk_meeting_room_multicompany,frontdesk.meeting.room multi-company,frontdesk.meeting.room,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_frontdesk_room_booking_user_cr,frontdesk.room.booking.user.cr,frontdesk.room.booking,frontdesk_admin.group_frontdesk_user,cr,
+access_frontdesk_room_booking_user_u,frontdesk.room.booking.user.u,frontdesk.room.booking,frontdesk_admin.group_frontdesk_user,u,"['&', ('state', '=', 'pending'), '|', ('organizer_id.user_id', '=', user.id), ('create_uid', '=', user.id)]"
+access_frontdesk_room_booking_officer,frontdesk.room.booking.officer,frontdesk.room.booking,frontdesk_admin.group_frontdesk_officer,cru,
+access_frontdesk_room_booking_manager,frontdesk.room.booking.manager,frontdesk.room.booking,frontdesk_admin.group_frontdesk_manager,crud,
+rule_frontdesk_room_booking_multicompany,frontdesk.room.booking multi-company,frontdesk.room.booking,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"

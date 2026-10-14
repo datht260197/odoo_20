@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- List View -->
+    <record id="view_frontdesk_visitor_list" model="ir.ui.view">
+        <field name="name">frontdesk.visitor.list</field>
+        <field name="model">frontdesk.visitor</field>
+        <field name="arch" type="xml">
+            <list string="Visitors" sample="1" decoration-success="state == 'arrived'" decoration-muted="state in ('departed', 'cancelled')">
+                <field name="name"/>
+                <field name="company_name"/>
+                <field name="phone"/>
+                <field name="host_id"/>
+                <field name="room_id"/>
+                <field name="room_name" optional="hide"/>
+                <field name="checkin_time"/>
+                <field name="checkout_time"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'arrived'" decoration-muted="state == 'departed'" decoration-danger="state == 'cancelled'"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_frontdesk_visitor_form" model="ir.ui.view">
+        <field name="name">frontdesk.visitor.form</field>
+        <field name="model">frontdesk.visitor</field>
+        <field name="arch" type="xml">
+            <form string="Visitor">
+                <header>
+                    <button name="action_checkin"
+                            string="Check-In"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+
+                    <button name="action_checkout"
+                            string="Check-Out"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'arrived'"/>
+
+                    <button name="action_cancel"
+                            string="Cancel"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="state not in ('draft', 'arrived')"/>
+
+                    <button name="action_reset_draft"
+                            string="Reset to Scheduled"
+                            type="object"
+                            invisible="state not in ('departed', 'cancelled')"
+                            groups="frontdesk_admin.group_frontdesk_manager"/>
+
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="draft,arrived,departed"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="In Building" bg_color="text-bg-success" invisible="state != 'arrived'"/>
+                    <widget name="web_ribbon" title="Departed" bg_color="text-bg-secondary" invisible="state != 'departed'"/>
+                    <widget name="web_ribbon" title="Cancelled" bg_color="text-bg-danger" invisible="state != 'cancelled'"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. John Doe" readonly="state == 'departed'"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Guest Information">
+                            <field name="company_name" readonly="state == 'departed'"/>
+                            <field name="phone" widget="phone" readonly="state == 'departed'"/>
+                            <field name="email" widget="email" readonly="state == 'departed'"/>
+                        </group>
+                        <group string="Visit Details">
+                            <field name="host_id" readonly="state == 'departed'"/>
+                            <field name="room_id" readonly="state == 'departed'"/>
+                            <field name="room_name" readonly="state == 'departed'" placeholder="Other room or area if not listed above"/>
+                            <field name="company_id" groups="base.group_multi_company" readonly="state == 'departed'"/>
+                        </group>
+                    </group>
+                    <group string="Timestamps">
+                        <group>
+                            <field name="checkin_time"/>
+                        </group>
+                        <group>
+                            <field name="checkout_time"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Visit Purpose">
+                            <field name="purpose" placeholder="Detailed purpose of the visit..." readonly="state == 'departed'"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_frontdesk_visitor_search" model="ir.ui.view">
+        <field name="name">frontdesk.visitor.search</field>
+        <field name="model">frontdesk.visitor</field>
+        <field name="arch" type="xml">
+            <search string="Search Visitors">
+                <field name="name" string="Visitor / Company" filter_domain="['|', ('name', 'ilike', self), ('company_name', 'ilike', self)]"/>
+                <field name="host_id"/>
+                <field name="room_id"/>
+                <field name="room_name"/>
+                <separator/>
+                <filter string="In Building" name="in_building" domain="[('state', '=', 'arrived')]"/>
+                <filter string="Currently in Office" name="in_office" domain="[('state', '=', 'arrived')]"/>
+                <filter string="My Visitors" name="my_visitors" domain="[('host_id.user_id', '=', uid)]"/>
+                <filter string="Today's Visits" name="today_visits" domain="[('create_date', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00')), ('create_date', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+                <separator/>
+                <filter string="Scheduled" name="scheduled" domain="[('state', '=', 'draft')]"/>
+                <filter string="Departed" name="departed" domain="[('state', '=', 'departed')]"/>
+                <separator/>
+                <filter string="Status" name="group_by_state" domain="[]" context="{'group_by': 'state'}"/>
+                <filter string="Host Employee" name="group_by_host" domain="[]" context="{'group_by': 'host_id'}"/>
+                <filter string="Meeting Room" name="group_by_room" domain="[]" context="{'group_by': 'room_id'}"/>
+                <filter string="Company / Organization" name="group_by_company_name" domain="[]" context="{'group_by': 'company_name'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_frontdesk_visitor" model="ir.actions.act_window">
+        <field name="name">Visitors</field>
+        <field name="res_model">frontdesk.visitor</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_frontdesk_visitor_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Register a new visitor
+            </p>
+            <p>
+                Track visitor check-ins, meeting locations, and real-time building occupancy.
+            </p>
+        </field>
+    </record>
+
+</odoo>

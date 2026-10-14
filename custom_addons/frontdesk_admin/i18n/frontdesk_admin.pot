@@ -6,14 +6,56 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 20.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-13 10:31+0000\n"
-"PO-Revision-Date: 2026-10-13 10:31+0000\n"
+"POT-Creation-Date: 2026-10-14 04:07+0000\n"
+"PO-Revision-Date: 2026-10-14 04:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: frontdesk_admin
+#: model:mail.template,body_html:frontdesk_admin.mail_template_visitor_arrived
+msgid ""
+"<div style=\"margin: 0px; padding: 0px; font-family: Arial, sans-serif; font-size: 13px;\">\n"
+"    <p>Dear <t t-out=\"object.host_id.name or ''\">Colleague</t>,</p>\n"
+"    <p>Your guest has arrived and is waiting for you at the frontdesk reception.</p>\n"
+"    <table style=\"border-collapse: collapse; width: 100%; max-width: 500px; margin: 15px 0;\">\n"
+"        <tr>\n"
+"            <td style=\"padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;\">Visitor Name:</td>\n"
+"            <td style=\"padding: 6px; border-bottom: 1px solid #ddd;\"><t t-out=\"object.name or ''\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td style=\"padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;\">Organization:</td>\n"
+"            <td style=\"padding: 6px; border-bottom: 1px solid #ddd;\"><t t-out=\"object.company_name or '-'\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td style=\"padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;\">Phone:</td>\n"
+"            <td style=\"padding: 6px; border-bottom: 1px solid #ddd;\"><t t-out=\"object.phone or '-'\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td style=\"padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;\">Email:</td>\n"
+"            <td style=\"padding: 6px; border-bottom: 1px solid #ddd;\"><t t-out=\"object.email or '-'\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td style=\"padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;\">Purpose:</td>\n"
+"            <td style=\"padding: 6px; border-bottom: 1px solid #ddd;\"><t t-out=\"object.purpose or '-'\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td style=\"padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;\">Meeting Location:</td>\n"
+"            <td style=\"padding: 6px; border-bottom: 1px solid #ddd;\"><t t-out=\"object.room_name or 'Reception Desk'\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td style=\"padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;\">Check-in Time:</td>\n"
+"            <td style=\"padding: 6px; border-bottom: 1px solid #ddd;\"><t t-out=\"format_datetime(object.checkin_time) or ''\"/></td>\n"
+"        </tr>\n"
+"    </table>\n"
+"    <p>Please meet your visitor at the reception desk.</p>\n"
+"    <p>Best regards,<br/><t t-out=\"object.company_id.name or 'Frontdesk Team'\"/></p>\n"
+"</div>\n"
+"            "
+msgstr ""
 
 #. module: frontdesk_admin
 #: model:mail.template,body_html:frontdesk_admin.mail_template_parcel_received
@@ -75,6 +117,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_needaction
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_needaction
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_needaction
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__message_needaction
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__message_needaction
 msgid "Action Needed"
 msgstr ""
 
@@ -82,6 +126,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_ids
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_ids
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__activity_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__activity_ids
 msgid "Activities"
 msgstr ""
 
@@ -89,6 +135,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_exception_decoration
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_exception_decoration
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_exception_decoration
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__activity_exception_decoration
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__activity_exception_decoration
 msgid "Activity Exception Decoration"
 msgstr ""
 
@@ -96,6 +144,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_plans_ids
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_plans_ids
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_plans_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__activity_plans_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__activity_plans_ids
 msgid "Activity Plans"
 msgstr ""
 
@@ -103,6 +153,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_state
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_state
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_state
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__activity_state
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__activity_state
 msgid "Activity State"
 msgstr ""
 
@@ -110,12 +162,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_type_icon
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_type_icon
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_type_icon
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__activity_type_icon
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__activity_type_icon
 msgid "Activity Type Icon"
 msgstr ""
 
 #. module: frontdesk_admin
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__photo
 msgid "Actual photo of the received parcel taken at frontdesk intake."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_meeting_room_form
+msgid "Additional room features, HDMI/Type-C dongles, audio setup..."
 msgstr ""
 
 #. module: frontdesk_admin
@@ -151,6 +210,11 @@ msgid "Assign & Dispatch"
 msgstr ""
 
 #. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__room_id
+msgid "Assigned Room"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__vehicle_id
 msgid "Assigned Vehicle"
 msgstr ""
@@ -170,7 +234,36 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_attachment_count
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_attachment_count
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_attachment_count
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__message_attachment_count
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__message_attachment_count
 msgid "Attachment Count"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__attendee_count
+msgid "Attendee Count"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+msgid "Attendee count must be at least 1 person."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_form
+msgid "Beverage preferences, fruits, pastries, dietary restrictions..."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.actions.act_window,help:frontdesk_admin.action_frontdesk_room_booking
+msgid "Book a meeting room"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+msgid "Booking '%s' is in %s state and cannot be modified by non-managers."
 msgstr ""
 
 #. module: frontdesk_admin
@@ -185,6 +278,7 @@ msgstr ""
 
 #. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__calendar_event_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__calendar_event_id
 msgid "Calendar Event"
 msgstr ""
 
@@ -195,18 +289,41 @@ msgstr ""
 
 #. module: frontdesk_admin
 #: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_form
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_form
 msgid "Cancel"
 msgstr ""
 
 #. module: frontdesk_admin
 #: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__cancelled
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_room_booking__state__cancelled
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_visitor__state__cancelled
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_form
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_form
 msgid "Cancelled"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+msgid "Cannot cancel booking '%s' from status %s."
 msgstr ""
 
 #. module: frontdesk_admin
 #. odoo-python
 #: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
 msgid "Cannot cancel requests that are already done or cancelled."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_visitor.py:0
+msgid "Cannot cancel visit '%s' from status %s."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_meeting_room__capacity
+msgid "Capacity (People)"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -220,16 +337,49 @@ msgid "Carrier / Delivery Partner"
 msgstr ""
 
 #. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_form
+msgid "Check-In"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_form
+msgid "Check-Out"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__checkin_time
+msgid "Check-in Time"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__checkout_time
+msgid "Check-out Time"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__company_id
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__company_id
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__company_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_meeting_room__company_id
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__company_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__company_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__company_id
 msgid "Company"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_search
+msgid "Company / Organization"
 msgstr ""
 
 #. module: frontdesk_admin
 #: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
 msgid "Complete Trip"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_form
+msgid "Completed"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -241,6 +391,18 @@ msgstr ""
 #. module: frontdesk_admin
 #: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
 msgid "Confidential Notice"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_form
+msgid "Confirm"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_room_booking__state__confirmed
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_form
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_search
+msgid "Confirmed"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -281,7 +443,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__create_uid
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__create_uid
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__create_uid
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_meeting_room__create_uid
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__create_uid
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__create_uid
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__create_uid
 msgid "Created by"
 msgstr ""
 
@@ -289,7 +454,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__create_date
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__create_date
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__create_date
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_meeting_room__create_date
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__create_date
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__create_date
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__create_date
 msgid "Created on"
 msgstr ""
 
@@ -297,6 +465,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__currency_id
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__currency_id
 msgid "Currency"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_search
+msgid "Currently in Office"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -313,6 +486,13 @@ msgstr ""
 #. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__delivered_date
 msgid "Delivered Date"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_visitor__state__departed
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_form
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_search
+msgid "Departed"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -333,6 +513,11 @@ msgstr ""
 #. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__destination
 msgid "Destination / Route"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_form
+msgid "Detailed purpose of the visit..."
 msgstr ""
 
 #. module: frontdesk_admin
@@ -371,7 +556,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__display_name
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__display_name
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__display_name
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_meeting_room__display_name
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__display_name
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__display_name
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__display_name
 #: model:ir.model.fields,field_description:frontdesk_admin.field_ir_attachment__display_name
 msgid "Display Name"
 msgstr ""
@@ -407,6 +595,7 @@ msgstr ""
 
 #. module: frontdesk_admin
 #: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__done
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_room_booking__state__done
 #: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_search
 msgid "Done"
 msgstr ""
@@ -429,13 +618,25 @@ msgid "Driver"
 msgstr ""
 
 #. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__email
+msgid "Email"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__employee_id
 msgid "Employee requesting the vehicle dispatch."
 msgstr ""
 
 #. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__end_datetime
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__end_datetime
 msgid "End Date & Time"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+msgid "End Date & Time must be strictly after Start Date & Time."
 msgstr ""
 
 #. module: frontdesk_admin
@@ -448,6 +649,17 @@ msgstr ""
 #. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__odometer_end
 msgid "End Odometer (km)"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_meeting_room_form
+msgid "Equipment Available"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_meeting_room__equipment_notes
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_meeting_room_form
+msgid "Equipment Notes"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -511,6 +723,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_follower_ids
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_follower_ids
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_follower_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__message_follower_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__message_follower_ids
 msgid "Followers"
 msgstr ""
 
@@ -518,6 +732,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_partner_ids
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_partner_ids
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_partner_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__message_partner_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
 
@@ -539,6 +755,11 @@ msgid "Frontdesk Document"
 msgstr ""
 
 #. module: frontdesk_admin
+#: model:ir.model,name:frontdesk_admin.model_frontdesk_meeting_room
+msgid "Frontdesk Meeting Room"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model,name:frontdesk_admin.model_frontdesk_parcel
 msgid "Frontdesk Parcel"
 msgstr ""
@@ -546,6 +767,16 @@ msgstr ""
 #. module: frontdesk_admin
 #: model:mail.template,name:frontdesk_admin.mail_template_parcel_received
 msgid "Frontdesk Parcel: Arrival Notification"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model,name:frontdesk_admin.model_frontdesk_visitor
+msgid "Frontdesk Visitor"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:mail.template,name:frontdesk_admin.mail_template_visitor_arrived
+msgid "Frontdesk Visitor: Arrival Notification"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -579,6 +810,18 @@ msgid "Fuel"
 msgstr ""
 
 #. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_visitor.py:0
+msgid ""
+"Guest %s from %s has arrived and is waiting at reception (Location: %s)."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_form
+msgid "Guest Information"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__delivered_by_id
 msgid "Handed Over By"
 msgstr ""
@@ -597,14 +840,33 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__has_message
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__has_message
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__has_message
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__has_message
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__has_message
 msgid "Has Message"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__host_id
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_search
+msgid "Host Employee"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_visitor.py:0
+msgid ""
+"Host employee '%s' has no work email configured. Email notification could "
+"not be sent."
 msgstr ""
 
 #. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__id
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__id
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_meeting_room__id
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__id
 #: model:ir.model.fields,field_description:frontdesk_admin.field_ir_attachment__id
 msgid "ID"
 msgstr ""
@@ -613,6 +875,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_exception_icon
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_exception_icon
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_exception_icon
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__activity_exception_icon
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__activity_exception_icon
 msgid "Icon"
 msgstr ""
 
@@ -620,6 +884,8 @@ msgstr ""
 #: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__activity_exception_icon
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__activity_exception_icon
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__activity_exception_icon
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_room_booking__activity_exception_icon
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_visitor__activity_exception_icon
 msgid "Icon to indicate an exception activity."
 msgstr ""
 
@@ -627,6 +893,8 @@ msgstr ""
 #: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__message_needaction
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__message_needaction
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__message_needaction
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_room_booking__message_needaction
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_visitor__message_needaction
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -634,6 +902,8 @@ msgstr ""
 #: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__message_has_error
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__message_has_error
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__message_has_error
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_room_booking__message_has_error
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_visitor__message_has_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -642,6 +912,13 @@ msgstr ""
 msgid ""
 "If set, only the designated recipient and Frontdesk Managers can read the "
 "summary and scanned files."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_visitor__state__arrived
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_form
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_search
+msgid "In Building"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -678,6 +955,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_is_follower
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_is_follower
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_is_follower
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__message_is_follower
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__message_is_follower
 msgid "Is Follower"
 msgstr ""
 
@@ -691,7 +970,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__write_uid
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__write_uid
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__write_uid
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_meeting_room__write_uid
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__write_uid
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__write_uid
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__write_uid
 msgid "Last Updated by"
 msgstr ""
 
@@ -699,7 +981,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__write_date
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__write_date
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__write_date
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_meeting_room__write_date
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__write_date
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__write_date
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__write_date
 msgid "Last Updated on"
 msgstr ""
 
@@ -721,8 +1006,30 @@ msgid "Linked calendar event to visualize fleet occupancy."
 msgstr ""
 
 #. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_meeting_room_search
+msgid "Location"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_meeting_room_form
+msgid "Location & Capacity"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_meeting_room__location
+msgid "Location / Floor"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__carrier_id
 msgid "Logistics partner or courier delivering the package."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.actions.act_window,help:frontdesk_admin.action_frontdesk_meeting_room
+msgid ""
+"Manage conference rooms, seat capacities, presentation screens, and video "
+"conferencing equipment."
 msgstr ""
 
 #. module: frontdesk_admin
@@ -736,16 +1043,52 @@ msgid "Manager"
 msgstr ""
 
 #. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_form
+msgid "Mark as Completed"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__activity_type_icon
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__activity_type_icon
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__activity_type_icon
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_room_booking__activity_type_icon
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_visitor__activity_type_icon
 msgid "Material Symbols icon e.g. checklist"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__room_id
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_meeting_room_form
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_search
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_search
+msgid "Meeting Room"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model,name:frontdesk_admin.model_frontdesk_room_booking
+msgid "Meeting Room Booking"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.actions.act_window,name:frontdesk_admin.action_frontdesk_meeting_room
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_rooms
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_meeting_room_list
+msgid "Meeting Rooms"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__name
+msgid "Meeting Subject"
 msgstr ""
 
 #. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_has_error
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_has_error
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_has_error
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__message_has_error
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__message_has_error
 msgid "Message Delivery error"
 msgstr ""
 
@@ -753,6 +1096,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_ids
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_ids
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__message_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__message_ids
 msgid "Messages"
 msgstr ""
 
@@ -760,7 +1105,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__my_activity_date_deadline
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__my_activity_date_deadline
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__my_activity_date_deadline
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__my_activity_date_deadline
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__my_activity_date_deadline
 msgid "My Activity Deadline"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_search
+msgid "My Bookings"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -779,9 +1131,22 @@ msgid "My Requests"
 msgstr ""
 
 #. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_search
+msgid "My Visitors"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_visitor.py:0
+msgid "N/A"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_calendar_event_id
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_calendar_event_id
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_calendar_event_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__activity_calendar_event_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__activity_calendar_event_id
 msgid "Next Activity Calendar Event"
 msgstr ""
 
@@ -789,6 +1154,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_date_deadline
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_date_deadline
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_date_deadline
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__activity_date_deadline
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr ""
 
@@ -796,6 +1163,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_summary
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_summary
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_summary
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__activity_summary
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__activity_summary
 msgid "Next Activity Summary"
 msgstr ""
 
@@ -803,12 +1172,20 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_type_id
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_type_id
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_type_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__activity_type_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__activity_type_id
 msgid "Next Activity Type"
 msgstr ""
 
 #. module: frontdesk_admin
 #: model:res.groups.privilege,placeholder:frontdesk_admin.res_groups_privilege_frontdesk_admin
 msgid "No"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+msgid "None"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -826,6 +1203,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_needaction_counter
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_needaction_counter
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_needaction_counter
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__message_needaction_counter
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__message_needaction_counter
 msgid "Number of Actions"
 msgstr ""
 
@@ -833,6 +1212,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_has_error_counter
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_has_error_counter
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_has_error_counter
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__message_has_error_counter
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__message_has_error_counter
 msgid "Number of errors"
 msgstr ""
 
@@ -840,6 +1221,8 @@ msgstr ""
 #: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__message_needaction_counter
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__message_needaction_counter
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__message_needaction_counter
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_room_booking__message_needaction_counter
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_visitor__message_needaction_counter
 msgid "Number of messages requiring action"
 msgstr ""
 
@@ -847,6 +1230,8 @@ msgstr ""
 #: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__message_has_error_counter
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__message_has_error_counter
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__message_has_error_counter
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_room_booking__message_has_error_counter
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_visitor__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr ""
 
@@ -889,8 +1274,26 @@ msgstr ""
 
 #. module: frontdesk_admin
 #. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_meeting_room.py:0
+msgid "Only Frontdesk Managers are permitted to delete meeting rooms."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
 #: code:addons/frontdesk_admin/models/frontdesk_parcel.py:0
 msgid "Only Frontdesk Managers are permitted to delete parcels."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+msgid "Only Frontdesk Managers are permitted to delete room bookings."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_visitor.py:0
+msgid "Only Frontdesk Managers are permitted to delete visitor records."
 msgstr ""
 
 #. module: frontdesk_admin
@@ -913,6 +1316,18 @@ msgstr ""
 
 #. module: frontdesk_admin
 #. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+msgid "Only Frontdesk Managers can reset room bookings."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_visitor.py:0
+msgid "Only Frontdesk Managers can reset visitor records."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
 #: code:addons/frontdesk_admin/models/fleet_dispatch_expense.py:0
 msgid ""
 "Only Frontdesk Officers or Managers are authorized to mark expenses as Paid."
@@ -920,8 +1335,27 @@ msgstr ""
 
 #. module: frontdesk_admin
 #. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+msgid "Only Frontdesk Officers or Managers can approve room bookings."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+msgid "Only Frontdesk Officers or Managers can complete room bookings."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
 #: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
 msgid "Only approved requests can be dispatched."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+msgid ""
+"Only confirmed bookings can be marked as completed (current status: %s)."
 msgstr ""
 
 #. module: frontdesk_admin
@@ -938,6 +1372,12 @@ msgstr ""
 
 #. module: frontdesk_admin
 #. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+msgid "Only pending bookings can be confirmed (current status: %s)."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
 #: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
 msgid "Only pending requests can be approved."
 msgstr ""
@@ -946,6 +1386,12 @@ msgstr ""
 #. odoo-python
 #: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
 msgid "Only pending requests can be rejected."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_visitor.py:0
+msgid "Only scheduled visitors can be checked in (current status: %s)."
 msgstr ""
 
 #. module: frontdesk_admin
@@ -965,9 +1411,33 @@ msgid ""
 msgstr ""
 
 #. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_visitor.py:0
+msgid ""
+"Only visitors currently in the building can be checked out (current status: "
+"%s)."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__organizer_id
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_search
+msgid "Organizer"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_expense__expense_type__other
 #: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_document__doc_type__other
 msgid "Other"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__room_name
+msgid "Other Room / Location"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_form
+msgid "Other room or area if not listed above"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -1040,6 +1510,22 @@ msgid "Payment Status"
 msgstr ""
 
 #. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_form
+msgid "Pending"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_room_booking__state__pending
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_search
+msgid "Pending Approval"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__phone
+msgid "Phone Number"
+msgstr ""
+
+#. module: frontdesk_admin
 #. odoo-python
 #: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
 msgid "Please assign both a vehicle and a driver before dispatching."
@@ -1049,6 +1535,12 @@ msgstr ""
 #. odoo-python
 #: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
 msgid "Please record the End Odometer reading upon trip return."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+msgid "Prepare Teabreak for %s"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -1063,9 +1555,26 @@ msgid "Processing"
 msgstr ""
 
 #. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_meeting_room__has_projector
+msgid "Projector / Screen"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_meeting_room_search
+msgid "Projector Available"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__purpose
+msgid "Purpose of Visit"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__rating_ids
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__rating_ids
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__rating_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__rating_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__rating_ids
 msgid "Ratings"
 msgstr ""
 
@@ -1089,6 +1598,12 @@ msgid "Received Date"
 msgstr ""
 
 #. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_visitor.py:0
+msgid "Reception"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__recipient_id
 #: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_search
 #: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_search
@@ -1101,8 +1616,18 @@ msgid "Register a new legal document!"
 msgstr ""
 
 #. module: frontdesk_admin
+#: model_terms:ir.actions.act_window,help:frontdesk_admin.action_frontdesk_meeting_room
+msgid "Register a new meeting room"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model_terms:ir.actions.act_window,help:frontdesk_admin.action_frontdesk_parcel
 msgid "Register a new physical courier parcel!"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.actions.act_window,help:frontdesk_admin.action_frontdesk_visitor
+msgid "Register a new visitor"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -1131,6 +1656,11 @@ msgid "Request Reference"
 msgstr ""
 
 #. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__needs_teabreak
+msgid "Request Teabreak / Drinks"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__employee_id
 #: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_search
 msgid "Requester"
@@ -1142,15 +1672,27 @@ msgid "Reset to Draft"
 msgstr ""
 
 #. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_form
+msgid "Reset to Pending"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
 #: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_form
 msgid "Reset to Received"
 msgstr ""
 
 #. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_form
+msgid "Reset to Scheduled"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_user_id
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_user_id
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_user_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__activity_user_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__activity_user_id
 msgid "Responsible User"
 msgstr ""
 
@@ -1166,6 +1708,49 @@ msgid "Returned"
 msgstr ""
 
 #. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+msgid ""
+"Room '%s' is already booked for another confirmed meeting during this time "
+"slot (%s to %s)."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_form
+msgid "Room Booking"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.actions.act_window,name:frontdesk_admin.action_frontdesk_room_booking
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_room_bookings
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_calendar
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_list
+msgid "Room Bookings"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_meeting_room__name
+msgid "Room Name"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_meeting_room.py:0
+msgid "Room capacity must be at least 1 person."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+msgid "Room: %s. Headcount: %s. Teabreak details: %s"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_meeting_rooms
+msgid "Rooms"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__attachment_ids
 #: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
 msgid "Scanned Files"
@@ -1177,8 +1762,26 @@ msgid "Scanned receipt or bill of the expense."
 msgstr ""
 
 #. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_form
+msgid "Schedule & Room"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
 msgid "Schedule & Vehicle"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.actions.act_window,help:frontdesk_admin.action_frontdesk_room_booking
+msgid ""
+"Schedule meeting spaces, coordinate teabreak refreshments, and prevent room "
+"double-booking."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_visitor__state__draft
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_search
+msgid "Scheduled"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -1194,6 +1797,21 @@ msgstr ""
 #. module: frontdesk_admin
 #: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_search
 msgid "Search Legal Documents"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_meeting_room_search
+msgid "Search Meeting Rooms"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_search
+msgid "Search Room Bookings"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_search
+msgid "Search Visitors"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -1213,6 +1831,7 @@ msgstr ""
 
 #. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__start_datetime
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__start_datetime
 msgid "Start Date & Time"
 msgstr ""
 
@@ -1232,9 +1851,19 @@ msgid "State"
 msgstr ""
 
 #. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__state
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__state
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_search
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_search
+msgid "Status"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__activity_state
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__activity_state
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__activity_state
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_room_booking__activity_state
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_visitor__activity_state
 msgid ""
 "Status based on activities\n"
 "Overdue: Due date is already passed\n"
@@ -1258,6 +1887,27 @@ msgid "Target destination or itinerary for the trip."
 msgstr ""
 
 #. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_form
+msgid "Teabreak & Calendar"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__teabreak_attendees
+msgid "Teabreak Headcount"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_room_booking__teabreak_notes
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_form
+msgid "Teabreak Notes"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_search
+msgid "Teabreak Required"
+msgstr ""
+
+#. module: frontdesk_admin
 #. odoo-python
 #: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
 msgid ""
@@ -1266,9 +1916,24 @@ msgid ""
 msgstr ""
 
 #. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_form
+msgid "Timestamps"
+msgstr ""
+
+#. module: frontdesk_admin
 #: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__to_approve
 #: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_search
 msgid "To Approve"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_search
+msgid "Today"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_search
+msgid "Today's Visits"
 msgstr ""
 
 #. module: frontdesk_admin
@@ -1284,6 +1949,13 @@ msgstr ""
 #. module: frontdesk_admin
 #: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__total_expense_amount
 msgid "Total Expenses"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.actions.act_window,help:frontdesk_admin.action_frontdesk_visitor
+msgid ""
+"Track visitor check-ins, meeting locations, and real-time building "
+"occupancy."
 msgstr ""
 
 #. module: frontdesk_admin
@@ -1311,6 +1983,8 @@ msgstr ""
 #: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__activity_exception_decoration
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__activity_exception_decoration
 #: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__activity_exception_decoration
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_room_booking__activity_exception_decoration
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_visitor__activity_exception_decoration
 msgid "Type of the exception activity on record."
 msgstr ""
 
@@ -1343,6 +2017,84 @@ msgid "Vehicles"
 msgstr ""
 
 #. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_meeting_room_search
+msgid "Video Conference Available"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_meeting_room__has_video_conference
+msgid "Video Conference Equipment"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_form
+msgid "Visit Details"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_form
+msgid "Visit Purpose"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_form
+msgid "Visitor"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_search
+msgid "Visitor / Company"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_visitor.py:0
+msgid "Visitor Arrived: %s"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__company_name
+msgid "Visitor Company / Organization"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_visitor__name
+msgid "Visitor Name"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_visitor.py:0
+msgid ""
+"Visitor record '%s' is in Departed state and cannot be modified by non-"
+"managers."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.actions.act_window,name:frontdesk_admin.action_frontdesk_visitor
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_visitors
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_list
+msgid "Visitors"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_visitor.py:0
+msgid ""
+"Warning: Automatic notification failed to send due to a system error: %s"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_meeting_room__has_whiteboard
+msgid "Whiteboard"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_meeting_room_search
+msgid "Whiteboard Available"
+msgstr ""
+
+#. module: frontdesk_admin
 #. odoo-python
 #: code:addons/frontdesk_admin/models/ir_attachment.py:0
 msgid "You are not allowed to access attachments of confidential documents."
@@ -1352,6 +2104,37 @@ msgstr ""
 #. odoo-python
 #: code:addons/frontdesk_admin/models/frontdesk_document.py:0
 msgid "You are not allowed to access confidential content of document '%s'."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_room_booking.py:0
+msgid "You can only cancel your own bookings in Pending status."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_meeting_room_form
+msgid "e.g. 3rd Floor, West Wing"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_meeting_room_form
+msgid "e.g. Boardroom A (Floor 3)"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_visitor_form
+msgid "e.g. John Doe"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_room_booking_form
+msgid "e.g. Quarterly Strategic Planning"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:mail.template,subject:frontdesk_admin.mail_template_visitor_arrived
+msgid "{{ object.company_id.name }}: Guest {{ object.name }} has arrived"
 msgstr ""
 
 #. module: frontdesk_admin

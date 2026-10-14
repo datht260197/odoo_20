@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================================= -->
+    <!-- MEETING ROOM VIEWS                                                -->
+    <!-- ================================================================= -->
+
+    <!-- Meeting Room List View -->
+    <record id="view_frontdesk_meeting_room_list" model="ir.ui.view">
+        <field name="name">frontdesk.meeting.room.list</field>
+        <field name="model">frontdesk.meeting.room</field>
+        <field name="arch" type="xml">
+            <list string="Meeting Rooms" sample="1">
+                <field name="name"/>
+                <field name="location"/>
+                <field name="capacity"/>
+                <field name="has_projector" widget="boolean_toggle"/>
+                <field name="has_video_conference" widget="boolean_toggle"/>
+                <field name="has_whiteboard" widget="boolean_toggle"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Meeting Room Form View -->
+    <record id="view_frontdesk_meeting_room_form" model="ir.ui.view">
+        <field name="name">frontdesk.meeting.room.form</field>
+        <field name="model">frontdesk.meeting.room</field>
+        <field name="arch" type="xml">
+            <form string="Meeting Room">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Boardroom A (Floor 3)"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Location &amp; Capacity">
+                            <field name="location" placeholder="e.g. 3rd Floor, West Wing"/>
+                            <field name="capacity"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group string="Equipment Available">
+                            <field name="has_projector"/>
+                            <field name="has_video_conference"/>
+                            <field name="has_whiteboard"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Equipment Notes">
+                            <field name="equipment_notes" placeholder="Additional room features, HDMI/Type-C dongles, audio setup..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Meeting Room Search View -->
+    <record id="view_frontdesk_meeting_room_search" model="ir.ui.view">
+        <field name="name">frontdesk.meeting.room.search</field>
+        <field name="model">frontdesk.meeting.room</field>
+        <field name="arch" type="xml">
+            <search string="Search Meeting Rooms">
+                <field name="name"/>
+                <field name="location"/>
+                <separator/>
+                <filter string="Projector Available" name="filter_projector" domain="[('has_projector', '=', True)]"/>
+                <filter string="Video Conference Available" name="filter_video_conference" domain="[('has_video_conference', '=', True)]"/>
+                <filter string="Whiteboard Available" name="filter_whiteboard" domain="[('has_whiteboard', '=', True)]"/>
+                <separator/>
+                <filter string="Location" name="group_by_location" domain="[]" context="{'group_by': 'location'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Meeting Room Action -->
+    <record id="action_frontdesk_meeting_room" model="ir.actions.act_window">
+        <field name="name">Meeting Rooms</field>
+        <field name="res_model">frontdesk.meeting.room</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_frontdesk_meeting_room_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Register a new meeting room
+            </p>
+            <p>
+                Manage conference rooms, seat capacities, presentation screens, and video conferencing equipment.
+            </p>
+        </field>
+    </record>
+
+    <!-- ================================================================= -->
+    <!-- ROOM BOOKING VIEWS                                                -->
+    <!-- ================================================================= -->
+
+    <!-- Room Booking Calendar View -->
+    <record id="view_frontdesk_room_booking_calendar" model="ir.ui.view">
+        <field name="name">frontdesk.room.booking.calendar</field>
+        <field name="model">frontdesk.room.booking</field>
+        <field name="arch" type="xml">
+            <calendar string="Room Bookings"
+                      date_start="start_datetime"
+                      date_stop="end_datetime"
+                      color="room_id"
+                      mode="week"
+                      event_limit="5"
+                      quick_create="0">
+                <field name="name"/>
+                <field name="room_id"/>
+                <field name="organizer_id"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Room Booking List View -->
+    <record id="view_frontdesk_room_booking_list" model="ir.ui.view">
+        <field name="name">frontdesk.room.booking.list</field>
+        <field name="model">frontdesk.room.booking</field>
+        <field name="arch" type="xml">
+            <list string="Room Bookings"
+                  sample="1"
+                  decoration-info="state == 'pending'"
+                  decoration-success="state == 'confirmed'"
+                  decoration-primary="state == 'done'"
+                  decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="room_id"/>
+                <field name="organizer_id"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime"/>
+                <field name="attendee_count"/>
+                <field name="needs_teabreak" widget="boolean_toggle"/>
+                <field name="state"
+                       widget="badge"
+                       decoration-info="state == 'pending'"
+                       decoration-success="state == 'confirmed'"
+                       decoration-primary="state == 'done'"
+                       decoration-muted="state == 'cancelled'"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Room Booking Form View -->
+    <record id="view_frontdesk_room_booking_form" model="ir.ui.view">
+        <field name="name">frontdesk.room.booking.form</field>
+        <field name="model">frontdesk.room.booking</field>
+        <field name="arch" type="xml">
+            <form string="Room Booking">
+                <header>
+                    <button name="action_confirm"
+                            string="Confirm"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'pending'"
+                            groups="frontdesk_admin.group_frontdesk_officer"/>
+
+                    <button name="action_done"
+                            string="Mark as Completed"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'confirmed'"
+                            groups="frontdesk_admin.group_frontdesk_officer"/>
+
+                    <button name="action_cancel"
+                            string="Cancel"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="state not in ('pending', 'confirmed')"/>
+
+                    <button name="action_reset_pending"
+                            string="Reset to Pending"
+                            type="object"
+                            invisible="state not in ('done', 'cancelled')"
+                            groups="frontdesk_admin.group_frontdesk_manager"/>
+
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="pending,confirmed,done"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Pending" bg_color="text-bg-info" invisible="state != 'pending'"/>
+                    <widget name="web_ribbon" title="Confirmed" bg_color="text-bg-success" invisible="state != 'confirmed'"/>
+                    <widget name="web_ribbon" title="Completed" bg_color="text-bg-primary" invisible="state != 'done'"/>
+                    <widget name="web_ribbon" title="Cancelled" bg_color="text-bg-danger" invisible="state != 'cancelled'"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"
+                                   placeholder="e.g. Quarterly Strategic Planning"
+                                   readonly="state in ('done', 'cancelled')"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Schedule &amp; Room">
+                            <field name="room_id" readonly="state in ('done', 'cancelled')"/>
+                            <field name="organizer_id" readonly="state in ('done', 'cancelled')"/>
+                            <field name="start_datetime" readonly="state in ('done', 'cancelled')"/>
+                            <field name="end_datetime" readonly="state in ('done', 'cancelled')"/>
+                            <field name="attendee_count" readonly="state in ('done', 'cancelled')"/>
+                            <field name="company_id" groups="base.group_multi_company" readonly="state in ('done', 'cancelled')"/>
+                        </group>
+                        <group string="Teabreak &amp; Calendar">
+                            <field name="needs_teabreak" readonly="state in ('done', 'cancelled')"/>
+                            <field name="teabreak_attendees"
+                                   invisible="not needs_teabreak"
+                                   required="needs_teabreak"
+                                   readonly="state in ('done', 'cancelled')"/>
+                            <field name="calendar_event_id" readonly="1" invisible="not calendar_event_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Teabreak Notes" invisible="not needs_teabreak">
+                            <field name="teabreak_notes"
+                                   placeholder="Beverage preferences, fruits, pastries, dietary restrictions..."
+                                   readonly="state in ('done', 'cancelled')"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Room Booking Search View -->
+    <record id="view_frontdesk_room_booking_search" model="ir.ui.view">
+        <field name="name">frontdesk.room.booking.search</field>
+        <field name="model">frontdesk.room.booking</field>
+        <field name="arch" type="xml">
+            <search string="Search Room Bookings">
+                <field name="name"/>
+                <field name="room_id"/>
+                <field name="organizer_id"/>
+                <separator/>
+                <filter string="Today"
+                        name="filter_today"
+                        domain="[('start_datetime', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))), ('start_datetime', '&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"/>
+                <filter string="Pending Approval"
+                        name="filter_pending"
+                        domain="[('state', '=', 'pending')]"/>
+                <filter string="Confirmed"
+                        name="filter_confirmed"
+                        domain="[('state', '=', 'confirmed')]"/>
+                <filter string="My Bookings"
+                        name="filter_my_bookings"
+                        domain="[('organizer_id.user_id', '=', uid)]"/>
+                <filter string="Teabreak Required"
+                        name="filter_teabreak"
+                        domain="[('needs_teabreak', '=', True)]"/>
+                <separator/>
+                <filter string="Meeting Room" name="group_by_room" domain="[]" context="{'group_by': 'room_id'}"/>
+                <filter string="Status" name="group_by_state" domain="[]" context="{'group_by': 'state'}"/>
+                <filter string="Organizer" name="group_by_organizer" domain="[]" context="{'group_by': 'organizer_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Room Booking Action -->
+    <record id="action_frontdesk_room_booking" model="ir.actions.act_window">
+        <field name="name">Room Bookings</field>
+        <field name="res_model">frontdesk.room.booking</field>
+        <field name="view_mode">calendar,list,form</field>
+        <field name="search_view_id" ref="view_frontdesk_room_booking_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Book a meeting room
+            </p>
+            <p>
+                Schedule meeting spaces, coordinate teabreak refreshments, and prevent room double-booking.
+            </p>
+        </field>
+    </record>
+
+</odoo>

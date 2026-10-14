@@ -71,13 +71,53 @@ Don't ask about routine decisions; state an assumption and proceed. Ask one conc
 ## 6. Security (every feature)
 Evaluate and implement: ACL rows per group, restriction rows for multi-company, field `groups=`, action authorization in methods (`check_access`), input validation, state rules, ondelete, safe `sudo`. Hidden buttons/menus are NOT security. Never widen access just to silence an AccessError. Tests must include positive AND negative permission cases (user without group gets `AccessError`; other company's records invisible).
 
-## 7. Localization: English source + Vietnamese (vi_VN)
-- All source strings English. Every user-facing string translatable: field `string=`/`help=`, selection labels, menus, actions, view labels/buttons/placeholders, `ValidationError/UserError`, notifications, reports, email templates.
-- Python: `self.env._()` / `_lt()`. Never hardcode Vietnamese in code/XML source; never translate technical values (selection keys, XML IDs, field names).
-- Provide `i18n/<module>.pot` and `i18n/vi.po` (UTF-8, header `Language: vi`, `Plural-Forms: nplurals=1; plural=0;`). Regenerate `.pot` after every string change; keep `vi.po` complete (no empty `msgstr` for user-visible strings).
-- Vietnamese: natural, professional business Vietnamese, correct diacritics, consistent glossary (keep a short `i18n/GLOSSARY.md` only if >30 terms). Reuse Odoo's own vi translation of standard terms (grep `odoo/addons/base/i18n/vi.po`, `addons/<mod>/i18n/vi.po`) before inventing. Don't invent legal/accounting/tax terms — list them as "needs confirmation".
-- Use Odoo's standard language mechanism only (user preference / `res.lang`); no custom switcher.
-- Verify: `.po` syntax (`msgfmt -c` or `python -c "import babel.messages.pofile"`), load with `-u <module> --i18n-overwrite` and `--load-language=vi_VN` on the dev DB, then a test that renders a string with `with_context(lang='vi_VN')`.
+## 7. Localization: English source + mandatory Vietnamese (vi_VN)
+### 7.1 Completion requirement
+Every new or modified user-facing feature MUST have complete Vietnamese translations.
+Missing Vietnamese is a release-blocking defect for the affected feature.
+Passing Python, XML, lint or unit tests does not waive localization requirements.
+The final review must distinguish translation-file validation from actual UI-language verification.
+### 7.2 Source strings
+Keep source-code and XML strings in English.
+Translate every user-facing string: field string/help, selection labels, menus, actions, buttons, placeholders, validation errors, notifications, reports, email templates, QWeb, portal pages, JavaScript and OWL.
+Use the translation mechanism supported by the specific Odoo 20 source layer. Python translation APIs do not automatically translate frontend strings.
+Python: use verified self.env._() patterns and _lt() only where appropriate.
+Never build translated messages using f-strings, % formatting or .format() inside the translated literal. Pass interpolation arguments through the verified translation API.
+Never translate technical identifiers, XML IDs, field names, selection keys, internal codes or programmatic values.
+### 7.3 Translation files
+Maintain i18n/<module>.pot and i18n/vi.po.
+Keep PO files UTF-8 and preserve valid metadata, plural rules and placeholders.
+After source-string changes, regenerate/update POT, merge into vi.po, and translate every new or changed user-visible entry.
+Never replace a complete PO file with a newly generated template.
+Do not leave new visible strings untranslated or use the English source as a substitute for Vietnamese.
+Reuse established translations from installed Odoo modules when appropriate.
+Follow the translation header conventions verified in the installed Odoo 20 source.
+### 7.4 Required localization review
+Before completion:
+
+Inventory user-visible strings across every changed file, including Python, XML, JavaScript, OWL, SCSS-related templates, reports, emails and portal content.
+Check that each applicable source string is extractable by Odoo's translation workflow.
+Verify that the corresponding Vietnamese translation exists and is complete.
+Check PO syntax, interpolation placeholders, markup and encoding.
+Check for untranslated new entries and accidental deletion of existing translations.
+Verify representative translated strings using the actual vi_VN language context when runtime access is available.
+### 7.5 Loading and runtime verification
+Inspect the installed Odoo 20 translation commands and options before executing them.
+Use only the verified development database.
+Do not run translation overwrite operations blindly; inspect their impact on existing translations first.
+Check that Vietnamese is installed and enabled and that the test user/session actually uses vi_VN.
+Confirm that updated translations are loaded and visible in the affected UI.
+If UI verification is unavailable, report it as unverified rather than claiming success.
+### 7.6 Localization completion gate
+A feature must not be reported as fully complete while newly introduced user-facing strings lack Vietnamese translations.
+
+The final report must state:
+
+Translation files changed.
+Translation validation performed.
+Remaining untranslated strings, if any.
+Whether Vietnamese was verified in the running UI.
+Do not invent legal, tax, accounting or domain-specific terminology. Flag terms requiring business confirmation.
 
 ## 8. Verification (run only what the change warrants; focused first)
 Use discovered paths; typical sequence (replace placeholders from §1):

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit Task Stage Form View -->
+    <record id="view_project_task_type_form_inherited" model="ir.ui.view">
+        <field name="name">project.task.type.form.inherited</field>
+        <field name="model">project.task.type</field>
+        <field name="inherit_id" ref="project.task_type_edit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="after">
+                <group string="Stage Transition Security">
+                    <field name="is_manager_only" widget="boolean_toggle"/>
+                    <field name="lock_reason" invisible="not is_manager_only"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

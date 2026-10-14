@@ -26,6 +26,33 @@
               action="action_frontdesk_parcel"
               sequence="20"/>
 
+    <!-- Visitors Menuitem -->
+    <menuitem id="menu_frontdesk_visitors"
+              name="Visitors"
+              parent="menu_frontdesk_registry"
+              action="action_frontdesk_visitor"
+              sequence="30"/>
+
+    <!-- Meeting Rooms Submenu -->
+    <menuitem id="menu_frontdesk_rooms"
+              name="Meeting Rooms"
+              parent="menu_frontdesk_root"
+              sequence="15"/>
+
+    <!-- Room Bookings Menuitem -->
+    <menuitem id="menu_frontdesk_room_bookings"
+              name="Room Bookings"
+              parent="menu_frontdesk_rooms"
+              action="action_frontdesk_room_booking"
+              sequence="10"/>
+
+    <!-- Rooms Registry Menuitem -->
+    <menuitem id="menu_frontdesk_meeting_rooms"
+              name="Rooms"
+              parent="menu_frontdesk_rooms"
+              action="action_frontdesk_meeting_room"
+              sequence="20"/>
+
     <!-- Fleet Management Submenu -->
     <menuitem id="menu_frontdesk_fleet"
               name="Fleet &amp; Dispatch"

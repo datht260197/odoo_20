@@ -1,0 +1,145 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* project_security_tier
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 20.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-14 06:54+0000\n"
+"PO-Revision-Date: 2026-10-14 06:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: project_security_tier
+#: model:ir.model.fields,help:project_security_tier.field_project_task_type__lock_reason
+msgid ""
+"Custom explanation displayed when an unauthorized user attempts to move a "
+"task into or out of this stage."
+msgstr ""
+
+#. module: project_security_tier
+#: model:ir.model.fields,field_description:project_security_tier.field_project_task__display_name
+#: model:ir.model.fields,field_description:project_security_tier.field_project_task_type__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: project_security_tier
+#: model:ir.model.fields,field_description:project_security_tier.field_project_task__id
+#: model:ir.model.fields,field_description:project_security_tier.field_project_task_type__id
+msgid "ID"
+msgstr ""
+
+#. module: project_security_tier
+#: model:ir.model.fields,help:project_security_tier.field_project_task_type__is_manager_only
+msgid ""
+"If checked, only Project Leaders or Administrators can move tasks into or "
+"out of this stage."
+msgstr ""
+
+#. module: project_security_tier
+#: model:ir.model.fields,field_description:project_security_tier.field_project_task__is_project_leader
+msgid "Is Project Leader or Admin"
+msgstr ""
+
+#. module: project_security_tier
+#: model:ir.model.fields,field_description:project_security_tier.field_project_task_type__is_manager_only
+msgid "Leader / Manager Only"
+msgstr ""
+
+#. module: project_security_tier
+#: model:ir.model.fields,field_description:project_security_tier.field_project_task_type__lock_reason
+msgid "Lock Reason Message"
+msgstr ""
+
+#. module: project_security_tier
+#: model:ir.module.module,summary:base.module_project_security_tier
+msgid ""
+"Multi-level Role-Based Access Control, Stage Transition Locks, and Allocated"
+" Hours Protection"
+msgstr ""
+
+#. module: project_security_tier
+#. odoo-python
+#: code:addons/project_security_tier/models/project_task.py:0
+msgid ""
+"Only Project Leaders or Administrators are allowed to modify allocated "
+"hours."
+msgstr ""
+
+#. module: project_security_tier
+#. odoo-python
+#: code:addons/project_security_tier/models/project_task.py:0
+#: code:addons/project_security_tier/models/project_task_type.py:0
+msgid ""
+"Only Project Managers or Administrators can move tasks into or out of this "
+"stage."
+msgstr ""
+
+#. module: project_security_tier
+#: model:res.groups,name:project_security_tier.group_project_tier_leader
+msgid "Project Leader"
+msgstr ""
+
+#. module: project_security_tier
+#: model:res.groups,comment:project_security_tier.group_project_tier_leader
+msgid ""
+"Project Leader: Can manage tasks, adjust allocated hours, and move stages on"
+" projects they lead."
+msgstr ""
+
+#. module: project_security_tier
+#: model:ir.module.module,shortdesc:base.module_project_security_tier
+msgid "Project Security Tier"
+msgstr ""
+
+#. module: project_security_tier
+#: model:res.groups,name:project_security_tier.group_project_tier_user
+msgid "Project User (Tiered)"
+msgstr ""
+
+#. module: project_security_tier
+#: model_terms:ir.ui.view,arch_db:project_security_tier.view_project_task_type_form_inherited
+msgid "Stage Transition Security"
+msgstr ""
+
+#. module: project_security_tier
+#: model:ir.model,name:project_security_tier.model_project_task
+msgid "Task"
+msgstr ""
+
+#. module: project_security_tier
+#: model:ir.model,name:project_security_tier.model_project_task_type
+msgid "Task Stage"
+msgstr ""
+
+#. module: project_security_tier
+#: model:res.groups,comment:project_security_tier.group_project_tier_user
+msgid ""
+"Tiered Project User: Can only view and update tasks assigned to them or "
+"created by them."
+msgstr ""
+
+#. module: project_security_tier
+#: model:ir.model.fields,help:project_security_tier.field_project_task__display_name
+msgid ""
+"Use these keywords in the title to set new tasks:\n"
+"\n"
+"            #tags Set tags on the task\n"
+"            @user Assign the task to a user\n"
+"            ! Set the task a medium priority\n"
+"            !! Set the task a high priority\n"
+"            !!! Set the task a urgent priority\n"
+"\n"
+"            Make sure to use the right format and order e.g. Improve the configuration screen #feature #v16 @Mitchell !"
+msgstr ""
+
+#. module: project_security_tier
+#. odoo-python
+#: code:addons/project_security_tier/models/project_task.py:0
+msgid "You are not permitted to delete tasks."
+msgstr ""

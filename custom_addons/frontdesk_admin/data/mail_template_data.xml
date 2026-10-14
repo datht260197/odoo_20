@@ -39,5 +39,51 @@
             <field name="auto_delete" eval="True"/>
         </record>
 
+        <record id="mail_template_visitor_arrived" model="mail.template">
+            <field name="name">Frontdesk Visitor: Arrival Notification</field>
+            <field name="model_id" ref="frontdesk_admin.model_frontdesk_visitor"/>
+            <field name="subject">{{ object.company_id.name }}: Guest {{ object.name }} has arrived</field>
+            <field name="email_to">{{ object.host_id.work_email }}</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px; font-family: Arial, sans-serif; font-size: 13px;">
+    <p>Dear <t t-out="object.host_id.name or ''">Colleague</t>,</p>
+    <p>Your guest has arrived and is waiting for you at the frontdesk reception.</p>
+    <table style="border-collapse: collapse; width: 100%; max-width: 500px; margin: 15px 0;">
+        <tr>
+            <td style="padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;">Visitor Name:</td>
+            <td style="padding: 6px; border-bottom: 1px solid #ddd;"><t t-out="object.name or ''"/></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;">Organization:</td>
+            <td style="padding: 6px; border-bottom: 1px solid #ddd;"><t t-out="object.company_name or '-'"/></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;">Phone:</td>
+            <td style="padding: 6px; border-bottom: 1px solid #ddd;"><t t-out="object.phone or '-'"/></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;">Email:</td>
+            <td style="padding: 6px; border-bottom: 1px solid #ddd;"><t t-out="object.email or '-'"/></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;">Purpose:</td>
+            <td style="padding: 6px; border-bottom: 1px solid #ddd;"><t t-out="object.purpose or '-'"/></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;">Meeting Location:</td>
+            <td style="padding: 6px; border-bottom: 1px solid #ddd;"><t t-out="object.room_name or 'Reception Desk'"/></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;">Check-in Time:</td>
+            <td style="padding: 6px; border-bottom: 1px solid #ddd;"><t t-out="format_datetime(object.checkin_time) or ''"/></td>
+        </tr>
+    </table>
+    <p>Please meet your visitor at the reception desk.</p>
+    <p>Best regards,<br/><t t-out="object.company_id.name or 'Frontdesk Team'"/></p>
+</div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
     </data>
 </odoo>
