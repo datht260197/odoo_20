@@ -7,6 +7,12 @@ access_approval_history_user,approval.history.user,approval.history,enterprise_a
 access_approval_history_manager,approval.history.manager,approval.history,enterprise_approval.group_approval_manager,crud,
 access_approval_reject_wizard_approver,approval.reject.wizard.approver,approval.reject.wizard,enterprise_approval.group_approval_approver,crud,
 access_approval_reject_wizard_manager,approval.reject.wizard.manager,approval.reject.wizard,enterprise_approval.group_approval_manager,crud,
+access_approval_signature_otp_wizard_user,approval.signature.otp.wizard.user,approval.signature.otp.wizard,enterprise_approval.group_approval_user,crud,
+access_approval_signature_otp_wizard_approver,approval.signature.otp.wizard.approver,approval.signature.otp.wizard,enterprise_approval.group_approval_approver,crud,
+access_approval_signature_otp_wizard_manager,approval.signature.otp.wizard.manager,approval.signature.otp.wizard,enterprise_approval.group_approval_manager,crud,
+access_approval_slip_print_wizard_user,approval.slip.print.wizard.user,approval.slip.print.wizard,enterprise_approval.group_approval_user,crud,
+access_approval_slip_print_wizard_approver,approval.slip.print.wizard.approver,approval.slip.print.wizard,enterprise_approval.group_approval_approver,crud,
+access_approval_slip_print_wizard_manager,approval.slip.print.wizard.manager,approval.slip.print.wizard,enterprise_approval.group_approval_manager,crud,
 access_approval_approver_user,approval.approver.user,approval.approver,enterprise_approval.group_approval_user,crud,
 access_approval_approver_manager,approval.approver.manager,approval.approver,enterprise_approval.group_approval_manager,crud,
 access_approval_request_user,approval.request.user,approval.request,enterprise_approval.group_approval_user,crud,"['|', ('requester_id', '=', user.id), ('create_uid', '=', user.id)]"

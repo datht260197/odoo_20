@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_approval_signature_otp_wizard_form" model="ir.ui.view">
+        <field name="name">approval.signature.otp.wizard.form</field>
+        <field name="model">approval.signature.otp.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Two-Factor OTP Digital Signature">
+                <sheet>
+                    <field name="request_id" invisible="1"/>
+                    <field name="approver_id" invisible="1"/>
+                    <field name="otp_code_hash" invisible="1"/>
+                    <field name="otp_expiry" invisible="1"/>
+
+                    <div class="alert alert-info d-flex align-items-center mb-3" role="alert">
+                        <i class="fa fa-shield fa-2x me-3 text-primary"/>
+                        <div>
+                            <div class="fw-bold">Two-Factor Authentication Required</div>
+                            <div style="font-size: 13px;">
+                                A 6-digit verification code has been dispatched to your corporate email. This OTP is valid for 10 minutes.
+                            </div>
+                        </div>
+                    </div>
+
+                    <group>
+                        <field name="otp_input"
+                               required="1"
+                               placeholder="123456"
+                               class="fw-bold fs-4 text-center text-primary"
+                               style="letter-spacing: 6px; max-width: 200px;"/>
+                        <field name="approval_comment"
+                               placeholder="Optional approval comments or remarks..."
+                               rows="3"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_confirm_signature"
+                            string="Sign &amp; Approve"
+                            type="object"
+                            class="btn-success"/>
+                    <button name="action_resend_otp"
+                            string="Resend OTP"
+                            type="object"
+                            class="btn-outline-secondary"/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="mail_template_approval_otp" model="mail.template">
+            <field name="name">Approval: Two-Factor OTP Digital Signature</field>
+            <field name="model_id" ref="enterprise_approval.model_approval_request"/>
+            <field name="subject">Security OTP Code for Approval Request {{ object.name }}</field>
+            <field name="email_to">{{ ctx.get('recipient_email') }}</field>
+            <field name="use_default_to" eval="False"/>
+            <field name="description">Template used to send the 2FA OTP verification code to the reviewer for digital signature</field>
+            <field name="body_html" type="html">
+<div style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #333333; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
+    <div style="background-color: #0d6efd; padding: 20px; text-align: center; color: #ffffff;">
+        <h2 style="margin: 0; font-size: 20px;">Two-Factor Digital Signature OTP</h2>
+        <p style="margin: 5px 0 0; font-size: 13px; opacity: 0.9;">Xác thực chữ ký số 2 lớp qua mã OTP</p>
+    </div>
+    <div style="padding: 24px;">
+        <p>Dear <strong t-out="ctx.get('approver_name') or 'Reviewer'">Approver</strong>,</p>
+        <p>You have initiated an approval action for request <strong t-out="object.name">REQ/2026/0001</strong> (<t t-out="object.title">Title</t>).</p>
+        <p>To digitally sign and finalize your approval, please enter the following 6-digit verification code:</p>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <div style="display: inline-block; font-size: 32px; font-weight: bold; letter-spacing: 8px; padding: 12px 28px; background-color: #f1f8ff; border: 2px dashed #0d6efd; border-radius: 8px; color: #0d6efd;">
+                <t t-out="ctx.get('otp_code')">123456</t>
+            </div>
+        </div>
+
+        <p style="font-size: 13px; color: #6c757d; text-align: center;">
+            This verification code is strictly valid for <strong>10 minutes</strong>. Do not share this code with anyone.
+        </p>
+        <p style="font-size: 13px; color: #6c757d; text-align: center;">
+            Mã xác thực có hiệu lực trong vòng <strong>10 phút</strong>. Vui lòng không chia sẻ mã này cho bất kỳ ai.
+        </p>
+    </div>
+    <div style="background-color: #f8f9fa; padding: 12px; text-align: center; font-size: 11px; color: #6c757d; border-top: 1px solid #e0e0e0;">
+        Sent automatically by Enterprise Approval System &amp;bull; <t t-out="object.company_id.name">Company</t>
+    </div>
+</div>
+            </field>
+        </record>
+    </data>
+</odoo>

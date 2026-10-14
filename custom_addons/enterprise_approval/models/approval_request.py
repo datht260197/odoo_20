@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
+import hashlib
+import secrets
+from datetime import timedelta
 from odoo import models, fields, api, exceptions, _
+
 
 # Các trường cốt lõi không được phép chỉnh sửa khi phiếu đã gửi duyệt hoặc hoàn tất
 _PROTECTED_REQUEST_FIELDS = frozenset([
@@ -408,80 +412,148 @@ class ApprovalRequest(models.Model):
             rec._schedule_approver_activity()
 
     def action_approve(self):
-        """Phê duyệt yêu cầu."""
+        """Phê duyệt yêu cầu qua xác thực 2FA OTP chữ ký số."""
+        self.ensure_one()
         self.check_access('write')
         is_manager = self.env.user.has_group('enterprise_approval.group_approval_manager')
         current_uid = self.env.uid
 
-        for rec in self:
-            if rec.state != 'submitted':
-                raise exceptions.UserError(rec.env._('Only submitted requests can be approved.'))
+        if self.state != 'submitted':
+            raise exceptions.UserError(self.env._('Only submitted requests can be approved.'))
 
-            # Check approval permission
-            approver_uids = rec.approver_ids.mapped('user_id').ids
-            if not is_manager and rec.approver_id.id != current_uid and current_uid not in approver_uids:
-                raise exceptions.AccessError(rec.env._('You do not have permission to approve this request.'))
+        # Check approval permission
+        approver_uids = self.approver_ids.mapped('user_id').ids
+        if not is_manager and self.approver_id.id != current_uid and current_uid not in approver_uids:
+            raise exceptions.AccessError(self.env._('You do not have permission to approve this request.'))
 
-            # Cập nhật trạng thái dòng approver của người duyệt
-            user_approvers = rec.approver_ids.filtered(lambda a: a.user_id.id == current_uid)
-            if user_approvers:
-                user_approvers.write({'status': 'approved'})
-            elif not rec.approver_ids:
+        # Ensure approver line exists
+        approver = self.approver_ids.filtered(lambda a: a.user_id.id == current_uid)
+        if not approver:
+            approver = self.env['approval.approver'].create({
+                'request_id': self.id,
+                'user_id': current_uid,
+                'status': 'new',
+            })
+        else:
+            approver = approver[0]
+
+        # Determine corporate email: env.user.email or employee_id.work_email
+        reviewer_email = self.env.user.email or (self.env.user.employee_id and self.env.user.employee_id.work_email)
+        if not reviewer_email:
+            raise exceptions.UserError(self.env._(
+                'No corporate email address configured for user "%(user)s". '
+                'An email is required to send the 2FA verification OTP.',
+                user=self.env.user.name,
+            ))
+
+        # Generate cryptographically secure 6-digit numeric OTP
+        otp_code = f"{secrets.randbelow(1_000_000):06d}"
+        otp_hash = hashlib.sha256(otp_code.encode('utf-8')).hexdigest()
+        otp_expiry = fields.Datetime.now() + timedelta(minutes=10)
+
+        # Transmit OTP via mail template
+        template = self.env.ref('enterprise_approval.mail_template_approval_otp', raise_if_not_found=False)
+        if template:
+            template.with_context(
+                otp_code=otp_code,
+                otp_expiry=otp_expiry,
+                recipient_email=reviewer_email,
+                approver_name=self.env.user.name,
+            ).send_mail(self.id, force_send=True)
+
+        # Create wizard and return action
+        wizard = self.env['approval.signature.otp.wizard'].create({
+            'request_id': self.id,
+            'approver_id': approver.id,
+            'otp_code_hash': otp_hash,
+            'otp_expiry': otp_expiry,
+        })
+        return {
+            'name': self.env._('Two-Factor OTP Digital Signature'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'approval.signature.otp.wizard',
+            'view_mode': 'form',
+            'res_id': wizard.id,
+            'target': 'new',
+        }
+
+    def _process_approval_after_otp(self, approver, comment=None):
+        """Complete the approval workflow step after successful OTP verification."""
+        self.ensure_one()
+        self.check_access('write')
+        approver.write({'status': 'approved'})
+
+        # Kiểm tra nếu còn cấp duyệt tiếp theo trong luồng
+        stages = self.category_id.stage_ids.sorted('sequence')
+        next_stage = False
+        if stages and self.current_stage_id:
+            later_stages = stages.filtered(lambda s: s.sequence > self.current_stage_id.sequence)
+            if later_stages:
+                next_stage = later_stages[0]
+
+        if next_stage:
+            # Chuyển tiếp sang bước duyệt sau
+            next_approver = next_stage.approver_id or self.approver_id
+            self.write({
+                'current_stage_id': next_stage.id,
+                'approver_id': next_approver.id,
+            })
+            # Bổ sung approver tiếp theo nếu chưa có
+            if next_approver.id not in self.approver_ids.mapped('user_id').ids:
                 self.env['approval.approver'].create({
-                    'request_id': rec.id,
-                    'user_id': current_uid,
-                    'status': 'approved',
+                    'request_id': self.id,
+                    'user_id': next_approver.id,
+                    'status': 'new',
                 })
+            log_msg = self.env._(
+                'Stage "%(prev)s" approved with 2FA digital signature. Forwarded to: "%(next)s" (%(approver)s)',
+                prev=self.current_stage_id.name,
+                next=next_stage.name,
+                approver=next_approver.name,
+            )
+            if comment:
+                log_msg += f"\n{self.env._('Comment:')} {comment}"
+            self._log_history('approve', log_msg)
+            self.message_post(
+                body=self.env._('<b>Stage approved with 2FA OTP signature.</b> Forwarded to next approval stage: <b>%s</b>', next_stage.name),
+            )
+            self._schedule_approver_activity()
+        else:
+            # Final approval
+            signer_user = approver.user_id or self.env.user
+            self.write({
+                'state': 'approved',
+                'date_confirmed': fields.Datetime.now(),
+                'confirmed_by': signer_user.id,
+            })
+            log_msg = self.env._('Approval request approved with 2FA digital signature.')
+            if comment:
+                log_msg += f"\n{self.env._('Comment:')} {comment}"
+            self._log_history('approve', log_msg)
 
-            # Kiểm tra nếu còn cấp duyệt tiếp theo trong luồng
-            stages = rec.category_id.stage_ids.sorted('sequence')
-            next_stage = False
-            if stages and rec.current_stage_id:
-                later_stages = stages.filtered(lambda s: s.sequence > rec.current_stage_id.sequence)
-                if later_stages:
-                    next_stage = later_stages[0]
+            # Close pending activity
+            self.activity_feedback(['mail.mail_activity_data_todo'])
 
-            if next_stage:
-                # Chuyển tiếp sang bước duyệt sau
-                next_approver = next_stage.approver_id or rec.approver_id
-                rec.write({
-                    'current_stage_id': next_stage.id,
-                    'approver_id': next_approver.id,
-                })
-                # Bổ sung approver tiếp theo nếu chưa có
-                if next_approver.id not in rec.approver_ids.mapped('user_id').ids:
-                    self.env['approval.approver'].create({
-                        'request_id': rec.id,
-                        'user_id': next_approver.id,
-                        'status': 'new',
-                    })
-                rec._log_history('approve', rec.env._(
-                    'Stage "%(prev)s" approved. Forwarded to: "%(next)s" (%(approver)s)',
-                    prev=rec.current_stage_id.name,
-                    next=next_stage.name,
-                    approver=next_approver.name,
-                ))
-                rec.message_post(
-                    body=rec.env._('<b>Stage approved.</b> Forwarded to next approval stage: <b>%s</b>', next_stage.name),
-                )
-                rec._schedule_approver_activity()
-            else:
-                # Final approval
-                rec.write({
-                    'state': 'approved',
-                    'date_confirmed': fields.Datetime.now(),
-                    'confirmed_by': self.env.user.id,
-                })
-                rec._log_history('approve', rec.env._('Approval request has been approved.'))
+            # Notify via Chatter
+            self.message_post(
+                body=self.env._('🎉 <b>REQUEST APPROVED WITH 2FA DIGITAL SIGNATURE!</b><br/>Approved by: <b>%s</b> (Hash: <code>%s</code>)', signer_user.name, approver.signature_hash or ''),
+                message_type='notification',
+            )
 
-                # Close pending activity
-                rec.activity_feedback(['mail.mail_activity_data_todo'])
+    def action_print_slip(self):
+        """Mở cửa sổ cấu hình in phiếu phê duyệt A4."""
+        self.ensure_one()
+        return {
+            'name': self.env._('Print Approval Slip'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'approval.slip.print.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_request_id': self.id,
+            },
+        }
 
-                # Notify via Chatter
-                rec.message_post(
-                    body=rec.env._('🎉 <b>REQUEST APPROVED!</b><br/>Approved by: <b>%s</b>', self.env.user.name),
-                    message_type='notification',
-                )
 
     def action_reject(self):
         """Mở cửa sổ nhập lý do từ chối."""

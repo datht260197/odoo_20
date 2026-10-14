@@ -35,3 +35,28 @@ class ApprovalApprover(models.Model):
         string='Thứ tự',
         default=10,
     )
+    is_otp_verified = fields.Boolean(
+        string='OTP Verified',
+        default=False,
+        copy=False,
+        help='Indicates whether this approval line was verified and signed via 2FA OTP.',
+    )
+    otp_verified_email = fields.Char(
+        string='Verified Email',
+        readonly=True,
+        copy=False,
+        help='Corporate email address to which the verification OTP was sent.',
+    )
+    signature_hash = fields.Char(
+        string='Digital Signature Hash',
+        readonly=True,
+        copy=False,
+        help='Cryptographic SHA-256 hash ensuring non-repudiation of the approval signature.',
+    )
+    signed_datetime = fields.Datetime(
+        string='Signature Timestamp',
+        readonly=True,
+        copy=False,
+        help='Exact UTC timestamp when the digital signature was executed.',
+    )
+

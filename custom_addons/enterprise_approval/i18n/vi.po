@@ -1573,3 +1573,233 @@ msgstr "❌ <b>YÊU CẦU ĐÃ BỊ TỪ CHỐI!</b><br/>Người từ chối: <
 #: code:addons/enterprise_approval/models/approval_request.py:0
 msgid "🎉 <b>REQUEST HAS BEEN APPROVED!</b><br/>Approved by: <b>%s</b>"
 msgstr "🎉 <b>YÊU CẦU ĐÃ ĐƯỢC PHÊ DUYỆT!</b><br/>Người phê duyệt: <b>%s</b>"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+msgid "OTP Verified"
+msgstr "Xác thực mã OTP"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+msgid "Verified Email"
+msgstr "Email xác thực"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+msgid "Digital Signature Hash"
+msgstr "Mã băm chữ ký số"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+msgid "Signature Hash"
+msgstr "Mã băm chữ ký"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/models/approval_approver.py:0
+msgid "Signature Timestamp"
+msgstr "Thời gian ký số"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+msgid "Signed Date"
+msgstr "Ngày ký số"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_signature_otp_wizard_views.xml:0
+msgid "Two-Factor OTP Digital Signature"
+msgstr "Xác thực chữ ký số OTP"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+#: code:addons/enterprise_approval/views/approval_slip_print_wizard_views.xml:0
+#: model:ir.actions.report,name:enterprise_approval.action_report_approval_slip
+msgid "Print Approval Slip"
+msgstr "In phiếu phê duyệt"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/views/approval_request_views.xml:0
+msgid "Print Slip"
+msgstr "In phiếu phê duyệt"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#, python-format
+msgid "No corporate email address configured for user \"%(user)s\". An email is required to send the 2FA verification OTP."
+msgstr "Chưa cấu hình địa chỉ email công vụ cho người dùng \"%(user)s\". Cần có email để gửi mã xác thực 2FA OTP."
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/models/approval_request.py:0
+#, python-format
+msgid "Stage \"%(prev)s\" approved with 2FA digital signature. Forwarded to: \"%(next)s\" (%(approver)s)"
+msgstr "Bước \"%(prev)s\" đã được phê duyệt bằng chữ ký số 2FA. Đã chuyển tiếp đến: \"%(next)s\" (%(approver)s)"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Comment:"
+msgstr "Ý kiến:"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "<b>Stage approved with 2FA OTP signature.</b> Forwarded to next approval stage: <b>%s</b>"
+msgstr "<b>Bước duyệt đã được ký số OTP thành công.</b> Đã chuyển sang cấp phê duyệt tiếp theo: <b>%s</b>"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "Approval request approved with 2FA digital signature."
+msgstr "Phiếu yêu cầu đã được phê duyệt bằng chữ ký số 2FA."
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/models/approval_request.py:0
+msgid "🎉 <b>REQUEST APPROVED WITH 2FA DIGITAL SIGNATURE!</b><br/>Approved by: <b>%s</b> (Hash: <code>%s</code>)"
+msgstr "🎉 <b>YÊU CẦU ĐÃ ĐƯỢC PHÊ DUYỆT VỚI CHỮ KÝ SỐ 2FA!</b><br/>Người phê duyệt: <b>%s</b> (Mã băm: <code>%s</code>)"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_signature_otp_wizard.py:0
+#: model:ir.model,name:enterprise_approval.model_approval_signature_otp_wizard
+msgid "Two-Factor OTP Digital Signature Wizard"
+msgstr "Cửa sổ ký số OTP 2FA"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_signature_otp_wizard.py:0
+#: code:addons/enterprise_approval/wizards/approval_slip_print_wizard.py:0
+msgid "Approval Request"
+msgstr "Phiếu yêu cầu"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_signature_otp_wizard.py:0
+msgid "Approver Line"
+msgstr "Dòng người duyệt"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_signature_otp_wizard.py:0
+msgid "Enter 6-digit OTP"
+msgstr "Nhập mã OTP 6 chữ số"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_signature_otp_wizard.py:0
+msgid "Enter the 6-digit verification code sent to your corporate email."
+msgstr "Nhập mã xác thực gồm 6 chữ số được gửi tới email công ty của bạn."
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_signature_otp_wizard.py:0
+msgid "Approval Comments"
+msgstr "Ý kiến phê duyệt"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_signature_otp_wizard.py:0
+msgid "Optional comments or remarks..."
+msgstr "Ý kiến phê duyệt hoặc ghi chú bổ sung..."
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_signature_otp_wizard.py:0
+msgid "The OTP code has expired. Please click \"Resend OTP\" to receive a new verification code."
+msgstr "Mã OTP đã hết hạn. Vui lòng bấm \"Gửi lại mã OTP\" để nhận mã xác thực mới."
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_signature_otp_wizard.py:0
+msgid "Please enter a valid 6-digit numeric OTP code."
+msgstr "Vui lòng nhập mã số OTP hợp lệ gồm 6 chữ số."
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_signature_otp_wizard.py:0
+msgid "Invalid OTP code. Please verify the code sent to your email or request a new one."
+msgstr "Mã OTP không hợp lệ. Vui lòng kiểm tra lại mã đã nhận qua email hoặc gửi yêu cầu cấp mã mới."
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_signature_otp_wizard.py:0
+#, python-format
+msgid "No corporate email address configured for user \"%(user)s\"."
+msgstr "Chưa cấu hình địa chỉ email công vụ cho người dùng \"%(user)s\"."
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_signature_otp_wizard.py:0
+msgid "OTP Resent"
+msgstr "Đã gửi lại mã OTP"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_signature_otp_wizard.py:0
+#, python-format
+msgid "A new verification code has been dispatched to %(email)s."
+msgstr "Mã xác thực mới đã được gửi tới địa chỉ %(email)s."
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/views/approval_signature_otp_wizard_views.xml:0
+msgid "Two-Factor Authentication Required"
+msgstr "Yêu cầu xác thực 2 lớp (2FA)"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/views/approval_signature_otp_wizard_views.xml:0
+msgid "A 6-digit verification code has been dispatched to your corporate email. This OTP is valid for 10 minutes."
+msgstr "Mã xác thực gồm 6 chữ số đã được gửi tới email công vụ của bạn. Mã OTP này có hiệu lực trong vòng 10 phút."
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/views/approval_signature_otp_wizard_views.xml:0
+msgid "Sign & Approve"
+msgstr "Ký số & Duyệt"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/views/approval_signature_otp_wizard_views.xml:0
+msgid "Resend OTP"
+msgstr "Gửi lại mã OTP"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_slip_print_wizard.py:0
+#: model:ir.model,name:enterprise_approval.model_approval_slip_print_wizard
+msgid "Approval Slip Print Configuration Wizard"
+msgstr "Cửa sổ cấu hình in phiếu phê duyệt"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_slip_print_wizard.py:0
+msgid "Print Watermark on Drafts"
+msgstr "In mờ Bản dự thảo trên phiếu chưa duyệt"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_slip_print_wizard.py:0
+msgid "Display a diagonal draft watermark if the approval request is not yet approved."
+msgstr "Hiển thị dòng chữ mờ chéo Bản dự thảo nếu yêu cầu chưa được duyệt hoàn tất."
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_slip_print_wizard.py:0
+msgid "Include Digital Signatures / OTP Seal"
+msgstr "Kèm chữ ký số / Con dấu OTP"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_slip_print_wizard.py:0
+msgid "Include OTP verification seals with signer hashes, timestamps, and emails."
+msgstr "In kèm con dấu xác thực chữ ký OTP cùng mã băm, thời gian và email người ký."
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_slip_print_wizard.py:0
+msgid "Include Reviewer Comments"
+msgstr "Kèm ý kiến người phê duyệt"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_slip_print_wizard.py:0
+msgid "Include approver feedback and comments in the audit table."
+msgstr "Bao gồm ý kiến phản hồi của người duyệt trong bảng tiến trình."
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/wizards/approval_slip_print_wizard.py:0
+#: code:addons/enterprise_approval/views/approval_slip_print_wizard_views.xml:0
+msgid "Additional Print Notes"
+msgstr "Ghi chú in bổ sung"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/views/approval_slip_print_wizard_views.xml:0
+msgid "Enter any additional notes or terms to print in the document footer..."
+msgstr "Nhập các ghi chú hoặc điều khoản bổ sung để in ở chân trang..."
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/views/approval_slip_print_wizard_views.xml:0
+msgid "Print PDF Slip"
+msgstr "In phiếu PDF"
+
+#. module: enterprise_approval
+#: code:addons/enterprise_approval/report/report_approval_slip.py:0
+msgid "A4 Approval Slip Report"
+msgstr "Báo cáo phiếu phê duyệt A4"
+

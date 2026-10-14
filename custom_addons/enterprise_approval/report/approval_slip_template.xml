@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_approval_slip_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page" style="font-size: 13px; line-height: 1.5; color: #212529;">
+
+                        <!-- Watermark for unapproved requests -->
+                        <t t-if="print_watermark and doc.state != 'approved'">
+                            <div style="position: fixed; top: 38%; left: 5%; width: 90%; transform: rotate(-30deg); font-size: 32px; color: rgba(220, 53, 69, 0.22); text-align: center; z-index: -100; font-weight: 800; border: 3px dashed rgba(220, 53, 69, 0.25); padding: 18px; text-transform: uppercase; border-radius: 8px;">
+                                BẢN DỰ THẢO - CHƯA PHÊ DUYỆT / DRAFT
+                            </div>
+                        </t>
+
+                        <!-- Header Banner -->
+                        <div class="row mb-3 pb-2 border-bottom">
+                            <div class="col-8">
+                                <h3 class="fw-bold mb-1" style="color: #0d6efd;">PHIẾU YÊU CẦU PHÊ DUYỆT</h3>
+                                <div class="text-muted fw-bold" style="font-size: 14px;">APPROVAL REQUEST SLIP</div>
+                            </div>
+                            <div class="col-4 text-end">
+                                <h4 class="fw-bold mb-1" t-field="doc.name"/>
+                                <div>
+                                    <span t-if="doc.state == 'draft'" class="badge text-bg-secondary px-2 py-1">Nháp / Draft</span>
+                                    <span t-elif="doc.state == 'submitted'" class="badge text-bg-warning px-2 py-1">Chờ duyệt / Submitted</span>
+                                    <span t-elif="doc.state == 'approved'" class="badge text-bg-success px-2 py-1">Đã phê duyệt / Approved</span>
+                                    <span t-elif="doc.state == 'rejected'" class="badge text-bg-danger px-2 py-1">Từ chối / Rejected</span>
+                                    <span t-else="" class="badge text-bg-muted px-2 py-1" t-field="doc.state"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- General Information Grid -->
+                        <div class="card mb-3" style="border: 1px solid #dee2e6;">
+                            <div class="card-header bg-light py-1 fw-bold text-uppercase" style="font-size: 12px; color: #495057;">
+                                Thông tin chung / General Information
+                            </div>
+                            <div class="card-body p-3">
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <strong>Người đề xuất / Requester:</strong>
+                                        <span t-field="doc.requester_id.name"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>Ngày gửi / Date:</strong>
+                                        <span t-field="doc.date_submitted"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>Nhân viên / Employee:</strong>
+                                        <span t-field="doc.employee_id.name"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>Phòng ban / Department:</strong>
+                                        <span t-field="doc.department_id.name"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>Loại yêu cầu / Category:</strong>
+                                        <span t-field="doc.category_id.name"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>Độ ưu tiên / Priority:</strong>
+                                        <span t-if="doc.priority == '3'" class="text-danger fw-bold">Khẩn cấp / Urgent (★★★)</span>
+                                        <span t-elif="doc.priority == '2'" class="text-warning fw-bold">Cao / High (★★☆)</span>
+                                        <span t-elif="doc.priority == '1'" class="text-info">Trung bình / Medium (★☆☆)</span>
+                                        <span t-else="" class="text-muted">Bình thường / Normal (☆☆☆)</span>
+                                    </div>
+                                    <t t-if="doc.has_amount != 'no' and doc.amount">
+                                        <div class="col-6">
+                                            <strong>Số tiền / Amount:</strong>
+                                            <span class="fw-bold text-primary" t-field="doc.amount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/>
+                                        </div>
+                                    </t>
+                                    <t t-if="doc.has_location != 'no' and doc.location">
+                                        <div class="col-6">
+                                            <strong>Địa điểm / Location:</strong>
+                                            <span t-field="doc.location"/>
+                                        </div>
+                                    </t>
+                                    <t t-if="doc.has_date != 'no' and doc.date_start">
+                                        <div class="col-12">
+                                            <strong>Thời gian / Period:</strong>
+                                            <span t-field="doc.date_start"/>
+                                            <t t-if="doc.date_end">
+                                                <span> đến / to </span>
+                                                <span t-field="doc.date_end"/>
+                                            </t>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content / Proposal Details -->
+                        <div class="card mb-3" style="border: 1px solid #dee2e6;">
+                            <div class="card-header bg-light py-1 fw-bold text-uppercase" style="font-size: 12px; color: #495057;">
+                                Nội dung đề xuất / Proposal Details
+                            </div>
+                            <div class="card-body p-3">
+                                <div class="mb-2">
+                                    <strong>Tiêu đề / Title: </strong>
+                                    <span class="fw-bold" t-field="doc.title"/>
+                                </div>
+                                <div class="mt-2">
+                                    <strong>Mô tả chi tiết / Description:</strong>
+                                    <div class="mt-1 p-2 rounded bg-light border" style="min-height: 60px;">
+                                        <t t-if="doc.description">
+                                            <div t-field="doc.description"/>
+                                        </t>
+                                        <t t-else="">
+                                            <span class="text-muted fst-italic">Không có nội dung mô tả chi tiết.</span>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Approval Audit Trail Table -->
+                        <div class="card mb-3" style="border: 1px solid #dee2e6;">
+                            <div class="card-header bg-light py-1 fw-bold text-uppercase" style="font-size: 12px; color: #495057;">
+                                Tiến trình phê duyệt &amp; Ký số / Approval Audit Trail &amp; Signatures
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table table-sm table-bordered mb-0" style="font-size: 12px;">
+                                    <thead class="table-light text-center">
+                                        <tr>
+                                            <th style="width: 5%;">STT</th>
+                                            <th style="width: 25%;">Người phê duyệt / Reviewer</th>
+                                            <th style="width: 15%;">Trạng thái / Status</th>
+                                            <th style="width: 20%;">Thời gian / Date</th>
+                                            <th t-if="include_approval_comments" style="width: 35%;">Ý kiến / Comments</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="seq" t-value="1"/>
+                                        <t t-foreach="doc.approver_ids" t-as="approver">
+                                            <tr>
+                                                <td class="text-center align-middle" t-out="seq"/>
+                                                <td class="align-middle">
+                                                    <div class="fw-bold" t-field="approver.user_id.name"/>
+                                                    <div class="text-muted" style="font-size: 11px;">
+                                                        <span t-field="approver.user_id.email"/>
+                                                    </div>
+                                                    <!-- Digital Signature Seal Stamp -->
+                                                    <t t-if="include_digital_signatures and approver.is_otp_verified">
+                                                        <div class="mt-1 p-1 rounded" style="background-color: #e8f5e9; border: 1px solid #81c784; font-size: 10px;">
+                                                            <div class="fw-bold text-success">
+                                                                <i class="fa fa-check-circle"/> ĐÃ XÁC THỰC KÝ SỐ QUA OTP
+                                                            </div>
+                                                            <div><strong>Email:</strong> <span t-field="approver.otp_verified_email"/></div>
+                                                            <div><strong>Thời gian ký:</strong> <span t-field="approver.signed_datetime"/></div>
+                                                            <div><strong>Mã băm (SHA-256):</strong></div>
+                                                            <div class="font-monospace text-break" style="font-size: 9px; color: #2e7d32;" t-field="approver.signature_hash"/>
+                                                        </div>
+                                                    </t>
+                                                </td>
+                                                <td class="text-center align-middle">
+                                                    <span t-if="approver.status == 'approved'" class="badge text-bg-success">Đã duyệt / Approved</span>
+                                                    <span t-elif="approver.status == 'refused'" class="badge text-bg-danger">Từ chối / Refused</span>
+                                                    <span t-elif="approver.status == 'new'" class="badge text-bg-warning">Chờ duyệt / Pending</span>
+                                                    <span t-elif="approver.status == 'cancel'" class="badge text-bg-secondary">Hủy / Cancel</span>
+                                                    <span t-else="" class="badge text-bg-light" t-field="approver.status"/>
+                                                </td>
+                                                <td class="text-center align-middle">
+                                                    <span t-if="approver.signed_datetime" t-field="approver.signed_datetime"/>
+                                                    <span t-elif="doc.date_confirmed and approver.status == 'approved'" t-field="doc.date_confirmed"/>
+                                                    <span t-else="" class="text-muted">-</span>
+                                                </td>
+                                                <td t-if="include_approval_comments" class="align-middle">
+                                                    <t t-set="matching_history" t-value="doc.history_ids.filtered(lambda h: h.user_id == approver.user_id)"/>
+                                                    <t t-if="matching_history and matching_history[0].comment">
+                                                        <span t-out="matching_history[0].comment"/>
+                                                    </t>
+                                                    <t t-elif="approver.status == 'refused' and doc.rejection_reason">
+                                                        <span class="text-danger" t-field="doc.rejection_reason"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span class="text-muted fst-italic">Không có ý kiến bổ sung</span>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <t t-set="seq" t-value="seq + 1"/>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Custom Print Notes (Optional) -->
+                        <t t-if="custom_notes">
+                            <div class="card mb-3" style="border: 1px solid #dee2e6;">
+                                <div class="card-header bg-light py-1 fw-bold text-uppercase" style="font-size: 12px; color: #495057;">
+                                    Ghi chú bổ sung / Additional Notes
+                                </div>
+                                <div class="card-body p-2" style="font-size: 11px;">
+                                    <div t-out="custom_notes"/>
+                                </div>
+                            </div>
+                        </t>
+
+                        <!-- Signatures Footer Section -->
+                        <div class="row mt-4 pt-2 text-center" style="page-break-inside: avoid;">
+                            <div class="col-6">
+                                <div class="fw-bold text-uppercase" style="font-size: 12px;">Người đề xuất / Requester</div>
+                                <div class="text-muted" style="font-size: 11px;">(Ký và ghi rõ họ tên / Sign &amp; Full name)</div>
+                                <div style="height: 70px;"/>
+                                <div class="fw-bold" t-field="doc.requester_id.name"/>
+                            </div>
+                            <div class="col-6">
+                                <div class="fw-bold text-uppercase" style="font-size: 12px;">Đại diện phê duyệt / Authorized Approver</div>
+                                <div class="text-muted" style="font-size: 11px;">(Ký điện tử hoặc ký tay / Digital or Ink signature)</div>
+                                <div style="height: 15px;"/>
+                                <t t-if="include_digital_signatures and doc.confirmed_by">
+                                    <div class="p-1 mx-auto rounded border" style="max-width: 260px; background-color: #f1f8e9; border-color: #aed581; font-size: 10px;">
+                                        <div class="text-success fw-bold">✓ KÝ BỞI / SIGNED BY</div>
+                                        <div class="fw-bold" t-field="doc.confirmed_by.name"/>
+                                        <div class="text-muted" t-field="doc.date_confirmed"/>
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <div style="height: 55px;"/>
+                                    <div class="fw-bold" t-field="doc.approver_id.name"/>
+                                </t>
+                            </div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
