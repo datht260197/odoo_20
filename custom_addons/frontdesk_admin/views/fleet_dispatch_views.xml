@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- List View -->
+    <record id="view_fleet_dispatch_request_list" model="ir.ui.view">
+        <field name="name">fleet.dispatch.request.list</field>
+        <field name="model">fleet.dispatch.request</field>
+        <field name="arch" type="xml">
+            <list string="Fleet Dispatch Requests" sample="1" decoration-muted="state in ('done', 'cancelled')">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="destination"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime"/>
+                <field name="vehicle_id"/>
+                <field name="driver_id"/>
+                <field name="passenger_count"/>
+                <field name="total_expense_amount" sum="Total"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state == 'to_approve'"
+                       decoration-primary="state == 'approved'"
+                       decoration-success="state == 'done'"
+                       decoration-danger="state in ('rejected', 'cancelled')"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_fleet_dispatch_request_form" model="ir.ui.view">
+        <field name="name">fleet.dispatch.request.form</field>
+        <field name="model">fleet.dispatch.request</field>
+        <field name="arch" type="xml">
+            <form string="Fleet Dispatch Request">
+                <header>
+                    <button name="action_submit"
+                            string="Submit for Approval"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+
+                    <button name="action_approve"
+                            string="Approve"
+                            type="object"
+                            class="btn-success"
+                            invisible="state != 'to_approve'"/>
+
+                    <button name="action_reject"
+                            string="Reject"
+                            type="object"
+                            class="btn-danger"
+                            invisible="state != 'to_approve'"/>
+
+                    <button name="action_dispatch"
+                            string="Assign &amp; Dispatch"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'approved'"/>
+
+                    <button name="action_done"
+                            string="Complete Trip"
+                            type="object"
+                            class="btn-success"
+                            invisible="state != 'dispatched'"/>
+
+                    <button name="action_cancel"
+                            string="Cancel"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="state in ('done', 'cancelled', 'rejected')"/>
+
+                    <button name="action_reset_draft"
+                            string="Reset to Draft"
+                            type="object"
+                            invisible="state not in ('done', 'cancelled', 'rejected')"
+                            groups="frontdesk_admin.group_frontdesk_manager"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,to_approve,approved,dispatched,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_calendar_event"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-calendar"
+                                invisible="not calendar_event_id">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Calendar Event</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Assigned automatically"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group string="Trip Details">
+                            <field name="employee_id" readonly="state in ('done', 'cancelled')"/>
+                            <field name="destination" readonly="state in ('done', 'cancelled')"/>
+                            <field name="purpose" readonly="state in ('done', 'cancelled')"/>
+                            <field name="passenger_count" readonly="state in ('done', 'cancelled')"/>
+                            <field name="company_id" groups="base.group_multi_company" readonly="state in ('done', 'cancelled')"/>
+                        </group>
+                        <group string="Schedule &amp; Vehicle">
+                            <field name="start_datetime" readonly="state in ('done', 'cancelled')"/>
+                            <field name="end_datetime" readonly="state in ('done', 'cancelled')"/>
+                            <field name="vehicle_id" readonly="state in ('done', 'cancelled')"/>
+                            <field name="driver_id" readonly="state in ('done', 'cancelled')"/>
+                            <field name="odometer_start" readonly="state in ('done', 'cancelled')"/>
+                            <field name="odometer_end" readonly="state in ('done', 'cancelled')" required="state == 'dispatched'"/>
+                            <field name="calendar_event_id" invisible="not calendar_event_id"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Trip Expenses" name="expenses">
+                            <field name="expense_ids" readonly="state in ('done', 'cancelled')">
+                                <list editable="bottom">
+                                    <field name="expense_type"/>
+                                    <field name="description"/>
+                                    <field name="amount"/>
+                                    <field name="currency_id" column_invisible="True"/>
+                                    <field name="receipt_image" widget="binary" filename="description"/>
+                                    <field name="payment_status" widget="badge"
+                                           decoration-success="payment_status == 'paid'"
+                                           decoration-warning="payment_status == 'unpaid'"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="total_expense_amount"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Calendar View -->
+    <record id="view_fleet_dispatch_request_calendar" model="ir.ui.view">
+        <field name="name">fleet.dispatch.request.calendar</field>
+        <field name="model">fleet.dispatch.request</field>
+        <field name="arch" type="xml">
+            <calendar string="Fleet Dispatch Calendar"
+                      date_start="start_datetime"
+                      date_stop="end_datetime"
+                      color="vehicle_id"
+                      mode="month"
+                      quick_create="0">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="vehicle_id"/>
+                <field name="driver_id"/>
+                <field name="destination"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_fleet_dispatch_request_search" model="ir.ui.view">
+        <field name="name">fleet.dispatch.request.search</field>
+        <field name="model">fleet.dispatch.request</field>
+        <field name="arch" type="xml">
+            <search string="Search Fleet Dispatch Requests">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="destination"/>
+                <field name="vehicle_id"/>
+                <field name="driver_id"/>
+                <separator/>
+                <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_to_approve" string="To Approve" domain="[('state', '=', 'to_approve')]"/>
+                <filter name="filter_approved" string="Approved" domain="[('state', '=', 'approved')]"/>
+                <filter name="filter_dispatched" string="Dispatched" domain="[('state', '=', 'dispatched')]"/>
+                <filter name="filter_done" string="Done" domain="[('state', '=', 'done')]"/>
+                <separator/>
+                <filter name="filter_my_requests" string="My Requests" domain="['|', ('employee_id.user_id', '=', uid), ('create_uid', '=', uid)]"/>
+                <separator/>
+                <filter name="group_vehicle" string="Vehicle" domain="[]" context="{'group_by': 'vehicle_id'}"/>
+                <filter name="group_employee" string="Requester" domain="[]" context="{'group_by': 'employee_id'}"/>
+                <filter name="group_driver" string="Driver" domain="[]" context="{'group_by': 'driver_id'}"/>
+                <filter name="group_state" string="State" domain="[]" context="{'group_by': 'state'}"/>
+                <filter name="group_start_date" string="Start Date" domain="[]" context="{'group_by': 'start_datetime'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="action_fleet_dispatch_request" model="ir.actions.act_window">
+        <field name="name">Fleet Dispatch Requests</field>
+        <field name="res_model">fleet.dispatch.request</field>
+        <field name="view_mode">list,form,calendar</field>
+        <field name="search_view_id" ref="view_fleet_dispatch_request_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first fleet dispatch request!
+            </p>
+        </field>
+    </record>
+
+</odoo>

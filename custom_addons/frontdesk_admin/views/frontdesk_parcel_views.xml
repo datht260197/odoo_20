@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- List View -->
+    <record id="view_frontdesk_parcel_list" model="ir.ui.view">
+        <field name="name">frontdesk.parcel.list</field>
+        <field name="model">frontdesk.parcel</field>
+        <field name="arch" type="xml">
+            <list string="Courier Parcels" sample="1" decoration-muted="state in ('delivered', 'returned')">
+                <field name="name"/>
+                <field name="tracking_ref"/>
+                <field name="carrier_id"/>
+                <field name="recipient_id"/>
+                <field name="received_date"/>
+                <field name="delivered_date"/>
+                <field name="delivered_by_id"/>
+                <field name="state" widget="badge" decoration-info="state == 'received'" decoration-primary="state == 'notified'" decoration-success="state == 'delivered'" decoration-danger="state == 'returned'"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_frontdesk_parcel_form" model="ir.ui.view">
+        <field name="name">frontdesk.parcel.form</field>
+        <field name="model">frontdesk.parcel</field>
+        <field name="arch" type="xml">
+            <form string="Courier Parcel">
+                <header>
+                    <button name="action_deliver"
+                            string="Deliver to Recipient"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state not in ('received', 'notified')"/>
+
+                    <button name="action_return"
+                            string="Return to Carrier"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="state not in ('received', 'notified')"/>
+
+                    <button name="action_reset_draft"
+                            string="Reset to Received"
+                            type="object"
+                            invisible="state not in ('delivered', 'returned')"
+                            groups="frontdesk_admin.group_frontdesk_manager"/>
+
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="received,notified,delivered"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Assigned automatically"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="recipient_id" readonly="state in ('delivered', 'returned')"/>
+                            <field name="carrier_id" readonly="state in ('delivered', 'returned')"/>
+                            <field name="tracking_ref" readonly="state in ('delivered', 'returned')"/>
+                            <field name="company_id" groups="base.group_multi_company" readonly="state in ('delivered', 'returned')"/>
+                        </group>
+                        <group>
+                            <field name="received_date"/>
+                            <field name="delivered_date" invisible="state != 'delivered'"/>
+                            <field name="delivered_by_id" invisible="state != 'delivered'"/>
+                            <field name="photo" widget="image" class="oe_avatar" readonly="state in ('delivered', 'returned')"/>
+                        </group>
+                    </group>
+                    <group string="Handover / Delivery Notes">
+                        <field name="delivery_notes" placeholder="Notes for handover or proxy recipient..." readonly="state in ('delivered', 'returned')"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_frontdesk_parcel_search" model="ir.ui.view">
+        <field name="name">frontdesk.parcel.search</field>
+        <field name="model">frontdesk.parcel</field>
+        <field name="arch" type="xml">
+            <search string="Search Courier Parcels">
+                <field name="name"/>
+                <field name="tracking_ref"/>
+                <field name="carrier_id"/>
+                <field name="recipient_id"/>
+                <separator/>
+                <filter name="filter_received" string="Received" domain="[('state', '=', 'received')]"/>
+                <filter name="filter_notified" string="Notified" domain="[('state', '=', 'notified')]"/>
+                <filter name="filter_delivered" string="Delivered" domain="[('state', '=', 'delivered')]"/>
+                <filter name="filter_returned" string="Returned" domain="[('state', '=', 'returned')]"/>
+                <separator/>
+                <filter name="filter_my_parcels" string="My Parcels" domain="[('recipient_id.user_id', '=', uid)]"/>
+                <separator/>
+                <filter name="group_carrier" string="Carrier" domain="[]" context="{'group_by': 'carrier_id'}"/>
+                <filter name="group_recipient" string="Recipient" domain="[]" context="{'group_by': 'recipient_id'}"/>
+                <filter name="group_state" string="State" domain="[]" context="{'group_by': 'state'}"/>
+                <filter name="group_received_date" string="Received Date" domain="[]" context="{'group_by': 'received_date'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="action_frontdesk_parcel" model="ir.actions.act_window">
+        <field name="name">Courier Parcels</field>
+        <field name="res_model">frontdesk.parcel</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_frontdesk_parcel_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Register a new physical courier parcel!
+            </p>
+        </field>
+    </record>
+
+</odoo>

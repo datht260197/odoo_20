@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Module Category -->
+        <record id="module_category_frontdesk_admin" model="ir.module.category">
+            <field name="name">Frontdesk Administration</field>
+            <field name="description">Manage legal documents and physical courier parcels</field>
+            <field name="sequence">30</field>
+        </record>
+
+        <!-- Privilege for Settings UI in Odoo 20 -->
+        <record id="res_groups_privilege_frontdesk_admin" model="res.groups.privilege">
+            <field name="name">Frontdesk Administration</field>
+            <field name="sequence">30</field>
+            <field name="category_id" ref="module_category_frontdesk_admin"/>
+        </record>
+
+        <!-- Nhóm 1: Frontdesk User (Chỉ xem văn bản và bưu phẩm của chính mình) -->
+        <record id="group_frontdesk_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="sequence">10</field>
+            <field name="privilege_id" ref="res_groups_privilege_frontdesk_admin"/>
+            <field name="comment">Frontdesk users can view their own incoming legal documents and parcels.</field>
+        </record>
+
+        <!-- Base Internal User implies Frontdesk User -->
+        <record id="base.group_user" model="res.groups">
+            <field name="implied_ids" eval="[(4, ref('group_frontdesk_user'))]"/>
+        </record>
+
+        <!-- Nhóm 2: Frontdesk Officer (Tiếp nhận văn bản & bưu phẩm, không được xoá) -->
+        <record id="group_frontdesk_officer" model="res.groups">
+            <field name="name">Officer</field>
+            <field name="sequence">20</field>
+            <field name="privilege_id" ref="res_groups_privilege_frontdesk_admin"/>
+            <field name="implied_ids" eval="[(4, ref('group_frontdesk_user'))]"/>
+            <field name="comment">Frontdesk officers can create and update legal documents and courier parcels.</field>
+        </record>
+
+        <!-- Nhóm 3: Frontdesk Manager (Toàn quyền quản trị, xem tài liệu mật, xoá bản ghi) -->
+        <record id="group_frontdesk_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="sequence">30</field>
+            <field name="privilege_id" ref="res_groups_privilege_frontdesk_admin"/>
+            <field name="implied_ids" eval="[(4, ref('group_frontdesk_officer'))]"/>
+            <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+            <field name="comment">Frontdesk managers have full CRUD access, can inspect confidential files, and can delete records.</field>
+        </record>
+
+    </data>
+</odoo>

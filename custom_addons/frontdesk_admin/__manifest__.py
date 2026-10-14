@@ -1,0 +1,21 @@
+{
+    'name': 'Frontdesk Administration',
+    'version': '1.0.0',
+    'category': 'Human Resources',
+    'summary': 'Document, Courier Parcel, and Fleet Dispatch Management',
+    'author': 'Antigravity',
+    'license': 'LGPL-3',
+    'depends': ['base', 'mail', 'hr', 'fleet', 'calendar'],
+    'data': [
+        'security/frontdesk_security.xml',
+        'security/ir.access.csv',
+        'data/ir_sequence_data.xml',
+        'data/mail_template_data.xml',
+        'views/frontdesk_document_views.xml',
+        'views/frontdesk_parcel_views.xml',
+        'views/fleet_dispatch_views.xml',
+        'views/frontdesk_menus.xml',
+    ],
+    'application': True,
+    'installable': True,
+}

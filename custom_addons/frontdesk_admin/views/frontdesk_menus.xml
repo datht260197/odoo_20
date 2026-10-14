@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Top-level Application Menu -->
+    <menuitem id="menu_frontdesk_root"
+              name="Frontdesk"
+              sequence="45"/>
+
+    <!-- Registry Submenu -->
+    <menuitem id="menu_frontdesk_registry"
+              name="Registry"
+              parent="menu_frontdesk_root"
+              sequence="10"/>
+
+    <!-- Documents Menuitem -->
+    <menuitem id="menu_frontdesk_documents"
+              name="Legal Documents"
+              parent="menu_frontdesk_registry"
+              action="action_frontdesk_document"
+              sequence="10"/>
+
+    <!-- Parcels Menuitem -->
+    <menuitem id="menu_frontdesk_parcels"
+              name="Courier Parcels"
+              parent="menu_frontdesk_registry"
+              action="action_frontdesk_parcel"
+              sequence="20"/>
+
+    <!-- Fleet Management Submenu -->
+    <menuitem id="menu_frontdesk_fleet"
+              name="Fleet &amp; Dispatch"
+              parent="menu_frontdesk_root"
+              sequence="20"/>
+
+    <!-- Dispatch Requests Menuitem -->
+    <menuitem id="menu_frontdesk_dispatch_requests"
+              name="Dispatch Requests"
+              parent="menu_frontdesk_fleet"
+              action="action_fleet_dispatch_request"
+              sequence="10"/>
+
+    <!-- Fleet Vehicles Menuitem -->
+    <menuitem id="menu_frontdesk_fleet_vehicles"
+              name="Vehicles"
+              parent="menu_frontdesk_fleet"
+              action="fleet.fleet_vehicle_action"
+              sequence="20"/>
+
+</odoo>

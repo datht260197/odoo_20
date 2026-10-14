@@ -1,0 +1,17 @@
+id,name,model_id,group_id/id,operation,domain
+access_frontdesk_document_user,frontdesk.document.user,frontdesk.document,frontdesk_admin.group_frontdesk_user,r,"[('recipient_id.user_id', '=', user.id)]"
+access_frontdesk_document_officer,frontdesk.document.officer,frontdesk.document,frontdesk_admin.group_frontdesk_officer,cru,
+access_frontdesk_document_manager,frontdesk.document.manager,frontdesk.document,frontdesk_admin.group_frontdesk_manager,crud,
+access_frontdesk_parcel_user,frontdesk.parcel.user,frontdesk.parcel,frontdesk_admin.group_frontdesk_user,r,"[('recipient_id.user_id', '=', user.id)]"
+access_frontdesk_parcel_officer,frontdesk.parcel.officer,frontdesk.parcel,frontdesk_admin.group_frontdesk_officer,cru,
+access_frontdesk_parcel_manager,frontdesk.parcel.manager,frontdesk.parcel,frontdesk_admin.group_frontdesk_manager,crud,
+rule_frontdesk_document_multicompany,frontdesk.document multi-company,frontdesk.document,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+rule_frontdesk_parcel_multicompany,frontdesk.parcel multi-company,frontdesk.parcel,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_fleet_dispatch_request_user,fleet.dispatch.request.user,fleet.dispatch.request,frontdesk_admin.group_frontdesk_user,cru,"['|', '|', ('employee_id.user_id', '=', user.id), ('create_uid', '=', user.id), ('employee_id.parent_id.user_id', '=', user.id)]"
+access_fleet_dispatch_request_officer,fleet.dispatch.request.officer,fleet.dispatch.request,frontdesk_admin.group_frontdesk_officer,cru,
+access_fleet_dispatch_request_manager,fleet.dispatch.request.manager,fleet.dispatch.request,frontdesk_admin.group_frontdesk_manager,crud,
+rule_fleet_dispatch_request_multicompany,fleet.dispatch.request multi-company,fleet.dispatch.request,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_fleet_dispatch_expense_user,fleet.dispatch.expense.user,fleet.dispatch.expense,frontdesk_admin.group_frontdesk_user,cru,"['|', ('request_id.employee_id.user_id', '=', user.id), ('request_id.create_uid', '=', user.id)]"
+access_fleet_dispatch_expense_officer,fleet.dispatch.expense.officer,fleet.dispatch.expense,frontdesk_admin.group_frontdesk_officer,cru,
+access_fleet_dispatch_expense_manager,fleet.dispatch.expense.manager,fleet.dispatch.expense,frontdesk_admin.group_frontdesk_manager,crud,
+rule_fleet_dispatch_expense_multicompany,fleet.dispatch.expense multi-company,fleet.dispatch.expense,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"

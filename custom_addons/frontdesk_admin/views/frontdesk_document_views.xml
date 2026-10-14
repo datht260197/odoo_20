@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- List View -->
+    <record id="view_frontdesk_document_list" model="ir.ui.view">
+        <field name="name">frontdesk.document.list</field>
+        <field name="model">frontdesk.document</field>
+        <field name="arch" type="xml">
+            <list string="Legal Documents" sample="1" decoration-muted="state == 'archived'">
+                <field name="internal_ref"/>
+                <field name="external_ref"/>
+                <field name="doc_type"/>
+                <field name="partner_id"/>
+                <field name="recipient_id"/>
+                <field name="issue_date"/>
+                <field name="is_confidential" widget="boolean_toggle"/>
+                <field name="state" widget="badge" decoration-info="state == 'received'" decoration-warning="state == 'processing'" decoration-success="state == 'archived'"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_frontdesk_document_form" model="ir.ui.view">
+        <field name="name">frontdesk.document.form</field>
+        <field name="model">frontdesk.document</field>
+        <field name="arch" type="xml">
+            <form string="Legal Document">
+                <header>
+                    <button name="action_process"
+                            string="Process"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'received'"/>
+
+                    <button name="action_archive"
+                            string="Archive"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'processing'"/>
+
+                    <button name="action_reset_to_received"
+                            string="Reset to Received"
+                            type="object"
+                            invisible="state != 'archived'"
+                            groups="frontdesk_admin.group_frontdesk_manager"/>
+
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="received,processing,archived"/>
+                </header>
+                <sheet>
+                    <field name="can_read_confidential" invisible="1"/>
+                    <div class="oe_title">
+                        <label for="internal_ref"/>
+                        <h1>
+                            <field name="internal_ref" placeholder="Draft / Assigned upon save"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="doc_type" readonly="state == 'archived'"/>
+                            <field name="external_ref" readonly="state == 'archived'"/>
+                            <field name="issue_date" readonly="state == 'archived'"/>
+                            <field name="is_confidential" readonly="state == 'archived'"/>
+                        </group>
+                        <group>
+                            <field name="partner_id" readonly="state == 'archived'"/>
+                            <field name="recipient_id" readonly="state == 'archived'"/>
+                            <field name="company_id" groups="base.group_multi_company" readonly="state == 'archived'"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Content &amp; Files" name="content_files" invisible="is_confidential and not can_read_confidential">
+                            <group>
+                                <field name="summary" readonly="state == 'archived'" placeholder="Summary of the document..."/>
+                            </group>
+                            <group string="Scanned Files">
+                                <field name="attachment_ids" widget="many2many_binary" readonly="state == 'archived'"/>
+                            </group>
+                        </page>
+                        <page string="Confidential Notice" name="confidential_notice" invisible="not is_confidential or can_read_confidential">
+                            <div class="alert alert-warning" role="status">
+                                <strong>Confidential Document:</strong> Content and scanned attachments are strictly restricted to the designated recipient and administrative managers.
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_frontdesk_document_search" model="ir.ui.view">
+        <field name="name">frontdesk.document.search</field>
+        <field name="model">frontdesk.document</field>
+        <field name="arch" type="xml">
+            <search string="Search Legal Documents">
+                <field name="internal_ref"/>
+                <field name="external_ref"/>
+                <field name="partner_id"/>
+                <field name="recipient_id"/>
+                <separator/>
+                <filter name="filter_received" string="Received" domain="[('state', '=', 'received')]"/>
+                <filter name="filter_processing" string="Processing" domain="[('state', '=', 'processing')]"/>
+                <filter name="filter_archived" string="Archived" domain="[('state', '=', 'archived')]"/>
+                <separator/>
+                <filter name="filter_my_documents" string="My Documents" domain="[('recipient_id.user_id', '=', uid)]"/>
+                <filter name="filter_confidential" string="Confidential" domain="[('is_confidential', '=', True)]"/>
+                <separator/>
+                <filter name="group_doc_type" string="Document Type" domain="[]" context="{'group_by': 'doc_type'}"/>
+                <filter name="group_state" string="State" domain="[]" context="{'group_by': 'state'}"/>
+                <filter name="group_recipient" string="Recipient" domain="[]" context="{'group_by': 'recipient_id'}"/>
+                <filter name="group_issue_date" string="Issue Date" domain="[]" context="{'group_by': 'issue_date'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="action_frontdesk_document" model="ir.actions.act_window">
+        <field name="name">Legal Documents</field>
+        <field name="res_model">frontdesk.document</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_frontdesk_document_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Register a new legal document!
+            </p>
+        </field>
+    </record>
+
+</odoo>

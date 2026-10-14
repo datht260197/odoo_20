@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="mail_template_parcel_received" model="mail.template">
+            <field name="name">Frontdesk Parcel: Arrival Notification</field>
+            <field name="model_id" ref="frontdesk_admin.model_frontdesk_parcel"/>
+            <field name="subject">{{ object.company_id.name }}: Parcel {{ object.name }} has arrived</field>
+            <field name="email_to">{{ object.recipient_id.work_email }}</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px; font-family: Arial, sans-serif; font-size: 13px;">
+    <p>Dear <t t-out="object.recipient_id.name or ''">Colleague</t>,</p>
+    <p>A physical parcel has been received for you at the frontdesk.</p>
+    <table style="border-collapse: collapse; width: 100%; max-width: 500px; margin: 15px 0;">
+        <tr>
+            <td style="padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;">Parcel Number:</td>
+            <td style="padding: 6px; border-bottom: 1px solid #ddd;"><t t-out="object.name or ''"/></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;">Tracking Ref:</td>
+            <td style="padding: 6px; border-bottom: 1px solid #ddd;"><t t-out="object.tracking_ref or '-'"/></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;">Carrier:</td>
+            <td style="padding: 6px; border-bottom: 1px solid #ddd;"><t t-out="object.carrier_id.name or '-'"/></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;">Received Time:</td>
+            <td style="padding: 6px; border-bottom: 1px solid #ddd;"><t t-out="format_datetime(object.received_date) or ''"/></td>
+        </tr>
+    </table>
+    <t t-if="object.delivery_notes">
+        <p><strong>Handover / Proxy Notes:</strong> <t t-out="object.delivery_notes or ''"/></p>
+    </t>
+    <p>Please present yourself at the frontdesk to collect your package.</p>
+    <p>Best regards,<br/><t t-out="object.company_id.name or 'Frontdesk Team'"/></p>
+</div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

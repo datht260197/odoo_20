@@ -1,0 +1,625 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following module:
+# 	* frontdesk_admin
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 20.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-13 00:00+0000\n"
+"PO-Revision-Date: 2026-10-13 00:00+0000\n"
+"Last-Translator: Antigravity\n"
+"Language-Team: Vietnamese <vi@li.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: frontdesk_admin
+#: model:ir.actions.act_window,name:frontdesk_admin.action_frontdesk_document
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_documents
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_list
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
+msgid "Legal Documents"
+msgstr "Sổ văn bản"
+
+#. module: frontdesk_admin
+#: model:ir.actions.act_window,name:frontdesk_admin.action_frontdesk_parcel
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_parcels
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_list
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_form
+msgid "Courier Parcels"
+msgstr "Bưu phẩm / Kiện hàng"
+
+#. module: frontdesk_admin
+#: model:ir.model,name:frontdesk_admin.model_frontdesk_document
+msgid "Frontdesk Document"
+msgstr "Văn bản Lễ tân"
+
+#. module: frontdesk_admin
+#: model:ir.model,name:frontdesk_admin.model_frontdesk_parcel
+msgid "Frontdesk Parcel"
+msgstr "Bưu phẩm / Kiện hàng"
+
+#. module: frontdesk_admin
+#: model:ir.module.category,name:frontdesk_admin.module_category_frontdesk_admin
+#: model:res.groups.privilege,name:frontdesk_admin.res_groups_privilege_frontdesk_admin
+msgid "Frontdesk Administration"
+msgstr "Quản trị Lễ tân & Hành chính"
+
+#. module: frontdesk_admin
+#: model:res.groups,name:frontdesk_admin.group_frontdesk_user
+msgid "User"
+msgstr "Người dùng Lễ tân"
+
+#. module: frontdesk_admin
+#: model:res.groups,name:frontdesk_admin.group_frontdesk_officer
+msgid "Officer"
+msgstr "Nhân viên Lễ tân / Văn thư"
+
+#. module: frontdesk_admin
+#: model:res.groups,name:frontdesk_admin.group_frontdesk_manager
+msgid "Manager"
+msgstr "Quản lý Hành chính"
+
+#. module: frontdesk_admin
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_root
+msgid "Frontdesk"
+msgstr "Lễ tân"
+
+#. module: frontdesk_admin
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_registry
+msgid "Registry"
+msgstr "Sổ theo dõi"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__internal_ref
+msgid "Internal Ref"
+msgstr "Số vào sổ nội bộ"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__external_ref
+msgid "External Ref"
+msgstr "Số hiệu văn bản gốc"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__doc_type
+msgid "Document Type"
+msgstr "Loại văn bản"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_document__doc_type__inbound
+msgid "Inbound"
+msgstr "Công văn đến"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_document__doc_type__outbound
+msgid "Outbound"
+msgstr "Công văn đi"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_document__doc_type__contract
+msgid "Contract"
+msgstr "Hợp đồng"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_document__doc_type__other
+msgid "Other"
+msgstr "Khác"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__partner_id
+msgid "Partner / Authority"
+msgstr "Đối tác / Cơ quan ban hành"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__recipient_id
+msgid "Internal Recipient"
+msgstr "Người nhận nội bộ"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__issue_date
+msgid "Issue Date"
+msgstr "Ngày văn bản"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__summary
+msgid "Executive Summary"
+msgstr "Tóm tắt nội dung"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__is_confidential
+msgid "Confidential"
+msgstr "Mật"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__attachment_ids
+msgid "Scanned Files"
+msgstr "Tệp quét đính kèm"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__state
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__state
+msgid "State"
+msgstr "Trạng thái"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_document__state__received
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_parcel__state__received
+msgid "Received"
+msgstr "Tiếp nhận"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_document__state__processing
+msgid "Processing"
+msgstr "Đang xử lý"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_document__state__archived
+msgid "Archived"
+msgstr "Đã lưu trữ"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_parcel__state__notified
+msgid "Notified"
+msgstr "Đã thông báo"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_parcel__state__delivered
+msgid "Delivered"
+msgstr "Đã bàn giao"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_parcel__state__returned
+msgid "Returned"
+msgstr "Chuyển hoàn"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__name
+msgid "Parcel Number"
+msgstr "Số bưu phẩm"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__tracking_ref
+msgid "Tracking Reference"
+msgstr "Mã vận đơn"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__carrier_id
+msgid "Carrier / Delivery Partner"
+msgstr "Đơn vị vận chuyển"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__recipient_id
+msgid "Recipient"
+msgstr "Người nhận"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__delivery_notes
+msgid "Handover / Proxy Recipient Notes"
+msgstr "Ghi chú bàn giao / nhận hộ"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__photo
+msgid "Parcel Photo"
+msgstr "Ảnh chụp kiện hàng"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__received_date
+msgid "Received Date"
+msgstr "Thời gian tiếp nhận"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__delivered_date
+msgid "Delivered Date"
+msgstr "Thời gian bàn giao"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__delivered_by_id
+msgid "Handed Over By"
+msgstr "Người bàn giao"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__company_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__company_id
+msgid "Company"
+msgstr "Công ty"
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
+msgid "Process"
+msgstr "Xử lý"
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
+msgid "Archive"
+msgstr "Lưu trữ"
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_form
+msgid "Reset to Received"
+msgstr "Đặt lại về tiếp nhận"
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_form
+msgid "Deliver to Recipient"
+msgstr "Bàn giao cho người nhận"
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_form
+msgid "Return to Carrier"
+msgstr "Chuyển hoàn bên vận chuyển"
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_document.py:0
+msgid "Document '%s' can only transition to Processing from Received state."
+msgstr "Văn bản '%s' chỉ có thể chuyển sang Đang xử lý từ trạng thái Tiếp nhận."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_document.py:0
+msgid "Document '%s' can only transition to Archived from Processing state."
+msgstr "Văn bản '%s' chỉ có thể lưu trữ từ trạng thái Đang xử lý."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_document.py:0
+msgid "Document '%s' is archived and cannot be modified by non-managers."
+msgstr "Văn bản '%s' đã được lưu trữ và không thể chỉnh sửa bởi người dùng không phải Quản lý."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_document.py:0
+msgid "Only Frontdesk Managers are permitted to delete documents."
+msgstr "Chỉ Quản lý Hành chính mới có quyền xoá văn bản."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_document.py:0
+msgid "Only Frontdesk Managers can reset archived documents."
+msgstr "Chỉ Quản lý Hành chính mới có quyền đặt lại văn bản đã lưu trữ."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_document.py:0
+msgid "You are not allowed to access confidential content of document '%s'."
+msgstr "Bạn không có quyền truy cập nội dung bảo mật của văn bản '%s'."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/ir_attachment.py:0
+msgid "You are not allowed to access attachments of confidential documents."
+msgstr "Bạn không có quyền truy cập tệp đính kèm của văn bản bảo mật."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_parcel.py:0
+msgid "Parcel '%s' can only be delivered from Received or Notified state."
+msgstr "Kiện hàng '%s' chỉ có thể bàn giao từ trạng thái Tiếp nhận hoặc Đã thông báo."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_parcel.py:0
+msgid "Parcel '%s' can only be returned from Received or Notified state."
+msgstr "Kiện hàng '%s' chỉ có thể chuyển hoàn từ trạng thái Tiếp nhận hoặc Đã thông báo."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_parcel.py:0
+msgid "Parcel '%s' is in %s state and cannot be modified by non-managers."
+msgstr "Kiện hàng '%s' đang ở trạng thái %s và không thể chỉnh sửa bởi người dùng không phải Quản lý."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_parcel.py:0
+msgid "Only Frontdesk Managers are permitted to delete parcels."
+msgstr "Chỉ Quản lý Hành chính mới có quyền xoá bưu phẩm."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_parcel.py:0
+msgid "Only Frontdesk Managers can reset parcels."
+msgstr "Chỉ Quản lý Hành chính mới có quyền đặt lại bưu phẩm."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_parcel.py:0
+msgid "Parcel Received: %s"
+msgstr "Tiếp nhận bưu phẩm: %s"
+
+#. module: frontdesk_admin
+#: model:ir.actions.act_window,name:frontdesk_admin.action_fleet_dispatch_request
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_list
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
+msgid "Fleet Dispatch Requests"
+msgstr "Lệnh điều xe"
+
+#. module: frontdesk_admin
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_dispatch_requests
+msgid "Dispatch Requests"
+msgstr "Lệnh điều xe"
+
+#. module: frontdesk_admin
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_fleet
+msgid "Fleet & Dispatch"
+msgstr "Đội xe & Điều xe"
+
+#. module: frontdesk_admin
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_fleet_vehicles
+msgid "Vehicles"
+msgstr "Phương tiện"
+
+#. module: frontdesk_admin
+#: model:ir.model,name:frontdesk_admin.model_fleet_dispatch_request
+msgid "Fleet Dispatch Request"
+msgstr "Lệnh điều xe"
+
+#. module: frontdesk_admin
+#: model:ir.model,name:frontdesk_admin.model_fleet_dispatch_expense
+msgid "Fleet Dispatch Expense"
+msgstr "Chi phí chuyến đi"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__name
+msgid "Request Reference"
+msgstr "Mã lệnh điều xe"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__employee_id
+msgid "Requester"
+msgstr "Người đề xuất"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__destination
+msgid "Destination / Route"
+msgstr "Điểm đến / Lộ trình"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__purpose
+msgid "Trip Purpose"
+msgstr "Mục đích chuyến đi"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__passenger_count
+msgid "Passenger Count"
+msgstr "Số lượng người đi"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__start_datetime
+msgid "Start Date & Time"
+msgstr "Thời gian xuất phát"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__end_datetime
+msgid "End Date & Time"
+msgstr "Thời gian kết thúc"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__vehicle_id
+msgid "Assigned Vehicle"
+msgstr "Xe được điều động"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__driver_id
+msgid "Driver"
+msgstr "Lái xe"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__odometer_start
+msgid "Start Odometer (km)"
+msgstr "Số km xuất phát"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__odometer_end
+msgid "End Odometer (km)"
+msgstr "Số km kết thúc"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__calendar_event_id
+msgid "Calendar Event"
+msgstr "Lịch công tác"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__expense_ids
+msgid "Trip Expenses"
+msgstr "Chi phí chuyến đi"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__total_expense_amount
+msgid "Total Expenses"
+msgstr "Tổng chi phí"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__state
+msgid "State"
+msgstr "Trạng thái"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__draft
+msgid "Draft"
+msgstr "Dự thảo"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__to_approve
+msgid "To Approve"
+msgstr "Chờ phê duyệt"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__approved
+msgid "Approved"
+msgstr "Đã duyệt"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__dispatched
+msgid "Dispatched"
+msgstr "Đã điều xe"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__done
+msgid "Done"
+msgstr "Hoàn thành"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__rejected
+msgid "Rejected"
+msgstr "Từ chối"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__cancelled
+msgid "Cancelled"
+msgstr "Đã hủy"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__expense_type
+msgid "Expense Type"
+msgstr "Loại chi phí"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_expense__expense_type__fuel
+msgid "Fuel"
+msgstr "Xăng dầu"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_expense__expense_type__toll
+msgid "Toll / BOT"
+msgstr "Cầu đường / BOT"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_expense__expense_type__parking
+msgid "Parking"
+msgstr "Gửi xe"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_expense__expense_type__other
+msgid "Other"
+msgstr "Khác"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__amount
+msgid "Amount"
+msgstr "Số tiền"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__receipt_image
+msgid "Receipt Image"
+msgstr "Hóa đơn / Chứng từ"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__payment_status
+msgid "Payment Status"
+msgstr "Trạng thái thanh toán"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_expense__payment_status__unpaid
+msgid "Unpaid"
+msgstr "Chưa thanh toán"
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_expense__payment_status__paid
+msgid "Paid"
+msgstr "Đã thanh toán"
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "The trip departure date & time must be strictly before the return date & time."
+msgstr "Thời gian xuất phát phải diễn ra trước thời gian kết thúc chuyến đi."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "End Odometer (%(end)s km) cannot be less than Start Odometer (%(start)s km)."
+msgstr "Số km kết thúc (%(end)s km) không thể nhỏ hơn số km xuất phát (%(start)s km)."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Vehicle '%(vehicle)s' is already booked for dispatch request '%(conflict)s' from %(start)s to %(end)s."
+msgstr "Xe '%(vehicle)s' đã được xếp lịch cho lệnh điều xe '%(conflict)s' từ %(start)s đến %(end)s."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Dispatch request '%s' is in %s state and cannot be modified by non-managers."
+msgstr "Lệnh điều xe '%s' đang ở trạng thái %s và không thể chỉnh sửa bởi người dùng không phải Quản lý."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only Frontdesk Managers are permitted to delete dispatch requests."
+msgstr "Chỉ Quản lý Hành chính mới có quyền xoá lệnh điều xe."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only draft requests can be submitted for approval."
+msgstr "Chỉ lệnh điều xe ở trạng thái Dự thảo mới có thể gửi phê duyệt."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only pending requests can be approved."
+msgstr "Chỉ lệnh điều xe đang chờ duyệt mới có thể phê duyệt."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only the department manager of '%(employee)s' or a Frontdesk Manager can approve this request."
+msgstr "Chỉ quản lý trực tiếp của '%(employee)s' hoặc Quản lý Hành chính mới có quyền duyệt yêu cầu này."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only pending requests can be rejected."
+msgstr "Chỉ lệnh điều xe đang chờ duyệt mới có thể từ chối."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only the department manager of '%(employee)s' or a Frontdesk Manager can reject this request."
+msgstr "Chỉ quản lý trực tiếp của '%(employee)s' hoặc Quản lý Hành chính mới có quyền từ chối yêu cầu này."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only approved requests can be dispatched."
+msgstr "Chỉ lệnh điều xe đã duyệt mới có thể tiến hành điều xe."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Please assign both a vehicle and a driver before dispatching."
+msgstr "Vui lòng phân công cả phương tiện và lái xe trước khi điều xe."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only dispatched trips can be marked as completed."
+msgstr "Chỉ chuyến xe đã xuất phát mới có thể xác nhận hoàn thành."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Please record the End Odometer reading upon trip return."
+msgstr "Vui lòng nhập số km kết thúc khi xe trở về."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Cannot cancel requests that are already done or cancelled."
+msgstr "Không thể huỷ lệnh điều xe đã hoàn thành hoặc đã bị huỷ trước đó."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only Frontdesk Managers can reset completed or cancelled trips."
+msgstr "Chỉ Quản lý Hành chính mới có quyền đặt lại chuyến xe đã hoàn thành hoặc đã huỷ."
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_expense.py:0
+msgid "Only Frontdesk Officers or Managers are authorized to mark expenses as Paid."
+msgstr "Chỉ Nhân viên Lễ tân hoặc Quản lý Hành chính mới có quyền chuyển trạng thái thanh toán sang Đã thanh toán."

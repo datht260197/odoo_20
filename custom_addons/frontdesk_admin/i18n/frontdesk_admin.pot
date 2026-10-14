@@ -1,0 +1,1360 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* frontdesk_admin
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 20.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-13 10:31+0000\n"
+"PO-Revision-Date: 2026-10-13 10:31+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: frontdesk_admin
+#: model:mail.template,body_html:frontdesk_admin.mail_template_parcel_received
+msgid ""
+"<div style=\"margin: 0px; padding: 0px; font-family: Arial, sans-serif; font-size: 13px;\">\n"
+"    <p>Dear <t t-out=\"object.recipient_id.name or ''\">Colleague</t>,</p>\n"
+"    <p>A physical parcel has been received for you at the frontdesk.</p>\n"
+"    <table style=\"border-collapse: collapse; width: 100%; max-width: 500px; margin: 15px 0;\">\n"
+"        <tr>\n"
+"            <td style=\"padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;\">Parcel Number:</td>\n"
+"            <td style=\"padding: 6px; border-bottom: 1px solid #ddd;\"><t t-out=\"object.name or ''\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td style=\"padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;\">Tracking Ref:</td>\n"
+"            <td style=\"padding: 6px; border-bottom: 1px solid #ddd;\"><t t-out=\"object.tracking_ref or '-'\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td style=\"padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;\">Carrier:</td>\n"
+"            <td style=\"padding: 6px; border-bottom: 1px solid #ddd;\"><t t-out=\"object.carrier_id.name or '-'\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td style=\"padding: 6px; font-weight: bold; border-bottom: 1px solid #ddd;\">Received Time:</td>\n"
+"            <td style=\"padding: 6px; border-bottom: 1px solid #ddd;\"><t t-out=\"format_datetime(object.received_date) or ''\"/></td>\n"
+"        </tr>\n"
+"    </table>\n"
+"    <t t-if=\"object.delivery_notes\">\n"
+"        <p><strong>Handover / Proxy Notes:</strong> <t t-out=\"object.delivery_notes or ''\"/></p>\n"
+"    </t>\n"
+"    <p>Please present yourself at the frontdesk to collect your package.</p>\n"
+"    <p>Best regards,<br/><t t-out=\"object.company_id.name or 'Frontdesk Team'\"/></p>\n"
+"</div>\n"
+"            "
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_parcel.py:0
+msgid ""
+"<p>Dear %(name)s,</p><p>A parcel (<b>%(ref)s</b>) has been received for you "
+"at the frontdesk.</p><ul><li>Tracking Reference: "
+"%(tracking)s</li><li>Carrier: %(carrier)s</li><li>Received Date: "
+"%(date)s</li></ul><p>Please contact the frontdesk to collect your "
+"parcel.</p>"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
+msgid "<span class=\"o_stat_text\">Calendar Event</span>"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
+msgid ""
+"<strong>Confidential Document:</strong> Content and scanned attachments are "
+"strictly restricted to the designated recipient and administrative managers."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_needaction
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_needaction
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_exception_decoration
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_exception_decoration
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_plans_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_plans_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_plans_ids
+msgid "Activity Plans"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_state
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_state
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_type_icon
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_type_icon
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__photo
+msgid "Actual photo of the received parcel taken at frontdesk intake."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__amount
+msgid "Amount"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
+msgid "Approve"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__approved
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_search
+msgid "Approved"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
+msgid "Archive"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_document__state__archived
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_search
+msgid "Archived"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
+msgid "Assign & Dispatch"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__vehicle_id
+msgid "Assigned Vehicle"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_form
+msgid "Assigned automatically"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model,name:frontdesk_admin.model_ir_attachment
+msgid "Attachment"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_attachment_count
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_attachment_count
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_expense__description
+msgid "Brief note or description about this trip expense."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__purpose
+msgid "Business rationale or purpose for the dispatch."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__calendar_event_id
+msgid "Calendar Event"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__can_read_confidential
+msgid "Can Read Confidential Content"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
+msgid "Cancel"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__cancelled
+msgid "Cancelled"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Cannot cancel requests that are already done or cancelled."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_search
+msgid "Carrier"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__carrier_id
+msgid "Carrier / Delivery Partner"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__company_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__company_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__company_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__company_id
+msgid "Company"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
+msgid "Complete Trip"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__is_confidential
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_search
+msgid "Confidential"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
+msgid "Confidential Notice"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
+msgid "Content & Files"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_document__doc_type__contract
+msgid "Contract"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_form
+msgid "Courier Parcel"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.actions.act_window,name:frontdesk_admin.action_frontdesk_parcel
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_parcels
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_list
+msgid "Courier Parcels"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__tracking_ref
+msgid ""
+"Courier tracking number provided by the delivery partner (e.g., DHL, FedEx, "
+"VNPost)."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.actions.act_window,help:frontdesk_admin.action_fleet_dispatch_request
+msgid "Create your first fleet dispatch request!"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__create_uid
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__create_uid
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__create_uid
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__create_date
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__create_date
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__create_date
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__currency_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_form
+msgid "Deliver to Recipient"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_parcel__state__delivered
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_search
+msgid "Delivered"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__delivered_date
+msgid "Delivered Date"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__description
+msgid "Description"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__driver_id
+msgid "Designated driver for the trip."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__recipient_id
+msgid "Designated recipient employee."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__destination
+msgid "Destination / Route"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__request_id
+msgid "Dispatch Request"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid ""
+"Dispatch Request: %(ref)s\n"
+"Purpose: %(purpose)s\n"
+"Driver: %(driver)s"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_dispatch_requests
+msgid "Dispatch Requests"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid ""
+"Dispatch request '%s' is in %s state and cannot be modified by non-managers."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__dispatched
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_search
+msgid "Dispatched"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__display_name
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__display_name
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__display_name
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__display_name
+#: model:ir.model.fields,field_description:frontdesk_admin.field_ir_attachment__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_document.py:0
+msgid "Document '%s' can only transition to Archived from Processing state."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_document.py:0
+msgid "Document '%s' can only transition to Processing from Received state."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_document.py:0
+msgid "Document '%s' is archived and cannot be modified by non-managers."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__doc_type
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_search
+msgid "Document Type"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.module.module,summary:base.module_frontdesk_admin
+msgid "Document, Courier Parcel, and Fleet Dispatch Management"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__done
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_search
+msgid "Done"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__draft
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_search
+msgid "Draft"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
+msgid "Draft / Assigned upon save"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__driver_id
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_search
+msgid "Driver"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__employee_id
+msgid "Employee requesting the vehicle dispatch."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__end_datetime
+msgid "End Date & Time"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid ""
+"End Odometer (%(end)s km) cannot be less than Start Odometer (%(start)s km)."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__odometer_end
+msgid "End Odometer (km)"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__summary
+msgid "Executive Summary"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__start_datetime
+msgid "Expected trip departure time."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__end_datetime
+msgid "Expected trip return time."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__expense_type
+msgid "Expense Type"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__external_ref
+msgid "External Ref"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_fleet
+msgid "Fleet & Dispatch"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_calendar
+msgid "Fleet Dispatch Calendar"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model,name:frontdesk_admin.model_fleet_dispatch_expense
+msgid "Fleet Dispatch Expense"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model,name:frontdesk_admin.model_fleet_dispatch_request
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
+msgid "Fleet Dispatch Request"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.actions.act_window,name:frontdesk_admin.action_fleet_dispatch_request
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_list
+msgid "Fleet Dispatch Requests"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__vehicle_id
+msgid "Fleet vehicle assigned for this trip."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_follower_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_follower_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_partner_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_partner_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_root
+msgid "Frontdesk"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.module.category,name:frontdesk_admin.module_category_frontdesk_admin
+#: model:ir.module.module,shortdesc:base.module_frontdesk_admin
+#: model:res.groups.privilege,name:frontdesk_admin.res_groups_privilege_frontdesk_admin
+msgid "Frontdesk Administration"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model,name:frontdesk_admin.model_frontdesk_document
+msgid "Frontdesk Document"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model,name:frontdesk_admin.model_frontdesk_parcel
+msgid "Frontdesk Parcel"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:mail.template,name:frontdesk_admin.mail_template_parcel_received
+msgid "Frontdesk Parcel: Arrival Notification"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:res.groups,comment:frontdesk_admin.group_frontdesk_manager
+msgid ""
+"Frontdesk managers have full CRUD access, can inspect confidential files, "
+"and can delete records."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__delivered_by_id
+msgid "Frontdesk officer or user who executed the handover."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:res.groups,comment:frontdesk_admin.group_frontdesk_officer
+msgid ""
+"Frontdesk officers can create and update legal documents and courier "
+"parcels."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:res.groups,comment:frontdesk_admin.group_frontdesk_user
+msgid ""
+"Frontdesk users can view their own incoming legal documents and parcels."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_expense__expense_type__fuel
+msgid "Fuel"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__delivered_by_id
+msgid "Handed Over By"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_form
+msgid "Handover / Delivery Notes"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__delivery_notes
+msgid "Handover / Proxy Recipient Notes"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__has_message
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__has_message
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_ir_attachment__id
+msgid "ID"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_exception_icon
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_exception_icon
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__activity_exception_icon
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__activity_exception_icon
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__message_needaction
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__message_needaction
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__message_has_error
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__message_has_error
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__is_confidential
+msgid ""
+"If set, only the designated recipient and Frontdesk Managers can read the "
+"summary and scanned files."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_document__doc_type__inbound
+msgid "Inbound"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__recipient_id
+msgid "Internal Recipient"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__internal_ref
+msgid "Internal Ref"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__recipient_id
+msgid "Internal designated employee handling this document."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__internal_ref
+msgid "Internal registry sequence assigned automatically upon creation."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__name
+msgid "Internal tracking identifier generated automatically upon creation."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_is_follower
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_is_follower
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__issue_date
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_search
+msgid "Issue Date"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__write_uid
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__write_uid
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__write_uid
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__write_date
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__write_date
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__write_date
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
+msgid "Legal Document"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.actions.act_window,name:frontdesk_admin.action_frontdesk_document
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_documents
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_list
+msgid "Legal Documents"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__calendar_event_id
+msgid "Linked calendar event to visualize fleet occupancy."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__carrier_id
+msgid "Logistics partner or courier delivering the package."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.module.category,description:frontdesk_admin.module_category_frontdesk_admin
+msgid "Manage legal documents and physical courier parcels"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:res.groups,name:frontdesk_admin.group_frontdesk_manager
+msgid "Manager"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__activity_type_icon
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__activity_type_icon
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__activity_type_icon
+msgid "Material Symbols icon e.g. checklist"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_has_error
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_has_error
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__my_activity_date_deadline
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__my_activity_date_deadline
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_search
+msgid "My Documents"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_search
+msgid "My Parcels"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_search
+msgid "My Requests"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_calendar_event_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_calendar_event_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_date_deadline
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_date_deadline
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_summary
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_summary
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_type_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_type_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:res.groups.privilege,placeholder:frontdesk_admin.res_groups_privilege_frontdesk_admin
+msgid "No"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_form
+msgid "Notes for handover or proxy recipient..."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_parcel__state__notified
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_search
+msgid "Notified"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_needaction_counter
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_needaction_counter
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__message_has_error_counter
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__message_has_error_counter
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__message_needaction_counter
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__message_needaction_counter
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__message_has_error_counter
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__message_has_error_counter
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__passenger_count
+msgid "Number of people traveling in the vehicle."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__odometer_start
+msgid "Odometer reading when departing frontdesk."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__odometer_end
+msgid "Odometer reading when returning to frontdesk."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:res.groups,name:frontdesk_admin.group_frontdesk_officer
+msgid "Officer"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__external_ref
+msgid "Official number or reference from the external issuer/authority."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only Frontdesk Managers are permitted to delete dispatch requests."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_document.py:0
+msgid "Only Frontdesk Managers are permitted to delete documents."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_parcel.py:0
+msgid "Only Frontdesk Managers are permitted to delete parcels."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_document.py:0
+msgid "Only Frontdesk Managers can reset archived documents."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only Frontdesk Managers can reset completed or cancelled trips."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_parcel.py:0
+msgid "Only Frontdesk Managers can reset parcels."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_expense.py:0
+msgid ""
+"Only Frontdesk Officers or Managers are authorized to mark expenses as Paid."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only approved requests can be dispatched."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only dispatched trips can be marked as completed."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only draft requests can be submitted for approval."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only pending requests can be approved."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Only pending requests can be rejected."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid ""
+"Only the department manager of '%(employee)s' or a Frontdesk Manager can "
+"approve this request."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid ""
+"Only the department manager of '%(employee)s' or a Frontdesk Manager can "
+"reject this request."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_expense__expense_type__other
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_document__doc_type__other
+msgid "Other"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_document__doc_type__outbound
+msgid "Outbound"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__summary
+msgid "Overview or abstract of the document content."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_expense__payment_status__paid
+msgid "Paid"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_parcel.py:0
+msgid "Parcel '%s' can only be delivered from Received or Notified state."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_parcel.py:0
+msgid "Parcel '%s' can only be returned from Received or Notified state."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_parcel.py:0
+msgid "Parcel '%s' is in %s state and cannot be modified by non-managers."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__name
+msgid "Parcel Number"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__photo
+msgid "Parcel Photo"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_parcel.py:0
+msgid "Parcel Received: %s"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_expense__expense_type__parking
+msgid "Parking"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__partner_id
+msgid "Partner / Authority"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__passenger_count
+msgid "Passenger Count"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__payment_status
+msgid "Payment Status"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Please assign both a vehicle and a driver before dispatching."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid "Please record the End Odometer reading upon trip return."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
+msgid "Process"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_document__state__processing
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_search
+msgid "Processing"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__rating_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__rating_ids
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_expense__receipt_image
+msgid "Receipt Image"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_document__state__received
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_parcel__state__received
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_search
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_search
+msgid "Received"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__received_date
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_search
+msgid "Received Date"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__recipient_id
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_search
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_search
+msgid "Recipient"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.actions.act_window,help:frontdesk_admin.action_frontdesk_document
+msgid "Register a new legal document!"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.actions.act_window,help:frontdesk_admin.action_frontdesk_parcel
+msgid "Register a new physical courier parcel!"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_registry
+msgid "Registry"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__name
+msgid "Registry sequence assigned upon creation."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
+msgid "Reject"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__rejected
+msgid "Rejected"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__name
+msgid "Request Reference"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__employee_id
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_search
+msgid "Requester"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
+msgid "Reset to Draft"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_form
+msgid "Reset to Received"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__activity_user_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__activity_user_id
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_form
+msgid "Return to Carrier"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__frontdesk_parcel__state__returned
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_search
+msgid "Returned"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__attachment_ids
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
+msgid "Scanned Files"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_expense__receipt_image
+msgid "Scanned receipt or bill of the expense."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
+msgid "Schedule & Vehicle"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_search
+msgid "Search Courier Parcels"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_search
+msgid "Search Fleet Dispatch Requests"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_search
+msgid "Search Legal Documents"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__partner_id
+msgid "Sender (for inbound), recipient (for outbound), or signing authority."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__delivery_notes
+msgid "Special instructions, proxy handover authorization, or pickup notes."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_search
+msgid "Start Date"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__start_datetime
+msgid "Start Date & Time"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__odometer_start
+msgid "Start Odometer (km)"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__state
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_document__state
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__state
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_search
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_search
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_parcel_search
+msgid "State"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__activity_state
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__activity_state
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
+msgid "Submit for Approval"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_frontdesk_document_form
+msgid "Summary of the document..."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__destination
+msgid "Target destination or itinerary for the trip."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid ""
+"The trip departure date & time must be strictly before the return date & "
+"time."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_request__state__to_approve
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_search
+msgid "To Approve"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_expense__expense_type__toll
+msgid "Toll / BOT"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_list
+msgid "Total"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__total_expense_amount
+msgid "Total Expenses"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_frontdesk_parcel__tracking_ref
+msgid "Tracking Reference"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
+msgid "Trip Details"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__expense_ids
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_form
+msgid "Trip Expenses"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,field_description:frontdesk_admin.field_fleet_dispatch_request__purpose
+msgid "Trip Purpose"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields,help:frontdesk_admin.field_fleet_dispatch_request__activity_exception_decoration
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_document__activity_exception_decoration
+#: model:ir.model.fields,help:frontdesk_admin.field_frontdesk_parcel__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.model.fields.selection,name:frontdesk_admin.selection__fleet_dispatch_expense__payment_status__unpaid
+msgid "Unpaid"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:res.groups,name:frontdesk_admin.group_frontdesk_user
+msgid "User"
+msgstr ""
+
+#. module: frontdesk_admin
+#: model_terms:ir.ui.view,arch_db:frontdesk_admin.view_fleet_dispatch_request_search
+msgid "Vehicle"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/fleet_dispatch_request.py:0
+msgid ""
+"Vehicle '%(vehicle)s' is already booked for dispatch request '%(conflict)s' "
+"from %(start)s to %(end)s."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:ir.ui.menu,name:frontdesk_admin.menu_frontdesk_fleet_vehicles
+msgid "Vehicles"
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/ir_attachment.py:0
+msgid "You are not allowed to access attachments of confidential documents."
+msgstr ""
+
+#. module: frontdesk_admin
+#. odoo-python
+#: code:addons/frontdesk_admin/models/frontdesk_document.py:0
+msgid "You are not allowed to access confidential content of document '%s'."
+msgstr ""
+
+#. module: frontdesk_admin
+#: model:mail.template,subject:frontdesk_admin.mail_template_parcel_received
+msgid "{{ object.company_id.name }}: Parcel {{ object.name }} has arrived"
+msgstr ""
