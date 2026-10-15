@@ -9,6 +9,7 @@
     <menuitem id="menu_approval_root"
               name="Phê duyệt"
               sequence="20"
+              web_icon="enterprise_approval,static/description/icon.png"
               groups="enterprise_approval.group_approval_user"/>
 
     <!-- ====================================================================

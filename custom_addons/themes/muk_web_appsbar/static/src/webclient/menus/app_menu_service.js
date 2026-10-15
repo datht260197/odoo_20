@@ -8,7 +8,7 @@ import {
 
 export const appMenuService = {
     dependencies: ['menu'],
-    async start(env, { menu }) {
+    start(env, { menu }) {
         return {
             getCurrentApp() {
                 return menu.getCurrentApp();

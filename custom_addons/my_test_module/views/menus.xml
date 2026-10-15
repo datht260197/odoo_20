@@ -3,7 +3,7 @@
     <!-- Root Menu -->
     <menuitem id="menu_test_module_root"
               name="My Test App"
-              web_icon="base,static/description/icon.png"
+              web_icon="my_test_module,static/description/icon.png"
               sequence="10"/>
 
     <!-- Sub Menu & Action -->

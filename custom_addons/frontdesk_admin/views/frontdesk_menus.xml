@@ -4,7 +4,8 @@
     <!-- Top-level Application Menu -->
     <menuitem id="menu_frontdesk_root"
               name="Frontdesk"
-              sequence="45"/>
+              sequence="45"
+              web_icon="frontdesk_admin,static/description/icon.png"/>
 
     <!-- Registry Submenu -->
     <menuitem id="menu_frontdesk_registry"

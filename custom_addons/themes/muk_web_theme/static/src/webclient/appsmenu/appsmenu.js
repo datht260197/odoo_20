@@ -23,35 +23,37 @@ export class AppsMenu extends Dropdown {
                 id: user.activeCompany.id,
             });
         } else {
-            this.imageUrl =
-                '/muk_web_theme/static/src/webclient/appsmenu/background.png';
+            this.imageUrl = null;
         }
-        useEffect(() => {
-            if (!this.state.isOpen) {
-                return;
-            }
-            const openMainPalette = (ev) => {
-                if (
-                    !this.commandPaletteOpen &&
-                    ev.key.length === 1 &&
-                    !ev.ctrlKey &&
-                    !ev.altKey
-                ) {
-                    this.commandService.openMainPalette(
-                        { searchValue: `/${ev.key}` },
-                        () => {
-                            this.commandPaletteOpen = false;
-                        },
-                    );
-                    this.commandPaletteOpen = true;
+        useEffect(
+            () => {
+                if (!this.state.isOpen) {
+                    return;
                 }
-            };
-            window.addEventListener('keydown', openMainPalette);
-            return () => {
-                window.removeEventListener('keydown', openMainPalette);
-                this.commandPaletteOpen = false;
-            };
-        });
+                const openMainPalette = (ev) => {
+                    if (
+                        !this.commandPaletteOpen &&
+                        ev.key.length === 1 &&
+                        !ev.ctrlKey &&
+                        !ev.altKey
+                    ) {
+                        this.commandService.openMainPalette(
+                            { searchValue: `/${ev.key}` },
+                            () => {
+                                this.commandPaletteOpen = false;
+                            },
+                        );
+                        this.commandPaletteOpen = true;
+                    }
+                };
+                window.addEventListener('keydown', openMainPalette);
+                return () => {
+                    window.removeEventListener('keydown', openMainPalette);
+                    this.commandPaletteOpen = false;
+                };
+            },
+            () => [this.state.isOpen],
+        );
         useBus(this.globalBus.bus, 'ACTION_MANAGER:UI-UPDATED', () => {
             if (this.state.isOpen) {
                 this.state.close();
@@ -62,7 +64,11 @@ export class AppsMenu extends Dropdown {
         super.onOpened();
         const menu = this.menuRef();
         if (menu) {
-            menu.style.backgroundImage = `url('${this.imageUrl}')`;
+            if (this.imageUrl) {
+                menu.style.backgroundImage = `url('${this.imageUrl}')`;
+            } else {
+                menu.style.backgroundImage = '';
+            }
         }
     }
 }
