@@ -176,34 +176,53 @@ msgid "Working Days/Week"
 msgstr ""
 
 #. module: custom_hr_contract
-#: model:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
 msgid "Tax & Insurance"
 msgstr ""
 
 #. module: custom_hr_contract
-#: model:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
 msgid "Permanent Address"
 msgstr ""
 
 #. module: custom_hr_contract
-#: model:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
 msgid "Temporary Address"
 msgstr ""
 
 #. module: custom_hr_contract
-#: model:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract_version
-#: model:ir.ui.view,arch_db:custom_hr_contract.hr_contract_template_form_view_custom_hr_contract
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract_version
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.hr_contract_template_form_view_custom_hr_contract
 msgid "Allowances"
 msgstr ""
 
 #. module: custom_hr_contract
-#: model:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract_version
-#: model:ir.ui.view,arch_db:custom_hr_contract.hr_contract_template_form_view_custom_hr_contract
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract_version
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.hr_contract_template_form_view_custom_hr_contract
 msgid "Payment & Work Schedule"
 msgstr ""
 
 #. module: custom_hr_contract
 #: model:report.paperformat,name:custom_hr_contract.paperformat_hr_labor_contract
 msgid "Labor Contract A4 Portrait"
+msgstr ""
+
+#. module: custom_hr_contract
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
+msgid "Sex"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__sex
+#: model:ir.model.fields,field_description:hr.field_hr_version__sex
+msgid "Sex"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__sex
+#: model:ir.model.fields,help:hr.field_hr_version__sex
+msgid ""
+"This is the legal sex as recognized by the state, used for official and "
+"statutory purposes."
 msgstr ""
 

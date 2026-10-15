@@ -11,6 +11,11 @@
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
 
+            <!-- === Sex / Giới tính label translation === -->
+            <xpath expr="//field[@name='sex']" position="attributes">
+                <attribute name="string">Sex</attribute>
+            </xpath>
+
             <!-- === Vietnamese Citizen ID (CCCD) Details ===
                  Adds issue date/place after the existing identification_id field
                  inside the "Citizenship" group. -->

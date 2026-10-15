@@ -177,29 +177,29 @@ msgid "Working Days/Week"
 msgstr "Ngày làm việc/tuần"
 
 #. module: custom_hr_contract
-#: model:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
 msgid "Tax & Insurance"
 msgstr "Thuế & Bảo hiểm"
 
 #. module: custom_hr_contract
-#: model:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
 msgid "Permanent Address"
 msgstr "Địa chỉ thường trú"
 
 #. module: custom_hr_contract
-#: model:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
 msgid "Temporary Address"
 msgstr "Chỗ ở hiện tại"
 
 #. module: custom_hr_contract
-#: model:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract_version
-#: model:ir.ui.view,arch_db:custom_hr_contract.hr_contract_template_form_view_custom_hr_contract
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract_version
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.hr_contract_template_form_view_custom_hr_contract
 msgid "Allowances"
 msgstr "Phụ cấp"
 
 #. module: custom_hr_contract
-#: model:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract_version
-#: model:ir.ui.view,arch_db:custom_hr_contract.hr_contract_template_form_view_custom_hr_contract
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract_version
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.hr_contract_template_form_view_custom_hr_contract
 msgid "Payment & Work Schedule"
 msgstr "Hình thức chi trả & Lịch làm việc"
 
@@ -207,4 +207,23 @@ msgstr "Hình thức chi trả & Lịch làm việc"
 #: model:report.paperformat,name:custom_hr_contract.paperformat_hr_labor_contract
 msgid "Labor Contract A4 Portrait"
 msgstr "Hợp đồng lao động A4"
+
+#. module: custom_hr_contract
+#: model_terms:ir.ui.view,arch_db:custom_hr_contract.view_employee_form_custom_hr_contract
+msgid "Sex"
+msgstr "Giới tính"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__sex
+#: model:ir.model.fields,field_description:hr.field_hr_version__sex
+msgid "Sex"
+msgstr "Giới tính"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__sex
+#: model:ir.model.fields,help:hr.field_hr_version__sex
+msgid ""
+"This is the legal sex as recognized by the state, used for official and "
+"statutory purposes."
+msgstr "Đây là giới tính hợp pháp được nhà nước công nhận, dùng cho các mục đích chính thức và theo luật định."
 
