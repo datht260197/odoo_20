@@ -1,0 +1,289 @@
+// ============================================================================
+// Modern Cloud Theme — View Layout Overrides (Form, List, Kanban, Calendar)
+// ============================================================================
+// All rules scoped to @media screen to protect print output.
+// ============================================================================
+
+@media screen {
+
+    // -----------------------------------------------------------------------
+    // 1. Action Manager / Content Area — Soft gray canvas
+    // -----------------------------------------------------------------------
+    .o_action_manager {
+        background-color: #F8FAFC;
+    }
+
+    .o_content {
+        background-color: #F8FAFC;
+    }
+
+    // -----------------------------------------------------------------------
+    // 2. Form View
+    // -----------------------------------------------------------------------
+    .o_form_view {
+
+        // Sheet background container
+        .o_form_sheet_bg {
+            background-color: #F8FAFC;
+        }
+
+        // Document sheet — centered white card with subtle elevation
+        .o_form_sheet {
+            background-color: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        // Status bar — Clean flat look
+        .o_form_statusbar {
+            background-color: #FFFFFF;
+            border-bottom: 1px solid #E2E8F0;
+
+            // Status pill buttons
+            .o_statusbar_status {
+                .btn-secondary {
+                    border-radius: 20px;
+                    border-color: #E2E8F0;
+                    color: #64748B;
+
+                    &:hover {
+                        border-color: #CBD5E1;
+                        background-color: #F1F5F9;
+                        color: #1E293B;
+                    }
+                }
+
+                // Active status
+                .btn-primary, .o_arrow_button_current {
+                    border-radius: 20px;
+                }
+            }
+        }
+
+        // Notebook tabs
+        .o_notebook {
+            > .nav-tabs {
+                border-bottom: 1px solid #E2E8F0;
+
+                .nav-link {
+                    color: #64748B;
+                    border-radius: 6px 6px 0 0;
+
+                    &:hover {
+                        color: #1E293B;
+                        border-color: transparent transparent #CBD5E1;
+                    }
+
+                    &.active {
+                        color: #2563EB;
+                        border-color: #E2E8F0 #E2E8F0 #FFFFFF;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+
+        // Stat buttons
+        .oe_button_box {
+            .oe_stat_button {
+                border-color: #E2E8F0;
+                border-radius: 8px;
+                color: #475569;
+
+                &:hover {
+                    background-color: #F1F5F9;
+                    color: #1E293B;
+                }
+
+                .o_stat_value {
+                    color: #1E293B;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // 3. Chatter — Seamless integration
+    // -----------------------------------------------------------------------
+    .o-mail-Form-chatter {
+        .o-mail-Chatter {
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .o-mail-Thread-newMessage {
+            border-radius: 8px;
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // 4. List View — Clean table
+    // -----------------------------------------------------------------------
+    .o_list_view {
+        .o_list_table {
+            // Table header
+            thead {
+                th {
+                    color: #475569;
+                    font-weight: 600;
+                    border-bottom: 2px solid #E2E8F0;
+                    background-color: #FFFFFF;
+                }
+            }
+
+            // Table body
+            tbody {
+                td {
+                    border-color: #F1F5F9;
+                }
+
+                tr {
+                    &:hover td {
+                        background-color: #F8FAFC;
+                    }
+
+                    &.o_data_row.o_list_record_selected td {
+                        background-color: rgba(37, 99, 235, 0.06);
+                    }
+                }
+            }
+
+            // Footer
+            tfoot {
+                td {
+                    border-top: 2px solid #E2E8F0;
+                    color: #1E293B;
+                }
+            }
+        }
+
+        // Group headers
+        .o_group_header {
+            background-color: #F8FAFC;
+            color: #1E293B;
+            font-weight: 600;
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // 5. Kanban View — Clean cards
+    // -----------------------------------------------------------------------
+    .o_kanban_view {
+        background-color: #F8FAFC;
+
+        // Kanban group columns
+        .o_kanban_group {
+            background-color: transparent;
+
+            // Column header
+            .o_kanban_header {
+                .o_column_title {
+                    color: #1E293B;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        // Kanban record cards
+        .o_kanban_record {
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            background-color: #FFFFFF;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.15s ease, border-color 0.15s ease;
+
+            &:hover {
+                border-color: #CBD5E1;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            }
+
+            // Tags/badges inside cards
+            .badge {
+                border-radius: 12px;
+            }
+        }
+
+        // Ghost card (create placeholder)
+        .o_kanban_ghost {
+            border: 2px dashed #E2E8F0;
+            border-radius: 8px;
+            opacity: 0.5;
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // 6. Calendar View
+    // -----------------------------------------------------------------------
+    .o_calendar_view {
+        background-color: #FFFFFF;
+    }
+
+    // -----------------------------------------------------------------------
+    // 7. Global Dropdowns & Modals — Consistent styling
+    // -----------------------------------------------------------------------
+    .dropdown-menu {
+        border: 1px solid #E2E8F0;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+        .dropdown-item {
+            border-radius: 4px;
+            margin: 0 4px;
+            padding-left: 12px;
+            padding-right: 12px;
+
+            &:hover, &:focus {
+                background-color: #F1F5F9;
+                color: #1E293B;
+            }
+
+            &.active, &:active {
+                background-color: rgba(37, 99, 235, 0.08);
+                color: #2563EB;
+            }
+        }
+    }
+
+    // Modals
+    .modal-content {
+        border: 1px solid #E2E8F0;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+        .modal-header {
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #E2E8F0;
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // 8. Settings View
+    // -----------------------------------------------------------------------
+    .o_base_settings {
+        background-color: #F8FAFC;
+
+        .o_base_settings_header {
+            background-color: #FFFFFF;
+            border-bottom: 1px solid #E2E8F0;
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // 9. Global Helpers — Remove heavy shadows
+    // -----------------------------------------------------------------------
+    // Tame Bootstrap's default heavy shadows
+    .shadow-sm {
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+    }
+    .shadow {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+    }
+    .shadow-lg {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    }
+
+}

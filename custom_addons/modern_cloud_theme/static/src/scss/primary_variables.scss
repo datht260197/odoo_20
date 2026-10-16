@@ -1,0 +1,150 @@
+// ============================================================================
+// Modern Cloud Theme — Primary Variable Overrides
+// ============================================================================
+// Loaded AFTER web/static/src/scss/primary_variables.scss via the 'after'
+// asset directive. Variables here intentionally omit !default so they
+// override the core defaults.
+// ============================================================================
+
+// ---------------------------------------------------------------------------
+// 1. Brand & Action Colors — Royal Blue
+// ---------------------------------------------------------------------------
+$o-community-color: #2563EB;
+$o-brand-odoo: #2563EB;
+$o-brand-primary: #2563EB;
+$o-action: #2563EB;
+
+// Secondary / muted
+$o-brand-secondary: #64748B;
+$o-brand-lightsecondary: #F8FAFC;
+
+// ---------------------------------------------------------------------------
+// 2. Gray Palette — Slate-tinted
+// ---------------------------------------------------------------------------
+$o-gray-100: #F8FAFC;
+$o-gray-200: #F1F5F9;
+$o-gray-300: #E2E8F0;
+$o-gray-400: #CBD5E1;
+$o-gray-500: #94A3B8;
+$o-gray-600: #64748B;
+$o-gray-700: #475569;
+$o-gray-800: #334155;
+$o-gray-900: #1E293B;
+
+// ---------------------------------------------------------------------------
+// 3. Canvas & View Colors
+// ---------------------------------------------------------------------------
+$o-view-background-color: #FFFFFF;
+
+// Border color — subtle slate
+$o-border-color: #E2E8F0;
+
+// Text colors
+$o-main-text-color: #1E293B;
+$o-main-color-muted: rgba(#475569, 0.76);
+$o-main-headings-color: #0F172A;
+$o-main-link-color: #1D4ED8;
+
+// ---------------------------------------------------------------------------
+// 4. Border Radius — Slightly larger for modern feel
+// ---------------------------------------------------------------------------
+$o-border-radius: o-to-rem(6px);
+$o-border-radius-sm: o-to-rem(4px);
+$o-border-radius-lg: o-to-rem(8px);
+$o-border-radius-xl: o-to-rem(14px);
+
+// ---------------------------------------------------------------------------
+// 5. Component Active States
+// ---------------------------------------------------------------------------
+$o-component-active-bg: mix(#2563EB, #F8FAFC, 12%);
+$o-component-active-border: #2563EB;
+$o-component-active-color: #1E293B;
+
+// ---------------------------------------------------------------------------
+// 6. Form / Input
+// ---------------------------------------------------------------------------
+$o-input-border-required: #2563EB;
+$o-form-lightsecondary: #CBD5E1;
+$o-form-check-input-border-color: #94A3B8;
+
+// ---------------------------------------------------------------------------
+// 7. Button Override Map — Clean, flat buttons
+// ---------------------------------------------------------------------------
+$o-btns-bs-override: (
+    "primary": (
+        background: #2563EB,
+        border: #2563EB,
+        color: #FFFFFF,
+
+        hover-background: #1D4ED8,
+        hover-border: #1E40AF,
+        hover-color: #FFFFFF,
+
+        active-background: mix(#2563EB, #FFFFFF, 10%),
+        active-border: #2563EB,
+        active-color: #1E40AF,
+
+        disabled-background: #2563EB,
+        disabled-border: #2563EB,
+        disabled-color: #FFFFFF,
+    ),
+    "secondary": (
+        background: #F1F5F9,
+        border: #E2E8F0,
+        color: #1E293B,
+
+        hover-background: #E2E8F0,
+        hover-border: #CBD5E1,
+        hover-color: #0F172A,
+
+        active-background: mix(#2563EB, #F8FAFC, 12%),
+        active-border: #2563EB,
+        active-color: #1E293B,
+
+        disabled-background: #F1F5F9,
+        disabled-border: #E2E8F0,
+        disabled-color: #1E293B,
+    ),
+    "light": (
+        background: #FFFFFF,
+        border: #E2E8F0,
+        color: #1E293B,
+
+        hover-background: #F1F5F9,
+        hover-border: #E2E8F0,
+        hover-color: #0F172A,
+
+        active-background: mix(#2563EB, #F8FAFC, 12%),
+        active-border: #2563EB,
+        active-color: #1E293B,
+
+        disabled-background: #FFFFFF,
+        disabled-border: #E2E8F0,
+        disabled-color: #1E293B,
+    ),
+);
+
+$o-btns-bs-outline-override: (
+    "secondary": (
+        background: transparent,
+        border: #E2E8F0,
+        color: #1E293B,
+
+        hover-background: #F1F5F9,
+        hover-border: #CBD5E1,
+        hover-color: #0F172A,
+
+        active-background: mix(#2563EB, #F8FAFC, 12%),
+        active-border: #2563EB,
+        active-color: #1E293B,
+
+        disabled-background: transparent,
+        disabled-border: #E2E8F0,
+        disabled-color: #1E293B,
+    ),
+);
+
+// ---------------------------------------------------------------------------
+// 8. Shadow Color — Softer
+// ---------------------------------------------------------------------------
+$o-shadow-color: #64748B;

@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * modern_cloud_theme
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 20.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-15 13:52+0000\n"
+"PO-Revision-Date: 2026-10-15 13:52+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: modern_cloud_theme
+#: model:ir.module.module,shortdesc:modern_cloud_theme.module_modern_cloud_theme
+msgid "Modern Cloud Theme"
+msgstr ""
+
+#. module: modern_cloud_theme
+#: model:ir.module.module,summary:modern_cloud_theme.module_modern_cloud_theme
+msgid "Clean, minimalist Slate & Blue backend theme inspired by modern cloud SaaS design"
+msgstr ""
+
+#. module: modern_cloud_theme
+#: model:ir.module.module,description:modern_cloud_theme.module_modern_cloud_theme
+msgid ""
+"A lightweight, CSS-only backend theme that brings a clean, flat, modern\n"
+"cloud aesthetic to Odoo 20 Community. Features a pure white document\n"
+"canvas, floating pill search bar, subtle borders, and a refined\n"
+"Slate & Blue color palette.\n"
+"\n"
+"Key features:\n"
+"- Royal Blue primary brand color with Slate Gray accents\n"
+"- Ultra-clean white navbar with subtle bottom border\n"
+"- Floating pill-shaped search bar with rounded filter tags\n"
+"- Flat form sheets, clean kanban cards, polished list views\n"
+"- Strict print protection — zero theme bleed into QWeb PDF reports\n"
+"- Zero JavaScript — pure SCSS, maximum stability and performance"
+msgstr ""

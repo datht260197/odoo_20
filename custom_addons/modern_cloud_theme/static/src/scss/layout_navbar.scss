@@ -1,0 +1,91 @@
+// ============================================================================
+// Modern Cloud Theme — Navbar Layout Overrides
+// ============================================================================
+// All rules scoped to @media screen to protect print output.
+// ============================================================================
+
+@media screen {
+
+    // -----------------------------------------------------------------------
+    // Main Navbar — White background, subtle bottom border
+    // -----------------------------------------------------------------------
+    .o_main_navbar {
+        background: #FFFFFF;
+        border-bottom: 1px solid #E2E8F0;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+
+        // Entry text: dark slate instead of white-on-purple
+        --NavBar-entry-color: #475569;
+        --NavBar-entry-color--hover: #1E293B;
+
+        // Menu toggle (hamburger) — dark slate
+        .o_menu_toggle {
+            color: #475569;
+
+            &:hover, &:focus {
+                color: #1E293B;
+                background-color: #F1F5F9;
+            }
+        }
+
+        // Apps menu dropdown toggle
+        .o_navbar_apps_menu .dropdown-toggle {
+            color: #475569;
+
+            &:hover, &:focus {
+                color: #1E293B;
+                background-color: #F1F5F9;
+            }
+        }
+
+        // Brand name
+        .o_menu_brand {
+            color: #1E293B;
+            font-weight: 600;
+
+            &:hover {
+                color: #2563EB;
+            }
+        }
+
+        // Breadcrumbs inside navbar
+        .o_navbar_breadcrumbs {
+            color: #64748B;
+
+            .btn {
+                color: #64748B;
+
+                &:hover {
+                    color: #1E293B;
+                }
+            }
+        }
+
+        // Systray entries (messaging, activities, user menu)
+        .o_menu_systray {
+            > .o-dropdown, > .dropdown, > div {
+                > .dropdown-toggle, > a, > button {
+                    color: #475569;
+
+                    &:hover, &:focus {
+                        color: #1E293B;
+                        background-color: #F1F5F9;
+                    }
+                }
+            }
+        }
+
+        // Badges on systray icons
+        .badge {
+            background-color: #2563EB;
+        }
+
+        // Dropdown menus from navbar
+        .dropdown-menu {
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+        }
+    }
+
+}

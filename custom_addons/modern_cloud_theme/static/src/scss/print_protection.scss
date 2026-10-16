@@ -1,0 +1,124 @@
+// ============================================================================
+// Modern Cloud Theme — Print Protection
+// ============================================================================
+// This file provides explicit @media print resets to guarantee zero theme
+// styling bleeds into QWeb PDF reports (invoices, approval slips, contracts).
+//
+// All layout SCSS files already scope their rules inside @media screen {},
+// but this file adds an extra safety net with explicit print resets.
+// ============================================================================
+
+@media print {
+
+    // -----------------------------------------------------------------------
+    // 1. Navbar — Hidden in print (Odoo default), reinforce
+    // -----------------------------------------------------------------------
+    .o_main_navbar {
+        background: initial !important;
+        border-bottom: none !important;
+        box-shadow: none !important;
+    }
+
+    // -----------------------------------------------------------------------
+    // 2. Action Manager / Content — Reset to white
+    // -----------------------------------------------------------------------
+    .o_action_manager,
+    .o_content {
+        background-color: #FFFFFF !important;
+    }
+
+    // -----------------------------------------------------------------------
+    // 3. Form Sheet — Reset decorative styling
+    // -----------------------------------------------------------------------
+    .o_form_view {
+        .o_form_sheet_bg {
+            background-color: #FFFFFF !important;
+        }
+
+        .o_form_sheet {
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            background-color: #FFFFFF !important;
+        }
+
+        .o_form_statusbar {
+            background-color: #FFFFFF !important;
+            box-shadow: none !important;
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // 4. Control Panel — Odoo handles print layout; reset theme extras
+    // -----------------------------------------------------------------------
+    .o_control_panel {
+        background-color: #FFFFFF !important;
+        border-bottom: none !important;
+    }
+
+    // -----------------------------------------------------------------------
+    // 5. List View — Clean print
+    // -----------------------------------------------------------------------
+    .o_list_view {
+        .o_list_table {
+            thead th {
+                background-color: #FFFFFF !important;
+                border-bottom-color: #000000 !important;
+            }
+
+            tbody td {
+                border-color: #dee2e6 !important;
+            }
+
+            tr:hover td {
+                background-color: transparent !important;
+            }
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // 6. Kanban — Reset card decorations
+    // -----------------------------------------------------------------------
+    .o_kanban_view {
+        background-color: #FFFFFF !important;
+
+        .o_kanban_record {
+            border-color: #dee2e6 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // 7. Modals / Dropdowns — No decorative borders/shadows
+    // -----------------------------------------------------------------------
+    .modal-content {
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .dropdown-menu {
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+
+    // -----------------------------------------------------------------------
+    // 8. Global Shadow Reset
+    // -----------------------------------------------------------------------
+    .shadow-sm, .shadow, .shadow-lg {
+        box-shadow: none !important;
+    }
+
+    // -----------------------------------------------------------------------
+    // 9. Settings — Reset background
+    // -----------------------------------------------------------------------
+    .o_base_settings {
+        background-color: #FFFFFF !important;
+
+        .o_base_settings_header {
+            background-color: #FFFFFF !important;
+            border-bottom: none !important;
+        }
+    }
+
+}
