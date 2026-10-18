@@ -461,6 +461,8 @@ class TestRoomBooking(TransactionCase):
     # -------------------------------------------------------------------------
     def test_vietnamese_localization(self):
         """Verify Vietnamese translations for Phase 4 meeting room terms in vi_VN context."""
+        self.env['res.lang']._activate_lang('vi_VN')
+        self.env['ir.module.module']._load_module_terms(['frontdesk_admin'], ['vi_VN'])
         env_vi = self.env(context={'lang': 'vi_VN'})
 
         model_room = env_vi['frontdesk.meeting.room']

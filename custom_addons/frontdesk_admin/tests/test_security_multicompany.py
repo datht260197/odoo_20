@@ -179,5 +179,6 @@ class TestSecurityMultiCompany(TransactionCase):
             'company_id': self.company_1.id,
         })
         # Check that model exists and can be queried with vi_VN context
+        self.env['res.lang']._activate_lang('vi_VN')
         doc_vi = doc.with_context(lang='vi_VN')
         self.assertTrue(doc_vi)

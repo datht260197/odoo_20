@@ -345,6 +345,8 @@ class TestFrontdeskVisitor(TransactionCase):
 
     def test_08_visitor_vietnamese_localization(self):
         """Test Vietnamese translations for visitor model and selection labels."""
+        self.env['res.lang']._activate_lang('vi_VN')
+        self.env['ir.module.module']._load_module_terms(['frontdesk_admin'], ['vi_VN'])
         visitor = self.env['frontdesk.visitor'].create({
             'name': 'Visitor Test Lang',
             'purpose': 'Testing Vietnamese Localization',

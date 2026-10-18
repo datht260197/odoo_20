@@ -182,6 +182,8 @@ class TestProjectSecurityTier(common.TransactionCase):
 
     def test_05_vietnamese_localization(self):
         """Test Vietnamese translations for critical security messages."""
+        self.env['res.lang']._activate_lang('vi_VN')
+        self.env['ir.module.module']._load_module_terms(['project_security_tier'], ['vi_VN'])
         env_vi = self.env(context={'lang': 'vi_VN'})
         msg_allocated = env_vi._("Only Project Leaders or Administrators are allowed to modify allocated hours.")
         self.assertEqual(msg_allocated, "Chỉ Trưởng dự án hoặc Quản trị viên mới được phép điều chỉnh giờ phân bổ.")

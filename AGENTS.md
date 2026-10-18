@@ -136,3 +136,26 @@ Read targeted excerpts (`grep -n`, `sed -n`), no repeated full-file reads or rep
 ## 11. Final report format (bilingual, §3a)
 **Implemented** · **Reused standard models/fields** · **New fields/models** (none / approved by user: yes) · **Changed files** · **Tests** (exact commands + pass/fail) · **Localization** (EN/VI verified how) · **Remaining risks** (only material/unverified).
 If schema approval is pending, output the §3 proposal instead of claiming completion.
+## 12. ENGINEERING GUARDRAILS & DISCIPLINE (Matt Pocock Skills Integration)
+
+All AI agents and developers operating in this repository MUST strictly follow these three engineering disciplines:
+
+### A. Pre-Execution Planning (`request-refactor-plan`)
+- **No Direct Edits**: NEVER touch, edit, or create files without first submitting a clear, step-by-step execution plan.
+- **Risk Assessment**: The plan must explicitly state:
+  1. Identified technical risks & breaking changes (DB schema integrity, view XPath breakage, ORM constraints).
+  2. Exact files targeted for modification or creation.
+  3. Step-by-step execution phases.
+- **Confirmation Gate**: The agent MUST stop and wait for explicit user confirmation before proceeding with any file modification.
+
+### B. Test-Driven Development (`tdd`)
+- **Red-Green-Refactor Cycle**:
+  1. **Red**: For any new business logic, security restriction, or access rule, write the Odoo unit test (`tests/test_*.py`) FIRST. Run the test to confirm it fails as expected.
+  2. **Green**: Write the minimal amount of Python/XML code required to satisfy and pass the test.
+  3. **Refactor**: Clean and optimize the code following PEP8 and Odoo conventions while ensuring all tests continue to pass.
+- **Access Rule Validation**: Never consider a permission feature complete without automated tests asserting `AccessError` for unauthorized roles and successful execution for authorized roles.
+
+### C. Git & Deployment Guardrails (`git-guardrails` & `pre-commit`)
+- **Conventional Commits**: All commit messages must strictly adhere to the format: `<type>(<scope>): <short description>` (e.g., `feat(approval): add otp signature verification`, `fix(kanban): prevent unauthorized stage transition`).
+- **No Broken Commits**: Code with syntax errors, unclosed XML tags, broken Python imports, or failing unit tests MUST NEVER be committed.
+- **CI/CD Protection**: Remember that every push to `main` triggers automated CI/CD runners deploying to the live homelab Proxmox environment. Flawed commits will cause service crashes.
