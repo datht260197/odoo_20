@@ -28,11 +28,12 @@
     }
 
     // -----------------------------------------------------------------------
-    // 3. Form Sheet — Reset decorative styling
+    // 3. Form Sheet — Reset decorative styling & Mobile sticky footer
     // -----------------------------------------------------------------------
     .o_form_view {
         .o_form_sheet_bg {
             background-color: #FFFFFF !important;
+            padding-bottom: 0 !important;
         }
 
         .o_form_sheet {
@@ -40,11 +41,27 @@
             border-radius: 0 !important;
             box-shadow: none !important;
             background-color: #FFFFFF !important;
+            padding-bottom: 0 !important;
+            width: auto !important;
+            max-width: none !important;
         }
 
         .o_form_statusbar {
             background-color: #FFFFFF !important;
             box-shadow: none !important;
+
+            .o_statusbar_buttons {
+                position: static !important;
+                box-shadow: none !important;
+                border: none !important;
+                background-color: transparent !important;
+                padding: 0 !important;
+            }
+        }
+
+        .o-mail-Form-chatter,
+        .o_form_renderer + .o_chatter {
+            padding-bottom: 0 !important;
         }
     }
 

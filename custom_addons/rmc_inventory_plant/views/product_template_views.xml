@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_rmc_form" model="ir.ui.view">
+        <field name="name">product.template.rmc.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="rmc_product_type" widget="radio" options="{'horizontal': True}"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="RMC Specifications" name="rmc_specs" invisible="not rmc_product_type">
+                    <group>
+                        <group string="Cross-System Identifiers" name="cross_system_codes">
+                            <field name="acs_material_code"/>
+                            <field name="bmes_material_code"/>
+                            <field name="fast_legacy_code"/>
+                        </group>
+                        <group string="Concrete Specifications" name="concrete_specs" invisible="rmc_product_type != 'concrete'">
+                            <field name="concrete_grade"/>
+                            <field name="slump_spec"/>
+                            <field name="stone_size"/>
+                        </group>
+                        <group string="Physical Density Calibration" name="density_specs" invisible="rmc_product_type != 'raw_material'">
+                            <field name="standard_density_ton_m3"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_rmc_tree" model="ir.ui.view">
+        <field name="name">product.template.rmc.list</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="rmc_product_type" optional="show"/>
+                <field name="concrete_grade" optional="hide"/>
+                <field name="slump_spec" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

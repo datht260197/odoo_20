@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- RMC Product Categories -->
+        <record id="product_category_rmc_root" model="product.category">
+            <field name="name">Ready-Mix Concrete (RMC)</field>
+            <field name="parent_id" ref="product.product_category_goods"/>
+        </record>
+
+        <record id="product_category_rmc_raw" model="product.category">
+            <field name="name">RMC Raw Materials (Aggregates &amp; Cement)</field>
+            <field name="parent_id" ref="rmc_inventory_plant.product_category_rmc_root"/>
+        </record>
+
+        <record id="product_category_rmc_concrete" model="product.category">
+            <field name="name">Commercial Concrete Products</field>
+            <field name="parent_id" ref="rmc_inventory_plant.product_category_rmc_root"/>
+        </record>
+    </data>
+</odoo>

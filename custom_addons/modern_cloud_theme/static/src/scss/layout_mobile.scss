@@ -1,0 +1,237 @@
+// ============================================================================
+// Modern Cloud Theme — High-Ergonomics Mobile Responsive SCSS Layer
+// ============================================================================
+// Scoped strictly to @media screen and (max-width: 768px) to eliminate bleed
+// into desktop viewports and QWeb PDF print reports.
+// ============================================================================
+
+@media screen and (max-width: 768px) {
+
+    // -----------------------------------------------------------------------
+    // 1. Mobile Viewport Scoping & Sidebar Suppression
+    // -----------------------------------------------------------------------
+    // Suppress conflicting desktop sidebar/appsbar containers to give 100% width
+    .mk_apps_sidebar_panel,
+    .muk_web_appsbar,
+    .o_appsbar {
+        display: none !important;
+        width: 0 !important;
+        min-width: 0 !important;
+        max-width: 0 !important;
+    }
+
+    .o_action_manager {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    // -----------------------------------------------------------------------
+    // 2. Prioritized 7-Core-App Hub Grid
+    // -----------------------------------------------------------------------
+    // Thumb-friendly 3-4 column grid for the mobile App Drawer / Switcher
+    .o_home_menu,
+    .o_apps_menu,
+    .dropdown-menu.o_apps_menu {
+        .o_apps {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)) !important;
+            gap: 12px !important;
+            padding: 16px 12px !important;
+            justify-content: center !important;
+        }
+
+        .o_app {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            padding: 8px 4px !important;
+            min-width: 64px !important;
+            min-height: 76px !important;
+            text-decoration: none !important;
+            transition: transform 0.15s ease-in-out;
+
+            &:active {
+                transform: scale(0.95);
+            }
+
+            .o_app_icon,
+            img {
+                width: 48px !important;
+                height: 48px !important;
+                border-radius: 12px !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+                object-fit: contain !important;
+                margin-bottom: 6px !important;
+                background-color: #FFFFFF !important;
+            }
+
+            .o_caption {
+                font-size: 11px !important;
+                font-weight: 500 !important;
+                color: #1E293B !important;
+                line-height: 1.2 !important;
+                max-width: 76px !important;
+                word-break: break-word !important;
+            }
+
+            // Prioritize 7 core field apps to appear at the top
+            &[data-menu-xmlid*="mail"],
+            &[data-menu-xmlid*="enterprise_approval"],
+            &[data-menu-xmlid*="it_helpdesk"],
+            &[data-menu-xmlid*="hr.menu_hr"],
+            &[data-menu-xmlid*="hr_holidays"],
+            &[data-menu-xmlid*="fleet"],
+            &[data-menu-xmlid*="frontdesk"] {
+                order: 1 !important;
+
+                .o_app_icon,
+                img {
+                    border: 1px solid #CBD5E1 !important;
+                }
+            }
+
+            // Deprioritize administrative modules away from immediate field access
+            &[data-menu-xmlid*="base.menu_administration"],
+            &[data-menu-xmlid*="settings"],
+            &[data-menu-xmlid*="apps"] {
+                order: 10 !important;
+                opacity: 0.75 !important;
+            }
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // 3. Sticky Bottom Action Footer (Form Views)
+    // -----------------------------------------------------------------------
+    .o_form_view {
+        // Offset form sheet and chatter so sticky buttons never obscure content
+        .o_form_sheet_bg {
+            padding-bottom: 84px !important;
+        }
+
+        .o_form_sheet {
+            margin-bottom: 24px !important;
+        }
+
+        .o-mail-Form-chatter,
+        .o_form_renderer + .o_chatter {
+            padding-bottom: 84px !important;
+        }
+
+        // Transform action buttons into a fixed sticky bottom footer
+        .o_form_statusbar {
+            .o_statusbar_buttons {
+                position: fixed !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                z-index: 1000 !important;
+                background-color: #FFFFFF !important;
+                border-top: 1px solid #E2E8F0 !important;
+                box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08) !important;
+                padding: 10px 16px !important;
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: 8px !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+
+                // Touch-optimized buttons (min 44px - 48px height)
+                .btn {
+                    min-height: 44px !important;
+                    display: inline-flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    padding: 8px 16px !important;
+                    font-size: 14px !important;
+                    font-weight: 600 !important;
+                    border-radius: 8px !important;
+                    flex: 1 1 auto !important;
+                    white-space: nowrap !important;
+                }
+
+                // Highlight prominent primary / success actions
+                .btn-primary,
+                .btn-success {
+                    flex: 2 1 auto !important;
+                }
+            }
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // 4. Single-Column Fluid Document Layout
+    // -----------------------------------------------------------------------
+    .o_form_view {
+        .o_form_sheet {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            border-radius: 0 !important;
+            border-left: none !important;
+            border-right: none !important;
+            padding: 16px 12px !important;
+
+            // Stack table-based groups vertically
+            .o_group,
+            .o_inner_group {
+                width: 100% !important;
+                display: block !important;
+
+                tr {
+                    display: flex !important;
+                    flex-direction: column !important;
+                    width: 100% !important;
+                    margin-bottom: 8px !important;
+                }
+
+                td {
+                    display: block !important;
+                    width: 100% !important;
+                    padding: 2px 0 !important;
+                }
+
+                .o_td_label {
+                    font-size: 12px !important;
+                    color: #64748B !important;
+                    margin-bottom: 2px !important;
+                    border-bottom: none !important;
+                }
+            }
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // 5. Centered 2FA OTP Digital Signature Wizard on Mobile
+    // -----------------------------------------------------------------------
+    .modal-dialog {
+        margin: 12px !important;
+
+        input[name="otp_input"] {
+            font-size: 26px !important;
+            letter-spacing: 8px !important;
+            text-align: center !important;
+            height: 52px !important;
+            border-radius: 10px !important;
+            margin: 0 auto !important;
+            max-width: 240px !important;
+        }
+
+        .modal-footer {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 8px !important;
+
+            .btn {
+                width: 100% !important;
+                min-height: 44px !important;
+                margin: 0 !important;
+            }
+        }
+    }
+
+}

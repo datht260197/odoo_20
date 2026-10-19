@@ -1,0 +1,181 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* rmc_project_site
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 20.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 07:00+0000\n"
+"PO-Revision-Date: 2026-10-19 07:00+0000\n"
+"Last-Translator: DatHT\n"
+"Language-Team: Vietnamese <vi@li.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: rmc_project_site
+#: model:ir.model.fields,field_description:rmc_project_site.field_project_project__is_concrete_site
+msgid "Is Concrete Site"
+msgstr "Là Công trình Bê tông"
+
+#. module: rmc_project_site
+#: model:ir.model.fields,help:rmc_project_site.field_project_project__is_concrete_site
+msgid "Mark this project as an active Ready-Mix Concrete construction site."
+msgstr "Đánh dấu dự án này là công trình đổ bê tông thương phẩm đang hoạt động."
+
+#. module: rmc_project_site
+#: model:ir.model.fields,field_description:rmc_project_site.field_project_project__project_code
+msgid "Project Code"
+msgstr "Mã Công trình"
+
+#. module: rmc_project_site
+#: model:ir.model.fields,help:rmc_project_site.field_project_project__project_code
+msgid "Internal engineering/dispatching code for the construction site."
+msgstr "Mã kỹ thuật và điều độ nội bộ cho công trình xây dựng."
+
+#. module: rmc_project_site
+#: model:ir.model.fields,field_description:rmc_project_site.field_project_project__fast_legacy_project_code
+msgid "Fast ERP Project Code"
+msgstr "Mã Công trình Fast ERP"
+
+#. module: rmc_project_site
+#: model:ir.model.fields,help:rmc_project_site.field_project_project__fast_legacy_project_code
+msgid "Legacy project code imported from Fast ERP."
+msgstr "Mã công trình lịch sử chuyển đổi từ hệ thống Fast ERP."
+
+#. module: rmc_project_site
+#: model:ir.model.fields,field_description:rmc_project_site.field_project_project__site_address
+msgid "Discharge Site Address"
+msgstr "Địa chỉ điểm xả / Công trình"
+
+#. module: rmc_project_site
+#: model:ir.model.fields,help:rmc_project_site.field_project_project__site_address
+msgid "Full physical address or landmark of the concrete discharge site."
+msgstr "Địa chỉ vật lý hoặc mốc định vị chi tiết của điểm xả bê tông."
+
+#. module: rmc_project_site
+#: model:ir.model.fields,field_description:rmc_project_site.field_project_project__gps_latitude
+msgid "Latitude"
+msgstr "Vĩ độ (Latitude)"
+
+#. module: rmc_project_site
+#: model:ir.model.fields,help:rmc_project_site.field_project_project__gps_latitude
+msgid "GPS Latitude in decimal degrees (e.g. 10.762622)."
+msgstr "Vĩ độ tọa độ GPS theo độ thập phân (VD: 10.762622)."
+
+#. module: rmc_project_site
+#: model:ir.model.fields,field_description:rmc_project_site.field_project_project__gps_longitude
+msgid "Longitude"
+msgstr "Kinh độ (Longitude)"
+
+#. module: rmc_project_site
+#: model:ir.model.fields,help:rmc_project_site.field_project_project__gps_longitude
+msgid "GPS Longitude in decimal degrees (e.g. 106.660172)."
+msgstr "Kinh độ tọa độ GPS theo độ thập phân (VD: 106.660172)."
+
+#. module: rmc_project_site
+#: model:ir.model.fields,field_description:rmc_project_site.field_project_project__geofence_radius_m
+msgid "Geofence Radius (m)"
+msgstr "Bán kính vùng xả Geofence (m)"
+
+#. module: rmc_project_site
+#: model:ir.model.fields,help:rmc_project_site.field_project_project__geofence_radius_m
+msgid "Radius in meters from the site center for automated arrival/departure geofence validation."
+msgstr "Bán kính tính bằng mét từ tâm công trình để tự động xác thực xe đến/rời vùng xả."
+
+#. module: rmc_project_site
+#: model:ir.model.fields,field_description:rmc_project_site.field_project_project__primary_plant_id
+msgid "Primary Batching Plant"
+msgstr "Trạm trộn chính"
+
+#. module: rmc_project_site
+#: model:ir.model.fields,help:rmc_project_site.field_project_project__primary_plant_id
+msgid "Default batching plant assigned to supply concrete to this site."
+msgstr "Trạm trộn mặc định được phân công cấp bê tông cho công trình này."
+
+#. module: rmc_project_site
+#: model:ir.model.fields,field_description:rmc_project_site.field_project_project__backup_plant_ids
+msgid "Backup Batching Plants"
+msgstr "Trạm trộn dự phòng"
+
+#. module: rmc_project_site
+#: model:ir.model.fields,help:rmc_project_site.field_project_project__backup_plant_ids
+msgid "Alternative batching plants capable of supplying this site in case of high load or plant breakdown."
+msgstr "Các trạm trộn thay thế có thể cấp bù khi trạm chính quá tải hoặc gặp sự cố."
+
+#. module: rmc_project_site
+#: model:ir.model.fields,field_description:rmc_project_site.field_project_project__total_contract_quota_m3
+msgid "Total Contract Quota (m³)"
+msgstr "Tổng KL Hợp đồng (m³)"
+
+#. module: rmc_project_site
+#: model:ir.model.fields,help:rmc_project_site.field_project_project__total_contract_quota_m3
+msgid "Total contracted volume of concrete for this project."
+msgstr "Tổng khối lượng bê tông theo hợp đồng đã ký kết cho công trình này."
+
+#. module: rmc_project_site
+#: model:ir.model.fields,field_description:rmc_project_site.field_project_project__total_delivered_m3
+msgid "Total Delivered Volume (m³)"
+msgstr "Tổng KL Đã giao (m³)"
+
+#. module: rmc_project_site
+#: model:ir.model.fields,help:rmc_project_site.field_project_project__total_delivered_m3
+msgid "Cumulative volume of concrete confirmed as delivered at the job site."
+msgstr "Tổng khối lượng bê tông lũy kế đã được xác nhận giao tại công trường."
+
+#. module: rmc_project_site
+#: model:ir.model.fields,field_description:rmc_project_site.field_project_project__remaining_quota_m3
+msgid "Remaining Quota (m³)"
+msgstr "KL Còn lại (m³)"
+
+#. module: rmc_project_site
+#: model:ir.model.fields,help:rmc_project_site.field_project_project__remaining_quota_m3
+msgid "Contract quota minus delivered volume."
+msgstr "Khối lượng hợp đồng trừ đi khối lượng đã bàn giao."
+
+#. module: rmc_project_site
+#: model:ir.model.fields,field_description:rmc_project_site.field_project_project__completion_progress
+msgid "Pouring Completion Progress (%)"
+msgstr "Tiến độ cấp bê tông (%)"
+
+#. module: rmc_project_site
+#: model:ir.model.fields,help:rmc_project_site.field_project_project__completion_progress
+msgid "Percentage of contracted volume that has been delivered."
+msgstr "Tỷ lệ phần trăm khối lượng hợp đồng đã thực hiện bàn giao."
+
+#. module: rmc_project_site
+#: model:ir.model.fields,field_description:rmc_project_site.field_project_project__transport_violation_count
+msgid "Transport Violations"
+msgstr "Số vi phạm vận tải (EUP)"
+
+#. module: rmc_project_site
+#: model:ir.model.fields,help:rmc_project_site.field_project_project__transport_violation_count
+msgid "Recorded logistics violations (e.g., geofence bypass, excessive waiting time)."
+msgstr "Tổng số lần vi phạm quy trình vận chuyển (bỏ qua vùng xả, chờ xả quá thời gian tiêu chuẩn)."
+
+#. module: rmc_project_site
+#: model:ir.actions.act_window,name:rmc_project_site.action_rmc_concrete_sites
+#: model:ir.ui.menu,name:rmc_project_site.menu_rmc_concrete_sites
+msgid "Construction Sites"
+msgstr "Công trình Bê tông"
+
+#. module: rmc_project_site
+#: code:addons/rmc_project_site/models/project_project.py:0
+#, python-format
+msgid "GPS Latitude must be between -90.0 and 90.0 degrees!"
+msgstr "Vĩ độ GPS phải nằm trong khoảng từ -90.0 đến 90.0 độ!"
+
+#. module: rmc_project_site
+#: code:addons/rmc_project_site/models/project_project.py:0
+#, python-format
+msgid "GPS Longitude must be between -180.0 and 180.0 degrees!"
+msgstr "Kinh độ GPS phải nằm trong khoảng từ -180.0 đến 180.0 độ!"
+
+#. module: rmc_project_site
+#: code:addons/rmc_project_site/models/project_project.py:0
+#, python-format
+msgid "Geofence radius must be strictly positive (greater than 0 meters)!"
+msgstr "Bán kính vùng xả Geofence phải lớn hơn 0 mét!"

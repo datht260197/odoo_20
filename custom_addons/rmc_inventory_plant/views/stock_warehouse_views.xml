@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Stock Warehouse Form View -->
+    <record id="view_warehouse_rmc_form" model="ir.ui.view">
+        <field name="name">stock.warehouse.rmc.form</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="is_batching_plant"/>
+                <field name="plant_code" invisible="not is_batching_plant" required="is_batching_plant"/>
+                <field name="capacity_m3_per_hour" invisible="not is_batching_plant"/>
+                <field name="plant_manager_id" invisible="not is_batching_plant"/>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <notebook invisible="not is_batching_plant">
+                    <page string="Aggregate Density Calibration" name="density_matrix_page">
+                        <field name="density_matrix_ids" context="{'default_plant_id': id}">
+                            <list editable="bottom">
+                                <field name="product_id"/>
+                                <field name="bulk_density_ton_per_m3"/>
+                                <field name="moisture_percentage"/>
+                                <field name="dry_density_ton_per_m3"/>
+                                <field name="updated_by_id"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit Stock Warehouse List View -->
+    <record id="view_warehouse_rmc_tree" model="ir.ui.view">
+        <field name="name">stock.warehouse.rmc.list</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="is_batching_plant" optional="show"/>
+                <field name="plant_code" optional="show"/>
+                <field name="capacity_m3_per_hour" optional="hide"/>
+                <field name="plant_manager_id" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Action for Batching Plants -->
+    <record id="action_rmc_batching_plants" model="ir.actions.act_window">
+        <field name="name">Batching Plants</field>
+        <field name="res_model">stock.warehouse</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_batching_plant', '=', True)]</field>
+        <field name="context">{'default_is_batching_plant': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Register a new Ready-Mix Concrete Batching Plant
+            </p>
+            <p>
+                Manage batching plant output capacity, plant managers, silos, and density matrices.
+            </p>
+        </field>
+    </record>
+</odoo>

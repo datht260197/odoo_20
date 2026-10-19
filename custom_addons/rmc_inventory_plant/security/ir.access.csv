@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+rmc_density_matrix_comp_rule,RMC Density Matrix: multi-company,rmc.material.density.matrix,,crud,"[('company_id', 'in', company_ids + [False])]"
+access_rmc_density_matrix_user,rmc.material.density.matrix.user,rmc.material.density.matrix,base.group_user,r,
+access_rmc_density_matrix_stock_user,rmc.material.density.matrix.stock_user,rmc.material.density.matrix,stock.group_stock_user,crud,
+access_rmc_density_matrix_stock_manager,rmc.material.density.matrix.stock_manager,rmc.material.density.matrix,stock.group_stock_manager,crud,

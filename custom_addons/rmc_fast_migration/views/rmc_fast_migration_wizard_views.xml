@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Wizard Form View -->
+    <record id="view_rmc_fast_migration_wizard_form" model="ir.ui.view">
+        <field name="name">rmc.fast.migration.wizard.form</field>
+        <field name="model">rmc.fast.migration.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Fast ERP Master Data Migration">
+                <sheet>
+                    <div class="alert alert-info" role="alert">
+                        <strong>Fast ERP Migration Engine:</strong> This tool imports and performs idempotent Upsert of Partners, Products, and Construction Sites from Fast ERP CSV files.
+                    </div>
+                    <group>
+                        <group string="Configuration">
+                            <field name="migration_type" widget="radio"/>
+                        </group>
+                        <group string="Source File">
+                            <field name="import_file" filename="filename"/>
+                            <field name="filename" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook invisible="not import_log">
+                        <page string="Execution Output" name="log_page">
+                            <field name="import_log" widget="text" style="font-family: monospace; white-space: pre-wrap;"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_import_data" string="Execute Migration" type="object" class="btn-primary"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Wizard Window Action -->
+    <record id="action_rmc_fast_migration_wizard" model="ir.actions.act_window">
+        <field name="name">Fast ERP Migration</field>
+        <field name="res_model">rmc.fast.migration.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu item under Settings / Technical / Database Structure or Contacts / Configuration -->
+    <menuitem
+        id="menu_rmc_fast_migration"
+        name="Fast ERP Migration"
+        action="action_rmc_fast_migration_wizard"
+        parent="contacts.res_partner_menu_config"
+        sequence="50"/>
+</odoo>

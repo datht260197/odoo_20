@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Batching Plants under Warehouse Management -->
+    <menuitem
+        id="menu_rmc_batching_plants"
+        name="Batching Plants"
+        action="action_rmc_batching_plants"
+        parent="stock.menu_warehouse_config"
+        sequence="5"/>
+
+    <!-- Aggregate Density Matrix under Inventory > Products -->
+    <menuitem
+        id="menu_rmc_material_density_matrix"
+        name="Aggregate Density Matrix"
+        action="action_rmc_material_density_matrix"
+        parent="stock.menu_stock_inventory_control"
+        sequence="10"/>
+</odoo>

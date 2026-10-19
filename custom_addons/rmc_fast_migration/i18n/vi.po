@@ -1,0 +1,121 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* rmc_fast_migration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 20.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 07:00+0000\n"
+"PO-Revision-Date: 2026-10-19 07:00+0000\n"
+"Last-Translator: DatHT\n"
+"Language-Team: Vietnamese <vi@li.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: rmc_fast_migration
+#: model:ir.model.fields,field_description:rmc_fast_migration.field_res_partner__fast_partner_code
+msgid "Fast ERP Partner Code"
+msgstr "Mã Khách hàng/NCC Fast ERP"
+
+#. module: rmc_fast_migration
+#: model:ir.model.fields,help:rmc_fast_migration.field_res_partner__fast_partner_code
+msgid "Unique customer or vendor accounting code from Fast ERP."
+msgstr "Mã kế toán khách hàng hoặc nhà cung cấp trên phần mềm Fast ERP."
+
+#. module: rmc_fast_migration
+#: model:ir.model.fields,field_description:rmc_fast_migration.field_res_partner__rmc_partner_category
+msgid "RMC Partner Category"
+msgstr "Phân loại đối tác RMC"
+
+#. module: rmc_fast_migration
+#: model:ir.model.fields,help:rmc_fast_migration.field_res_partner__rmc_partner_category
+msgid "Industry role classification for concrete logistics and credit management."
+msgstr "Phân loại vai trò ngành nghề phục vụ quản lý điều độ bê tông và hạn mức công nợ."
+
+#. module: rmc_fast_migration
+#: model:ir.model.fields.selection,name:rmc_fast_migration.selection__res_partner__rmc_partner_category__contractor
+msgid "Building Contractor"
+msgstr "Nhà thầu Xây dựng"
+
+#. module: rmc_fast_migration
+#: model:ir.model.fields.selection,name:rmc_fast_migration.selection__res_partner__rmc_partner_category__investor
+msgid "Project Investor"
+msgstr "Chủ đầu tư"
+
+#. module: rmc_fast_migration
+#: model:ir.model.fields.selection,name:rmc_fast_migration.selection__res_partner__rmc_partner_category__material_supplier
+msgid "Raw Material Supplier"
+msgstr "Nhà cung cấp NVL"
+
+#. module: rmc_fast_migration
+#: model:ir.model.fields.selection,name:rmc_fast_migration.selection__res_partner__rmc_partner_category__other
+msgid "Other"
+msgstr "Khác"
+
+#. module: rmc_fast_migration
+#: model:ir.model,name:rmc_fast_migration.model_rmc_fast_migration_wizard
+msgid "Fast ERP Master Data Migration Wizard"
+msgstr "Công cụ Chuyển đổi Dữ liệu Gốc từ Fast ERP"
+
+#. module: rmc_fast_migration
+#: model:ir.model.fields,field_description:rmc_fast_migration.field_rmc_fast_migration_wizard__migration_type
+msgid "Migration Entity"
+msgstr "Đối tượng chuyển đổi"
+
+#. module: rmc_fast_migration
+#: model:ir.model.fields.selection,name:rmc_fast_migration.selection__rmc_fast_migration_wizard__migration_type__partners
+msgid "1. Customers & Suppliers (res.partner)"
+msgstr "1. Khách hàng & Nhà cung cấp"
+
+#. module: rmc_fast_migration
+#: model:ir.model.fields.selection,name:rmc_fast_migration.selection__rmc_fast_migration_wizard__migration_type__products
+msgid "2. Materials & Concrete Grades (product.template)"
+msgstr "2. Vật tư & Mác Bê tông"
+
+#. module: rmc_fast_migration
+#: model:ir.model.fields.selection,name:rmc_fast_migration.selection__rmc_fast_migration_wizard__migration_type__projects
+msgid "3. Construction Sites & Balances (project.project)"
+msgstr "3. Công trình & Số dư lịch sử"
+
+#. module: rmc_fast_migration
+#: model:ir.model.fields,field_description:rmc_fast_migration.field_rmc_fast_migration_wizard__import_file
+msgid "CSV Data File"
+msgstr "File dữ liệu CSV"
+
+#. module: rmc_fast_migration
+#: model:ir.model.fields,help:rmc_fast_migration.field_rmc_fast_migration_wizard__import_file
+msgid "Upload standard UTF-8 CSV exported from Fast ERP."
+msgstr "Tải lên tệp CSV chuẩn mã hóa UTF-8 trích xuất từ Fast ERP."
+
+#. module: rmc_fast_migration
+#: model:ir.model.fields,field_description:rmc_fast_migration.field_rmc_fast_migration_wizard__import_log
+msgid "Migration Log"
+msgstr "Nhật ký chuyển đổi"
+
+#. module: rmc_fast_migration
+#: model:ir.actions.act_window,name:rmc_fast_migration.action_rmc_fast_migration_wizard
+#: model:ir.ui.menu,name:rmc_fast_migration.menu_rmc_fast_migration
+msgid "Fast ERP Migration"
+msgstr "Chuyển đổi dữ liệu Fast ERP"
+
+#. module: rmc_fast_migration
+#: code:addons/rmc_fast_migration/models/rmc_fast_migration_wizard.py:0
+#, python-format
+msgid "Please select a valid CSV file to import!"
+msgstr "Vui lòng chọn một tệp CSV hợp lệ để nhập liệu!"
+
+#. module: rmc_fast_migration
+#: code:addons/rmc_fast_migration/models/rmc_fast_migration_wizard.py:0
+#, python-format
+msgid "Failed to read file as UTF-8 encoded CSV: %s"
+msgstr "Không thể đọc tệp dưới định dạng CSV chuẩn mã hóa UTF-8: %s"
+
+#. module: rmc_fast_migration
+#: code:addons/rmc_fast_migration/models/rmc_fast_migration_wizard.py:0
+#, python-format
+msgid "The uploaded CSV file is empty or missing header columns!"
+msgstr "Tệp CSV tải lên trống hoặc thiếu các cột tiêu đề!"

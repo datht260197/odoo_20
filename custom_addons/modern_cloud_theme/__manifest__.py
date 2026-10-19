@@ -32,6 +32,7 @@
             'modern_cloud_theme/static/src/scss/layout_navbar.scss',
             'modern_cloud_theme/static/src/scss/layout_control_panel.scss',
             'modern_cloud_theme/static/src/scss/layout_views.scss',
+            'modern_cloud_theme/static/src/scss/layout_mobile.scss',
             'modern_cloud_theme/static/src/scss/print_protection.scss',
         ],
     },

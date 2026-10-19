@@ -1,0 +1,2 @@
+id,name,model_id,group_id/id,operation,domain
+access_rmc_fast_migration_wizard_user,rmc.fast.migration.wizard.user,rmc.fast.migration.wizard,base.group_user,crud,

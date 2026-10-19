@@ -1,0 +1,237 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* rmc_inventory_plant
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 20.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 07:00+0000\n"
+"PO-Revision-Date: 2026-10-19 07:00+0000\n"
+"Last-Translator: DatHT\n"
+"Language-Team: Vietnamese <vi@li.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_stock_warehouse__is_batching_plant
+msgid "Is Batching Plant"
+msgstr "Là Trạm trộn Bê tông"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,help:rmc_inventory_plant.field_stock_warehouse__is_batching_plant
+msgid "Check this box if this warehouse is an RMC batching plant."
+msgstr "Đánh dấu chọn nếu kho này là một trạm trộn bê tông thương phẩm."
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_stock_warehouse__plant_code
+msgid "Plant Code (BMES/ACS)"
+msgstr "Mã Trạm (BMES/ACS)"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,help:rmc_inventory_plant.field_stock_warehouse__plant_code
+msgid "Unique identifier of the batching plant in BMES and ACS batching systems."
+msgstr "Mã định danh duy nhất của trạm trộn trong hệ thống trạm cân ACS và điều khiển BMES."
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_stock_warehouse__capacity_m3_per_hour
+msgid "Design Capacity (m³/h)"
+msgstr "Công suất thiết kế (m³/h)"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,help:rmc_inventory_plant.field_stock_warehouse__capacity_m3_per_hour
+msgid "Nominal batching output capacity in cubic meters per hour."
+msgstr "Công suất trộn danh định tính theo mét khối trên giờ."
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_stock_warehouse__plant_manager_id
+msgid "Plant Manager"
+msgstr "Trưởng trạm"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,help:rmc_inventory_plant.field_stock_warehouse__plant_manager_id
+msgid "Employee in charge of operational management at this batching plant."
+msgstr "Nhân sự chịu trách nhiệm quản lý vận hành trạm trộn này."
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_stock_warehouse__density_matrix_ids
+msgid "Density Matrices"
+msgstr "Ma trận Tỷ trọng Cốt liệu"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,help:rmc_inventory_plant.field_stock_warehouse__density_matrix_ids
+msgid "Active density and moisture calibration matrix for materials at this plant."
+msgstr "Bảng hiệu chuẩn tỷ trọng và độ ẩm thực tế của các vật tư tại trạm trộn này."
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_stock_location__rmc_storage_type
+msgid "RMC Storage Type"
+msgstr "Loại vị trí lưu trữ RMC"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,help:rmc_inventory_plant.field_stock_location__rmc_storage_type
+msgid "Physical storage unit type for batching materials."
+msgstr "Phân loại vị trí vật lý chứa nguyên vật liệu sản xuất bê tông."
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields.selection,name:rmc_inventory_plant.selection__stock_location__rmc_storage_type__silo
+msgid "Cement / Fly Ash Silo"
+msgstr "Silo Xi măng / Tro bay"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields.selection,name:rmc_inventory_plant.selection__stock_location__rmc_storage_type__aggregate_bin
+msgid "Aggregate Bin / Hopper (Sand/Stone)"
+msgstr "Bãi / Phễu Cốt liệu (Cát/Đá)"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields.selection,name:rmc_inventory_plant.selection__stock_location__rmc_storage_type__admixture_tank
+msgid "Admixture Tank"
+msgstr "Bồn Phụ gia"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields.selection,name:rmc_inventory_plant.selection__stock_location__rmc_storage_type__water_tank
+msgid "Water Tank"
+msgstr "Bể Nước"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_stock_location__max_capacity_ton
+msgid "Max Capacity (Tons)"
+msgstr "Sức chứa tối đa (Tấn)"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,help:rmc_inventory_plant.field_stock_location__max_capacity_ton
+msgid "Maximum safe physical storage capacity in metric tons."
+msgstr "Sức chứa an toàn tối đa của bồn/silo tính theo tấn."
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_product_template__rmc_product_type
+msgid "RMC Product Type"
+msgstr "Phân loại vật tư RMC"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields.selection,name:rmc_inventory_plant.selection__product_template__rmc_product_type__raw_material
+msgid "Raw Material"
+msgstr "Nguyên vật liệu (NVL)"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields.selection,name:rmc_inventory_plant.selection__product_template__rmc_product_type__concrete
+msgid "Ready-Mix Concrete"
+msgstr "Bê tông thương phẩm"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_product_template__acs_material_code
+msgid "ACS Material Code"
+msgstr "Mã vật tư ACS (Trạm cân)"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_product_template__bmes_material_code
+msgid "BMES Material Code"
+msgstr "Mã vật tư BMES (Trạm trộn)"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_product_template__fast_legacy_code
+msgid "Fast ERP Material Code"
+msgstr "Mã vật tư Fast ERP"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_product_template__concrete_grade
+msgid "Concrete Grade"
+msgstr "Mác Bê tông"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_product_template__slump_spec
+msgid "Slump Spec (cm)"
+msgstr "Độ sụt (cm)"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_product_template__stone_size
+msgid "Stone Size"
+msgstr "Cỡ đá"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields.selection,name:rmc_inventory_plant.selection__product_template__stone_size__1x2
+msgid "Stone 1x2"
+msgstr "Đá 1x2"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields.selection,name:rmc_inventory_plant.selection__product_template__stone_size__4x6
+msgid "Stone 4x6"
+msgstr "Đá 4x6"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields.selection,name:rmc_inventory_plant.selection__product_template__stone_size__other
+msgid "Other"
+msgstr "Khác"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_product_template__standard_density_ton_m3
+msgid "Standard Density (Ton/m³)"
+msgstr "Tỷ trọng chuẩn (Tấn/m³)"
+
+#. module: rmc_inventory_plant
+#: model:ir.model,name:rmc_inventory_plant.model_rmc_material_density_matrix
+msgid "RMC Aggregate Density & Moisture Calibration Matrix"
+msgstr "Bảng Quy đổi Tỷ trọng & Độ ẩm Cốt liệu theo Trạm trộn"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_rmc_material_density_matrix__plant_id
+msgid "Batching Plant"
+msgstr "Trạm trộn"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_rmc_material_density_matrix__product_id
+msgid "Raw Material"
+msgstr "Nguyên vật liệu"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_rmc_material_density_matrix__bulk_density_ton_per_m3
+msgid "Wet/Bulk Density (Ton/m³)"
+msgstr "Tỷ trọng xốp/ướt (Tấn/m³)"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_rmc_material_density_matrix__moisture_percentage
+msgid "Actual Moisture (%)"
+msgstr "Độ ẩm thực tế (%)"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_rmc_material_density_matrix__dry_density_ton_per_m3
+msgid "Dry Density (Ton/m³)"
+msgstr "Tỷ trọng quy khô (Tấn/m³)"
+
+#. module: rmc_inventory_plant
+#: model:ir.model.fields,field_description:rmc_inventory_plant.field_rmc_material_density_matrix__updated_by_id
+msgid "Last Updated By"
+msgstr "Người cập nhật"
+
+#. module: rmc_inventory_plant
+#: model:ir.actions.act_window,name:rmc_inventory_plant.action_rmc_batching_plants
+#: model:ir.ui.menu,name:rmc_inventory_plant.menu_rmc_batching_plants
+msgid "Batching Plants"
+msgstr "Trạm trộn Bê tông"
+
+#. module: rmc_inventory_plant
+#: model:ir.actions.act_window,name:rmc_inventory_plant.action_rmc_material_density_matrix
+#: model:ir.ui.menu,name:rmc_inventory_plant.menu_rmc_material_density_matrix
+msgid "Aggregate Density Matrix"
+msgstr "Ma trận Tỷ trọng Cốt liệu"
+
+#. module: rmc_inventory_plant
+#: code:addons/rmc_inventory_plant/models/rmc_material_density_matrix.py:0
+#, python-format
+msgid "Bulk density must be strictly positive (greater than 0)!"
+msgstr "Tỷ trọng xốp phải lớn hơn 0!"
+
+#. module: rmc_inventory_plant
+#: code:addons/rmc_inventory_plant/models/rmc_material_density_matrix.py:0
+#, python-format
+msgid "Moisture percentage must be between 0% and 99.99%!"
+msgstr "Độ ẩm phải nằm trong khoảng từ 0% đến 99.99%!"
+
+#. module: rmc_inventory_plant
+#: code:addons/rmc_inventory_plant/models/rmc_material_density_matrix.py:0
+#, python-format
+msgid "Unsupported conversion unit: %s to %s"
+msgstr "Đơn vị quy đổi không được hỗ trợ: %s sang %s"

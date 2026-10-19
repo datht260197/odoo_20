@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_location_rmc_form" model="ir.ui.view">
+        <field name="name">stock.location.rmc.form</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='additional_info']" position="after">
+                <group string="RMC Batching Storage" name="rmc_storage_info">
+                    <field name="rmc_storage_type"/>
+                    <field name="max_capacity_ton" invisible="not rmc_storage_type"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_location_rmc_tree" model="ir.ui.view">
+        <field name="name">stock.location.rmc.list</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_tree2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='usage']" position="after">
+                <field name="rmc_storage_type" optional="show"/>
+                <field name="max_capacity_ton" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_rmc_material_density_matrix_tree" model="ir.ui.view">
+        <field name="name">rmc.material.density.matrix.list</field>
+        <field name="model">rmc.material.density.matrix</field>
+        <field name="arch" type="xml">
+            <list string="Aggregate Density Calibration Matrix" editable="bottom">
+                <field name="plant_id"/>
+                <field name="product_id"/>
+                <field name="bulk_density_ton_per_m3"/>
+                <field name="moisture_percentage"/>
+                <field name="dry_density_ton_per_m3" readonly="1"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <field name="updated_by_id" optional="show"/>
+                <field name="write_date" string="Last Updated" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_rmc_material_density_matrix_form" model="ir.ui.view">
+        <field name="name">rmc.material.density.matrix.form</field>
+        <field name="model">rmc.material.density.matrix</field>
+        <field name="arch" type="xml">
+            <form string="Aggregate Density Calibration Matrix">
+                <sheet>
+                    <group>
+                        <group string="Plant &amp; Raw Material">
+                            <field name="plant_id" options="{'no_create': True}"/>
+                            <field name="product_id" options="{'no_create': True}"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group string="Density &amp; Moisture Testing">
+                            <field name="bulk_density_ton_per_m3"/>
+                            <field name="moisture_percentage"/>
+                            <field name="dry_density_ton_per_m3"/>
+                            <field name="updated_by_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_rmc_material_density_matrix_search" model="ir.ui.view">
+        <field name="name">rmc.material.density.matrix.search</field>
+        <field name="model">rmc.material.density.matrix</field>
+        <field name="arch" type="xml">
+            <search string="Search Density Calibration Matrix">
+                <field name="plant_id"/>
+                <field name="product_id"/>
+                <group>
+                    <filter string="Batching Plant" name="group_by_plant" context="{'group_by': 'plant_id'}"/>
+                    <filter string="Raw Material" name="group_by_product" context="{'group_by': 'product_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="action_rmc_material_density_matrix" model="ir.actions.act_window">
+        <field name="name">Aggregate Density Matrix</field>
+        <field name="res_model">rmc.material.density.matrix</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_by_plant': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Register a new Plant &amp; Aggregate Density Record
+            </p>
+            <p>
+                Maintain wet/bulk density and tested moisture content per plant to drive precise batching dry conversion.
+            </p>
+        </field>
+    </record>
+</odoo>
