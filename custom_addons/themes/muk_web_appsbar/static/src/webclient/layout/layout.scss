@@ -8,21 +8,71 @@
             'components components';
         grid-template-rows: auto auto 1fr auto;
         grid-template-columns: auto 1fr;
+
         > div:has(#oe_neutralize_banner) {
             grid-area: banner;
         }
+
         > .o_navbar {
             grid-area: navbar;
+
+            .o_main_navbar {
+                display: flex;
+                flex-wrap: nowrap;
+                align-items: center;
+
+                .o_menu_brand {
+                    flex-shrink: 0;
+                    white-space: nowrap;
+                }
+
+                > .o_menu_sections {
+                    flex: 1 1 auto;
+                    min-width: 0;
+                    display: flex;
+                    align-items: center;
+                    overflow-x: auto;
+                    overflow-y: hidden;
+                    white-space: nowrap;
+                    scrollbar-width: none;
+                    -ms-overflow-style: none;
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    .o_nav_entry, .dropdown-toggle {
+                        flex-shrink: 0;
+                        white-space: nowrap;
+                    }
+                }
+
+                > .o_menu_systray {
+                    flex-shrink: 0;
+                    margin-left: auto;
+                    display: flex;
+                    align-items: center;
+                    white-space: nowrap;
+                }
+            }
         }
+
         > .mk_apps_sidebar_panel {
             grid-area: sidebar;
         }
+
         > .o_action_manager {
             grid-area: content;
+            min-width: 0;
+            width: 100%;
+            margin-left: 0 !important;
+            padding-left: 0;
+            overflow: auto;
         }
+
         > .o-main-components-container {
             grid-area: components;
         }
+
         > iframe {
             grid-column: 1 / -1;
             width: 100%;
@@ -33,15 +83,31 @@
 @media print {
     .o_web_client {
         display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+
         > .o_navbar,
-        > .mk_apps_sidebar_panel {
+        > .o_main_navbar,
+        > .mk_apps_sidebar_panel,
+        > .o-main-components-container,
+        > div:has(#oe_neutralize_banner) {
             display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
+
         > .o_action_manager {
             display: block !important;
+            margin: 0 !important;
+            padding: 0 !important;
             width: 100% !important;
+            max-width: 100% !important;
             height: auto !important;
             overflow: visible !important;
         }
     }
 }
+

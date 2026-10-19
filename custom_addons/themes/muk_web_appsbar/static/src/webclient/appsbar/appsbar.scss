@@ -1,104 +1,139 @@
-.mk_apps_sidebar_panel {
-    @include mk-disable-scrollbar();
-    background-color: $mk-appbar-background;
-    box-shadow: inset -1px 0 0 $mk-appbar-border;
-    width: var(--mk-sidebar-width, 0);
-    overflow-y: auto;
-    .mk_apps_sidebar {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        white-space: nowrap;
-        .mk_apps_sidebar_menu {
-            padding: 6px 0;
-            list-style: none;
-            > li > a {
-                cursor: pointer;
-                font-size: 13.5px;
-                font-weight: 500;
-                overflow: hidden;
-                margin: 2px var(--mk-appbar-inset, 8px);
-                padding: 7px var(--mk-appbar-pad, 10px);
-                border-radius: 6px;
-                text-decoration: none;
-                color: $mk-appbar-color;
-                text-overflow: ellipsis;
-                transition: all 0.15s ease-in-out;
+@media screen {
+    .mk_apps_sidebar_panel {
+        @include mk-disable-scrollbar();
+        background-color: $mk-appbar-background;
+        box-shadow: inset -1px 0 0 $mk-appbar-border;
+        width: var(--mk-sidebar-width, #{$mk-sidebar-width});
+        min-width: var(--mk-sidebar-width, #{$mk-sidebar-width});
+        overflow-y: auto;
+        overflow-x: hidden;
+        flex-shrink: 0;
+        z-index: 10;
+        transition: width 0.2s ease;
+
+        .mk_apps_sidebar {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            white-space: nowrap;
+
+            .mk_apps_sidebar_menu {
+                padding: 8px 0;
+                margin: 0;
+                list-style: none;
+                width: 100%;
                 display: flex;
+                flex-direction: column;
                 align-items: center;
-                .mk_apps_sidebar_icon {
-                    width: 22px;
-                    height: 22px;
-                    margin-right: 8px;
-                    border-radius: 4px;
-                    flex-shrink: 0;
+                gap: 4px;
+
+                > li {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+
+                    > a.nav-link {
+                        cursor: pointer;
+                        width: 44px;
+                        height: 44px;
+                        padding: 0;
+                        margin: 0 auto;
+                        border-radius: 8px;
+                        text-decoration: none;
+                        color: $mk-appbar-color;
+                        transition: all 0.15s ease-in-out;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        position: relative;
+
+                        .mk_apps_sidebar_icon {
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 6px;
+                            object-fit: contain;
+                            margin: 0 !important;
+                            flex-shrink: 0;
+                            transition: transform 0.15s ease-in-out;
+                        }
+
+                        &:hover .mk_apps_sidebar_icon {
+                            transform: scale(1.08);
+                        }
+
+                        .mk_apps_sidebar_name {
+                            display: none !important;
+                        }
+                    }
+
+                    > a.nav-link.active,
+                    &.active > a.nav-link {
+                        background: $mk-appbar-active;
+                        color: #ffffff;
+                        box-shadow: 0 1px 4px rgba(2, 132, 199, 0.4);
+                    }
+
+                    > a.nav-link:not(.active):hover,
+                    &:not(.active):hover > a.nav-link {
+                        background: $mk-appbar-hover;
+                        color: #f8fafc;
+                    }
                 }
             }
-            > li.active > a {
-                background: $mk-appbar-active;
-                color: #ffffff;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
+            .mk_apps_sidebar_logo {
+                padding: 8px 4px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    max-width: 40px;
+                    max-height: 40px;
+                    object-fit: contain;
+                }
             }
-            > li:not(.active):hover > a {
-                background: $mk-appbar-hover;
-                color: #f8fafc;
-            }
         }
     }
-}
-.mk_sidebar_type_large {
-    --mk-sidebar-width: #{$mk-sidebar-large-width};
-}
-.mk_sidebar_type_small {
-    --mk-sidebar-width: #{$mk-sidebar-small-width};
-    --mk-appbar-inset: 4px;
-    --mk-appbar-pad: 8px;
-    .mk_apps_sidebar_name {
-        display: none;
-    }
-    .mk_apps_sidebar_icon {
-        margin-right: 0 !important;
-    }
-    .mk_apps_sidebar_logo {
-        display: none;
-    }
-}
-.mk_sidebar_type_invisible {
-    --mk-sidebar-width: 0;
-}
-.o_home_menu_background {
-    --mk-sidebar-width: 0;
-}
-@include media-breakpoint-only(md) {
-    .mk_sidebar_type_large {
-        --mk-sidebar-width: #{$mk-sidebar-small-width};
-        --mk-appbar-inset: 4px;
-        --mk-appbar-pad: 8px;
-        .mk_apps_sidebar_name {
-            display: none;
-        }
-        .mk_apps_sidebar_icon {
-            margin-right: 0 !important;
-        }
-        .mk_apps_sidebar_logo {
-            display: none;
-        }
-    }
-}
-@include media-breakpoint-down(md) {
+
     .mk_sidebar_type_large,
     .mk_sidebar_type_small {
+        --mk-sidebar-width: #{$mk-sidebar-width};
+    }
+
+    .mk_sidebar_type_invisible {
         --mk-sidebar-width: 0;
     }
+
+    .o_home_menu_background {
+        --mk-sidebar-width: 0;
+    }
+
+    @include media-breakpoint-down(md) {
+        .mk_sidebar_type_large,
+        .mk_sidebar_type_small {
+            --mk-sidebar-width: 0;
+        }
+    }
 }
+
 @media print {
-    .mk_apps_sidebar_panel {
+    .mk_apps_sidebar_panel,
+    .mk_apps_sidebar {
         display: none !important;
         width: 0 !important;
+        min-width: 0 !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
+
     .mk_sidebar_type_large,
     .mk_sidebar_type_small {
         --mk-sidebar-width: 0 !important;
     }
 }
+

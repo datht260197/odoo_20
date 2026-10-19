@@ -1,0 +1,9 @@
+id,name,model_id,group_id/id,operation,domain
+access_hr_contract_type_user,hr.contract.type.user,hr.contract.type,hr.group_hr_user,r,
+access_hr_contract_type_manager,hr.contract.type.manager,hr.contract.type,hr.group_hr_manager,crud,
+access_hr_contract_user,hr.contract.user,hr.contract,hr.group_hr_user,cru,
+access_hr_contract_manager,hr.contract.manager,hr.contract,hr.group_hr_manager,crud,
+rule_hr_contract_multicompany,hr.contract multi-company,hr.contract,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_hr_contract_word_template_user,hr.contract.word.template.user,hr.contract.word.template,hr.group_hr_user,cru,
+access_hr_contract_word_template_manager,hr.contract.word.template.manager,hr.contract.word.template,hr.group_hr_manager,crud,
+rule_hr_contract_word_template_multicompany,hr.contract.word.template multi-company,hr.contract.word.template,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"

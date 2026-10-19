@@ -1,5 +1,8 @@
 @media screen {
     .o_main_navbar {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
         border-bottom: 1px solid var(--o-border-color, #e2e8f0) !important;
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04) !important;
         background-color: var(--o-navbar-background-color, #ffffff) !important;
@@ -18,10 +21,24 @@
             color: #0f172a !important;
             font-weight: 600;
             font-size: 14.5px;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
         > .o_menu_sections {
-            margin-right: 1rem;
+            flex: 1 1 auto;
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            margin-right: 0.5rem;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            &::-webkit-scrollbar {
+                display: none;
+            }
 
             .o_nav_entry, .dropdown-toggle:not(.o-dropdown-toggle-custo) {
                 background: transparent !important;
@@ -29,6 +46,8 @@
                 font-weight: 500;
                 font-size: 13.5px;
                 border-radius: 6px;
+                flex-shrink: 0;
+                white-space: nowrap;
                 transition: background-color 0.15s ease, color 0.15s ease;
 
                 &:hover {
@@ -54,6 +73,12 @@
         }
 
         > .o_menu_systray {
+            flex-shrink: 0;
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+
             .o_nav_entry, .dropdown-toggle:not(.o-dropdown-toggle-custo) {
                 background: transparent !important;
                 color: #475569 !important;
@@ -89,7 +114,13 @@
 }
 
 @media print {
-    .o_main_navbar {
+    .o_main_navbar,
+    .o_navbar {
         display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 }
+

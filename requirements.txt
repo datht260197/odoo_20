@@ -60,3 +60,5 @@ xlrd==2.0.1 ; python_version >= '3.12'
 XlsxWriter==3.1.9 ; python_version >= '3.12'
 zeep==4.2.1 ; python_version >= '3.11' and python_version < '3.13'
 zeep==4.3.1 ; python_version >= '3.13'
+docxtpl>=0.16.0
+python-docx>=1.1.0
